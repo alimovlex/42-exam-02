@@ -1,0 +1,73 @@
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int ft_word_count(char *str)
+{
+    int cnt = 0;
+    int in_word = 0;
+
+    while (*str)
+    {
+        if (*str != ' ' && *str != ',' && *str != '\t')
+        {
+            if (!in_word)
+            {
+                cnt++;
+                in_word = 1;
+            }
+        }
+        else
+            in_word = 0;
+        str++;
+    }
+    return cnt;
+}
+
+char **ft_split(char *str)
+{
+    int words = ft_word_count(str);
+    char** split_str = malloc((words + 1) * sizeof(char*));
+    char** start = split_str;
+
+    while (*str && words > 0)
+    {
+        while (*str == ' ' || *str == '\t' || *str == '\n')
+            str++;
+        if (!*str)
+            break;
+
+        char* word_start = str;
+
+        while (*str && *str != ' ' && *str != '\t' && *str != '\n')
+            str++;
+
+        int len = str - word_start;
+        *start = malloc(len + 1);
+        char* to = *start;
+        char* from = word_start;
+        while (from < str)
+            *to++ = *from++;
+        *to = '\0';  // правильный конец!
+
+        start++;
+        words--;
+    }
+    *start = NULL;
+    return split_str;
+}
+
+
+//int main(int argc, char** argv)
+//{
+//  char** str = ft_split(*++argv);
+//  char** start = str;
+//  while(*str)
+//  {
+//    printf("Word = %s\n", *str);
+//    free(*str);
+//    str++;
+//  }
+//  free(start);
+//  return 0;
+//}
