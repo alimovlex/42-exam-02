@@ -1,6 +1,6 @@
+#include "tests.hpp"
 #include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdlib>
 
 int ft_word_count(char *str)
 {
@@ -27,7 +27,7 @@ int ft_word_count(char *str)
 char **ft_split(char *str)
 {
     int words = ft_word_count(str);
-    char** split_str = malloc((words + 1) * sizeof(char*));
+    char** split_str = (char**)malloc((words + 1) * sizeof(char*));
     char** start = split_str;
 
     while (*str && words > 0)
@@ -43,31 +43,17 @@ char **ft_split(char *str)
             str++;
 
         int len = str - word_start;
-        *start = malloc(len + 1);
+        *start = (char*)malloc(len + 1);
         char* to = *start;
         char* from = word_start;
         while (from < str)
             *to++ = *from++;
-        *to = '\0';  // правильный конец!
+        *to = '\0';
 
         start++;
         words--;
     }
-    *start = NULL;
+    *start = nullptr;
     return split_str;
 }
 
-
-//int main(int argc, char** argv)
-//{
-//  char** str = ft_split(*++argv);
-//  char** start = str;
-//  while(*str)
-//  {
-//    printf("Word = %s\n", *str);
-//    free(*str);
-//    str++;
-//  }
-//  free(start);
-//  return 0;
-//}

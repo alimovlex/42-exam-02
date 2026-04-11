@@ -2,7 +2,7 @@
 #include <array>
 #include <algorithm>
 #include <cstdlib>
-#include "tests.h"
+#include "tests.hpp"
 
 TEST(ex02, ft_split)
 {
@@ -26,3 +26,13 @@ TEST(ex02, ft_split)
 
 }
 
+TEST(ex02, ft_putstr)
+{
+    ft_putstr("Helo");
+}
+
+int main(int argc, char **argv)
+{
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}

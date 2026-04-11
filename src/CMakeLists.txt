@@ -2,9 +2,10 @@ add_library(tests)
 
 target_sources(tests
   PRIVATE
-    tests.cpp
+        ft_split.cpp
+        ft_putstr.cpp
   PUBLIC
-    tests.h
+        tests.hpp
   )
 
 target_include_directories(tests
