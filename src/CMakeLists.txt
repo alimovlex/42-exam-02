@@ -1,9 +1,8 @@
 add_library(tests)
-
+file(GLOB SRCS "${PROJECT_SOURCE_DIR}/src/*.cpp")
 target_sources(tests
   PRIVATE
-        ft_split.cpp
-        ft_putstr.cpp
+        ${SRCS}
   PUBLIC
         tests.hpp
   )
