@@ -28,7 +28,17 @@ TEST(ex02, ft_split)
 
 TEST(ex02, ft_putstr)
 {
-    ft_putstr("Helo");
+    char* str = "Hello\n";
+    ft_putstr(str);
+}
+
+TEST(ex02, ft_ulstr)
+{
+    char str[] = "L'eSPrit nE peUt plUs pRogResSer s'Il staGne et sI peRsIsTent VAnIte et auto-justification.";
+    char result_str[] = "l'EspRIT Ne PEuT PLuS PrOGrESsER S'iL STAgNE ET Si PErSiStENT vaNiTE ET AUTO-JUSTIFICATION.";
+    ft_ulstr(str);
+    ASSERT_EQ(std::strcmp(str, result_str), 0);
+
 }
 
 int main(int argc, char **argv)
