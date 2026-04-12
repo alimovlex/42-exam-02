@@ -2,7 +2,7 @@
 #include <array>
 #include <algorithm>
 #include <cstdlib>
-#include "tests.hpp"
+#include "exam.h"
 
 TEST(ex02, ft_split)
 {
@@ -37,7 +37,7 @@ TEST(ex02, ft_ulstr)
     char str[] = "L'eSPrit nE peUt plUs pRogResSer s'Il staGne et sI peRsIsTent VAnIte et auto-justification.";
     char result_str[] = "l'EspRIT Ne PEuT PLuS PrOGrESsER S'iL STAgNE ET Si PErSiStENT vaNiTE ET AUTO-JUSTIFICATION.";
     ft_ulstr(str);
-    ASSERT_EQ(std::strcmp(str, result_str), 0);
+    ASSERT_EQ(strcmp(str, result_str), 0);
 
 }
 
