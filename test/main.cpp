@@ -28,8 +28,14 @@ TEST(ex02, ft_split)
 
 TEST(ex02, ft_putstr)
 {
-    char* str = "Hello\n";
+    char* str = (char*)"Hello world\n";
     ft_putstr(str);
+}
+
+TEST(ex02, ft_rev_print)
+{
+    char* str = (char*)"Hello world";
+    ft_rev_print(str);
 }
 
 TEST(ex02, ft_ulstr)
@@ -38,7 +44,6 @@ TEST(ex02, ft_ulstr)
     char result_str[] = "l'EspRIT Ne PEuT PLuS PrOGrESsER S'iL STAgNE ET Si PErSiStENT vaNiTE ET AUTO-JUSTIFICATION.";
     ft_ulstr(str);
     ASSERT_EQ(strcmp(str, result_str), 0);
-
 }
 
 int main(int argc, char **argv)

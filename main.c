@@ -17,6 +17,8 @@
 
 int main(int argc, char** argv)
 {
-
+    char* str = "Hello World\n";
+    //ft_putstr(str);
+    ft_rev_print(str);
     return 0;
 }
