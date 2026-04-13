@@ -49,6 +49,16 @@ TEST(ex02, ft_rot_13)
     ft_rot_13(*g_argv);
 }
 
+TEST(ex02, ft_first_word)
+{
+    ft_first_word(*g_argv);
+}
+
+TEST(ex02, ft_rotone)
+{
+    ft_rotone(*g_argv);
+}
+
 int main(int argc, char **argv)
 {
     g_argc = argc;

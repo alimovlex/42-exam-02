@@ -1,2 +1,2 @@
 # 42-exam-02
-My version of exam solution based solely using pointers.
+My version of exam solutions based on solely pointers usage.

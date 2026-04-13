@@ -22,6 +22,6 @@ int main(int argc, char** argv)
     ft_putstr(str);
     ft_rev_print(str);
     ft_rot_13(str);
-
+    ft_rotone(str);
     return 0;
 }
