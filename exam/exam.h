@@ -14,6 +14,7 @@ void ft_print_hex(char* str);
 void ft_repeat_alpha(char* str);
 void ft_rev_print(char *str);
 void ft_wdmatch(char** argv);
+void ft_rot_13(char* str);
 void ft_search_and_replace(int argc, char** argv);
 unsigned char reverse_bits(unsigned char octet);
 

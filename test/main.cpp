@@ -44,6 +44,11 @@ TEST(ex02, ft_ulstr)
     ft_ulstr(*g_argv);
 }
 
+TEST(ex02, ft_rot_13)
+{
+    ft_rot_13(*g_argv);
+}
+
 int main(int argc, char **argv)
 {
     g_argc = argc;
