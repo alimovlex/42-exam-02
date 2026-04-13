@@ -17,9 +17,11 @@
 
 int main(int argc, char** argv)
 {
-    char* str = "Hello World\n";
+    char str[] = "Hello World\n";
+    ft_first_word(str);
     ft_putstr(str);
     ft_rev_print(str);
-    //ft_rot_13(str);
+    ft_rot_13(str);
+
     return 0;
 }
