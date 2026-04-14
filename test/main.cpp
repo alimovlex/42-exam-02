@@ -35,18 +35,22 @@ TEST(ex02, ft_putstr)
 
 TEST(ex02, ft_rev_print)
 {
-    char* str = (char*)"remmargorP dlroW olleH";
-    ft_rev_print(str);
+    std::string str = "remmargorP dlroW olleH";
+    ft_rev_print((char*)str.c_str());
 }
 
 TEST(ex02, ft_ulstr)
 {
     ft_ulstr(*g_argv);
+    std::string str = "hELLO wORLD pROGRAMMER";
+    ASSERT_STREQ(*g_argv, str.c_str());
 }
 
 TEST(ex02, ft_rot_13)
 {
     ft_rot_13(*g_argv);
+    std::string str = "uRYYB jBEYQ cEBTENZZRE";
+    ASSERT_STREQ(*g_argv, str.c_str());
 }
 
 TEST(ex02, ft_first_word)
@@ -57,6 +61,15 @@ TEST(ex02, ft_first_word)
 TEST(ex02, ft_rotone)
 {
     ft_rotone(*g_argv);
+    std::string str = "vSZZC kCFZR dFCUFOAASF";
+    ASSERT_STREQ(*g_argv, str.c_str());
+}
+
+TEST(ex02, ft_strcpy)
+{
+    std::string str;
+    ft_strcpy((char*)str.c_str(), *g_argv);
+    ASSERT_STREQ(str.c_str(), *g_argv);
 }
 
 int main(int argc, char **argv)

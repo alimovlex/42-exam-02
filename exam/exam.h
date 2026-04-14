@@ -16,6 +16,7 @@ void ft_wdmatch(char** argv);
 void ft_rot_13(char* str);
 void ft_rotone(char* str);
 void ft_first_word(char* str);
+char *ft_strcpy(char *s1, char *s2);
 void ft_search_and_replace(int argc, char** argv);
 unsigned char reverse_bits(unsigned char octet);
 
