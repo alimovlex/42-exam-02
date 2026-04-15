@@ -10,7 +10,7 @@ void ft_fizzbuzz()
     char* fizz_start = fizz;
     char* buzz_start = buzz;
     char* fizzbuzz_start = fizzbuzz;
-    while(counter++ < 100)
+    while(counter++ <= 100)
     {
         fizz = fizz_start;
         buzz = buzz_start;
