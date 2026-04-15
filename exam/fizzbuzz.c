@@ -1,9 +1,9 @@
 #include <unistd.h>
-#include <stdio.h>
 
 void ft_fizzbuzz()
 {
     int counter = 1;
+    char dec, dig;
     char *fizz = "fizz\n";
     char *buzz = "buzz\n";
     char* fizzbuzz = "fizzbuzz\n";
@@ -25,7 +25,15 @@ void ft_fizzbuzz()
             while(*buzz)
                 write(1, buzz++, 1);
         else
-            printf("%d\n", counter);
+        {
+            dec = (counter / 10) + '0';
+            dig = (counter % 10) + '0';
+
+            if (counter >= 10)
+                write(1, &dec, 1);
+            write(1, &dig, 1);
+            write(1, "\n", 1);
+        }
         counter++;
     }
 }
