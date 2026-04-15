@@ -17,12 +17,3 @@ void ft_repeat_alpha(char* str)
     }
     write(1, "\n", 1);
 }
-
-int main(int argc, char** argv)
-{
-    if (argc != 2)
-        write(1, "\n", 1);
-    else
-        ft_repeat_alpha(*++argv);
-    return 0;
-}
