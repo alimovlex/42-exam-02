@@ -36,7 +36,8 @@ TEST(ex02, ft_putstr)
 TEST(ex02, ft_rev_print)
 {
     std::string str = "remmargorP dlroW olleH";
-    ft_rev_print((char*)str.c_str());
+    char* ptr = const_cast<char*>(str.c_str());
+    ft_rev_print(ptr);
 }
 
 TEST(ex02, ft_ulstr)
@@ -68,7 +69,9 @@ TEST(ex02, ft_rotone)
 TEST(ex02, ft_strcpy)
 {
     std::string str;
-    ft_strcpy((char*)str.c_str(), *g_argv);
+    char* ptr = const_cast<char*>(str.c_str());
+    //ft_strcpy((char*)str.c_str(), *g_argv);
+    ft_strcpy(ptr, *g_argv);
     ASSERT_STREQ(str.c_str(), *g_argv);
 }
 

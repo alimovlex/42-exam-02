@@ -2,6 +2,25 @@
 
 void ft_wdmatch(char *s1, char *s2)
 {
+    int len;
+
+    len = 0;
+    while(*s2)
+    {
+        if(*s1 == *s2)
+        {
+            len++;
+            s1++;
+        }
+        s2++;
+    }
+    if(*s1 == 0 && len > 0)
+        write(1, s1-len, len);
+    write(1, "\n", 1);
+}
+/*
+void ft_wdmatch(char *s1, char *s2)
+{
     // 1. We create a 'tracker' pointer (ptr).
     // We need to keep the original 's1' pointing at the start so we can print it later.
     char *ptr = s1;
@@ -31,7 +50,7 @@ void ft_wdmatch(char *s1, char *s2)
     write(1, "\n", 1);
 }
 
-/*
+
 void ft_wdmatch(char** argv)
 {
     char *a;
