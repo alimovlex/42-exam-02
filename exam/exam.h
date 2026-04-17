@@ -19,7 +19,8 @@ void ft_first_word(char* str);
 char *ft_strcpy(char *s1, char *s2);
 void ft_search_and_replace(int argc, char** argv);
 unsigned char reverse_bits(unsigned char octet);
-
+unsigned char swap_bits(unsigned char octet);
+void print_bits(unsigned char octet);
 #ifdef __cplusplus
 }
 #endif
