@@ -23,11 +23,12 @@ void ft_wdmatch(char *s1, char *s2)
                 write(1, s1, 1);
                 s1++;
             }
-            return; // We are done. Exit the function.
+            break; // We are done. Exit the function.
         }
         // 5. Always move s2 forward to keep searching.
         s2++;
     }
+    write(1, "\n", 1);
 }
 
 /*
