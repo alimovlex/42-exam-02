@@ -36,22 +36,22 @@ TEST(ex02, ft_putstr)
 TEST(ex02, ft_rev_print)
 {
     std::string str = "remmargorP dlroW olleH";
-    char* ptr = const_cast<char*>(str.c_str());
-    ft_rev_print(ptr);
+    //char* ptr = const_cast<char*>(str.c_str());
+    ft_rev_print(str.data());
 }
 
 TEST(ex02, ft_ulstr)
 {
     ft_ulstr(*g_argv);
     std::string str = "hELLO wORLD pROGRAMMER";
-    ASSERT_STREQ(*g_argv, str.c_str());
+    ASSERT_STREQ(*g_argv, str.data());
 }
 
 TEST(ex02, ft_rot_13)
 {
     ft_rot_13(*g_argv);
     std::string str = "uRYYB jBEYQ cEBTENZZRE";
-    ASSERT_STREQ(*g_argv, str.c_str());
+    ASSERT_STREQ(*g_argv, str.data());
 }
 
 TEST(ex02, ft_first_word)
@@ -63,15 +63,15 @@ TEST(ex02, ft_rotone)
 {
     ft_rotone(*g_argv);
     std::string str = "vSZZC kCFZR dFCUFOAASF";
-    ASSERT_STREQ(*g_argv, str.c_str());
+    ASSERT_STREQ(*g_argv, str.data());
 }
 
 TEST(ex02, ft_strcpy)
 {
     std::string str;
-    char* ptr = const_cast<char*>(str.c_str());
+    //char* ptr = const_cast<char*>(str.c_str());
     //ft_strcpy((char*)str.c_str(), *g_argv);
-    ft_strcpy(ptr, *g_argv);
+    ft_strcpy(str.data(), *g_argv);
     ASSERT_STREQ(str.c_str(), *g_argv);
 }
 
@@ -82,7 +82,16 @@ TEST(ex02, ft_strlen)
 
 TEST(ex02, ft_swap)
 {
+    int a = 42, b = 21;
+    ft_swap(&a, &b);
+    ASSERT_EQ(b, 42);
+    ASSERT_EQ(a, 21);
+}
 
+TEST(ex02, ft_wdmatch)
+{
+    std::string str_one = "faya", str_two = "fgvvfdxcacpolhyghbreda";
+    ft_wdmatch(str_one.data(), str_two.data());
 }
 
 int main(int argc, char **argv)
