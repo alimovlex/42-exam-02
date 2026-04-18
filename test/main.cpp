@@ -75,6 +75,16 @@ TEST(ex02, ft_strcpy)
     ASSERT_STREQ(str.c_str(), *g_argv);
 }
 
+TEST(ex02, ft_strlen)
+{
+    ASSERT_EQ(22, ft_strlen(*g_argv));
+}
+
+TEST(ex02, ft_swap)
+{
+
+}
+
 int main(int argc, char **argv)
 {
     g_argc = argc;

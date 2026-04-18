@@ -18,6 +18,7 @@ void ft_wdmatch(char *s1, char *s2)
         write(1, s1-len, len);
     write(1, "\n", 1);
 }
+
 /*
 void ft_wdmatch(char *s1, char *s2)
 {
