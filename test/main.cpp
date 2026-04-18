@@ -103,6 +103,12 @@ TEST(ex02, ft_strrev)
     ASSERT_EQ(str, *g_argv);
 }
 
+TEST(ex02, ft_strdup)
+{
+    std::string str = ft_strdup(*g_argv);
+    ASSERT_STREQ(str.data(), *g_argv);
+}
+
 int main(int argc, char **argv)
 {
     g_argc = argc;
