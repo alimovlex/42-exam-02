@@ -31,6 +31,7 @@ TEST(ex02, ft_split)
 TEST(ex02, ft_putstr)
 {
     ft_putstr(*g_argv);
+    std::cout << std::endl;
 }
 
 TEST(ex02, ft_rev_print)
@@ -92,6 +93,14 @@ TEST(ex02, ft_wdmatch)
 {
     std::string str_one = "faya", str_two = "fgvvfdxcacpolhyghbreda";
     ft_wdmatch(str_one.data(), str_two.data());
+}
+
+TEST(ex02, ft_strrev)
+{
+    std::string str = *g_argv;
+    std::reverse(str.begin(), str.end());
+    ft_strrev(*g_argv);
+    ASSERT_EQ(str, *g_argv);
 }
 
 int main(int argc, char **argv)

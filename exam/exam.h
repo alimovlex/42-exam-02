@@ -24,6 +24,7 @@ unsigned char swap_bits(unsigned char octet);
 void print_bits(unsigned char octet);
 void ft_wdmatch(char *s1, char *s2);
 int	max(int* tab, unsigned int len);
+char* ft_strrev(char* str);
 
 //LEVEL 2
 void ft_print_hex(char* str);
