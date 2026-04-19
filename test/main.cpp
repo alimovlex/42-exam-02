@@ -109,6 +109,15 @@ TEST(ex02, ft_strdup)
     ASSERT_STREQ(str.data(), *g_argv);
 }
 
+TEST(ex02, max)
+{
+    std::array<int, 4> array_one = {25, 100, 125, 500};
+    int array_two[] = {25, 100, 125, 500};
+    int max_one = max(array_one.data(), array_one.size());
+    int max_two = max(array_two, 4);
+    ASSERT_EQ(max_one, max_two);
+}
+
 int main(int argc, char **argv)
 {
     g_argc = argc;
