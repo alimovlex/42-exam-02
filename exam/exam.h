@@ -27,6 +27,7 @@ int	max(int* tab, unsigned int len);
 char* ft_strrev(char* str);
 char* ft_strdup(char* src);
 int ft_strcmp(char *s1, char *s2);
+void ft_alpha_mirror(char* str);
 
 //LEVEL 2
 void ft_print_hex(char* str);

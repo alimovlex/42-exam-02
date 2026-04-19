@@ -109,6 +109,18 @@ TEST(ex02, ft_strdup)
     ASSERT_STREQ(str.data(), *g_argv);
 }
 
+TEST(ex02, ft_strcmp)
+{
+    std::string str_one = "abc", str_two = "dfg", str_dup = "abc";
+    ASSERT_EQ(0, ft_strcmp(str_one.data(), str_dup.data()));
+    ASSERT_EQ(strcmp(str_one.data(), str_two.data()), ft_strcmp(str_one.data(), str_two.data()));
+}
+
+TEST(ex02, ft_alpha_mirror)
+{
+    ft_alpha_mirror(*g_argv);
+}
+
 TEST(ex02, max)
 {
     std::array<int, 4> array_one = {25, 100, 125, 500};
