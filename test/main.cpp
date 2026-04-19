@@ -131,6 +131,11 @@ TEST(ex02, max)
     ASSERT_EQ(max_one, max_two);
 }
 
+TEST(ex02, ft_atoi)
+{
+    ASSERT_EQ(atoi("2025"), ft_atoi("2025"));
+}
+
 int main(int argc, char **argv)
 {
     g_argc = argc;

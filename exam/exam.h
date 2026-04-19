@@ -28,6 +28,7 @@ char* ft_strrev(char* str);
 char* ft_strdup(char* src);
 int ft_strcmp(char *s1, char *s2);
 void ft_alpha_mirror(char* str);
+int ft_atoi(const char* str);
 
 //LEVEL 2
 void ft_print_hex(char* str);
