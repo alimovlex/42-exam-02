@@ -1,14 +1,21 @@
 #include <stdlib.h>
 #include "exam.h"
 
-char* ft_strdup(char* src)
+char *ft_strdup(char* src)
 {
-    int len = ft_strlen(src);
-    char* str = (char*)malloc(len * sizeof(src) + 1);
-    char* start = str;
-    while(*src)
-        *str++ = *src++;
-    *str = '\0';
+    char* start = src;
+    while(*start)
+        start++;
+    int len = start - src;
 
-    return start;
+    char* dup = (char*)malloc(len + 1);
+    if (!dup)
+        return NULL;
+
+    char* begin = dup;
+    while(*src)
+        *dup++ = *src++;
+    *dup = '\0';
+
+    return begin;
 }

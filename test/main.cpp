@@ -115,6 +115,7 @@ TEST(ex02, max)
     int array_two[] = {25, 100, 125, 500};
     int max_one = max(array_one.data(), array_one.size());
     int max_two = max(array_two, 4);
+    std::cout << max_one << "=" << max_two << std::endl;
     ASSERT_EQ(max_one, max_two);
 }
 
