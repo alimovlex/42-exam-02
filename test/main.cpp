@@ -133,6 +133,7 @@ TEST(ex02, max)
 
 TEST(ex02, ft_atoi)
 {
+    ASSERT_EQ(atoi("-2025"), ft_atoi("-2025"));
     ASSERT_EQ(atoi("2025"), ft_atoi("2025"));
 }
 
