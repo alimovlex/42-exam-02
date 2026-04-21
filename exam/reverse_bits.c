@@ -1,5 +1,22 @@
 #include <unistd.h>
 
+unsigned char reverse_bits(unsigned char octet)
+{
+    unsigned char result = 0;
+    int i = 8;
+
+    while (i--)
+    {
+        result <<= 1;
+        result |= (octet & 1);
+        octet >>= 1;
+    }
+
+    return result;
+}
+
+/*
+
 unsigned char	reverse_bits(unsigned char octet)
 {
     // 1. Swap nibbles (4-bit chunks) - Exactly what your swap_bits does
@@ -11,26 +28,6 @@ unsigned char	reverse_bits(unsigned char octet)
 
     return (octet);
 }
-
-/*
-unsigned char	reverse_bits(unsigned char octet)
-{
-    int	i = 8, res = 0;
-
-    while (i--)
-    {
-        // 1. Shift the result left to make room for the next bit
-        res <<= 1;
-
-        // 2. Take the rightmost bit of octet and add it to res
-        res |= (octet & 1);
-
-        // 3. Shift octet right to bring the next bit into position
-        octet >>= 1;
-    }
-    return (res);
-}
-
 
 unsigned char		reverse_bits(unsigned char octet)
 {

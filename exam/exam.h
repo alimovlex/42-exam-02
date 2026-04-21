@@ -30,6 +30,7 @@ int ft_strcmp(char *s1, char *s2);
 void ft_alpha_mirror(char* str);
 int ft_atoi(const char* str);
 int is_power_of_2(unsigned int n);
+void ft_inter(char *s1, char *s2);
 
 //LEVEL 2
 void ft_print_hex(char* str);

@@ -1,5 +1,15 @@
 #include <unistd.h>
 
+void ft_wdmatch(char *s1, char *s2) {
+    char *ptr = s1;
+    while (*s2 && *ptr)
+        ptr += (*ptr == *s2), s2++;
+    if (*ptr == '\0')
+        write(1, s1, ptr - s1);
+    write(1, "\n", 1);
+}
+
+/*
 void ft_wdmatch(char *s1, char *s2)
 {
     int len;
@@ -19,7 +29,6 @@ void ft_wdmatch(char *s1, char *s2)
     write(1, "\n", 1);
 }
 
-/*
 void ft_wdmatch(char *s1, char *s2)
 {
     // 1. We create a 'tracker' pointer (ptr).
