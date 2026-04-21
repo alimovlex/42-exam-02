@@ -137,6 +137,12 @@ TEST(ex02, ft_atoi)
     ASSERT_EQ(atoi("2025"), ft_atoi("2025"));
 }
 
+TEST(ex02, is_power_of_2)
+{
+    ASSERT_EQ(1, is_power_of_2(1024));
+    ASSERT_EQ(0, is_power_of_2(9));
+}
+
 int main(int argc, char **argv)
 {
     g_argc = argc;
