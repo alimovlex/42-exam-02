@@ -1,5 +1,45 @@
 #include <unistd.h>
 
+int ft_atoi (const char* str)
+{
+    int sign = 1, number = 0, i = 0;
+    long len = 0;
+    const char* start = str;
+    const char* end = str;
+
+    while ((*start == ' ') || (*start == '\t') || (*start == '\n') || (*start == '\v')
+           || (*start == '\f') || (*start == '\r'))
+        start++;
+
+    if (*start == '-')
+    {
+        sign *= -1;
+        start++;
+    }
+
+    while(*end)
+        end++;
+    len = end - start;
+    int arr[len];
+
+    while(*start && i < len)
+    {
+        if (*start >= '0' && *start <= '9')
+            arr[i] = *start - '0';
+        start++;
+        i++;
+    }
+    i = 0;
+    while(len--)
+    {
+        number *= 10;
+        number += arr[i++];
+    }
+
+    return number * sign;
+}
+
+/*
 int ft_atoi(const char* str)
 {
     int result = 0;
@@ -35,3 +75,4 @@ int ft_atoi(const char* str)
 
     return result * sign;
 }
+*/

@@ -7,6 +7,33 @@ unsigned char reverse_bits(unsigned char octet)
 
     while (i--)
     {
+        result = (result << 1) | (octet & 1);
+        octet >>= 1;
+    }
+    return result;
+}
+
+/*
+unsigned char reverse_bits(unsigned char octet)
+{
+    unsigned char results = 0;
+    int i = 0;
+
+    while (i < 8)
+    {
+        results = (results << 1) | ((octet >> i) & 1);
+        i++;
+    }
+    return (results);
+}
+
+unsigned char reverse_bits(unsigned char octet)
+{
+    unsigned char result = 0;
+    int i = 8;
+
+    while (i--)
+    {
         result <<= 1;
         result |= (octet & 1);
         octet >>= 1;
@@ -14,8 +41,6 @@ unsigned char reverse_bits(unsigned char octet)
 
     return result;
 }
-
-/*
 
 unsigned char	reverse_bits(unsigned char octet)
 {
