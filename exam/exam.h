@@ -33,6 +33,7 @@ int is_power_of_2(unsigned int n);
 void ft_inter(char *s1, char *s2);
 size_t ft_strcspn(const char *s, const char *reject);
 void ft_do_op(int argc, char **argv);
+void snake_to_camel(char* str);
 
 //LEVEL 2
 void ft_print_hex(char* str);
