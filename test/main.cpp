@@ -143,10 +143,12 @@ TEST(ex02, is_power_of_2)
     ASSERT_EQ(0, is_power_of_2(9));
 }
 
-TEST(ex02, snake_to_camel)
+TEST(ex02, camel_snake)
 {
     char str[] = "hello_world";
     snake_to_camel(str);
+    char string[] = "helloWorld";
+    camel_to_snake(string);
 }
 
 int main(int argc, char **argv)
