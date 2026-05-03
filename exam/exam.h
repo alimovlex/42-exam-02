@@ -35,6 +35,7 @@ size_t ft_strcspn(const char *s, const char *reject);
 void ft_do_op(int argc, char **argv);
 void snake_to_camel(char* str);
 void camel_to_snake(char *str);
+void ft_union(char* s1, char* s2);
 //LEVEL 2
 void ft_print_hex(char* str);
 
