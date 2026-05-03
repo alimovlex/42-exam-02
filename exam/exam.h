@@ -36,6 +36,8 @@ void ft_do_op(int argc, char **argv);
 void snake_to_camel(char* str);
 void camel_to_snake(char *str);
 void ft_union(char* s1, char* s2);
+void ft_last_word(char *str);
+
 //LEVEL 2
 void ft_print_hex(char* str);
 
