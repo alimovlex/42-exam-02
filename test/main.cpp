@@ -151,6 +151,13 @@ TEST(ex02, camel_snake)
     camel_to_snake(string);
 }
 
+TEST(ex02, atoi_base)
+{
+    ASSERT_EQ(1996, ft_atoi_base("1996", 10));
+    ASSERT_EQ(5, ft_atoi_base("101", 2));
+    ASSERT_EQ(303, ft_atoi_base("12F", 16));
+}
+
 int main(int argc, char **argv)
 {
     g_argc = argc;
