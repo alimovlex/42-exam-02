@@ -158,6 +158,12 @@ TEST(ex02, atoi_base)
     ASSERT_EQ(303, ft_atoi_base("12F", 16));
 }
 
+TEST(ex02, rstr_capitalizer)
+{
+    std::string str = "a FiRSt LiTTlE TESt";
+    rstr_capitalizer(str.data());
+}
+
 int main(int argc, char **argv)
 {
     g_argc = argc;
