@@ -42,6 +42,7 @@ void ft_last_word(char *str);
 void ft_print_hex(char* str);
 int ft_atoi_base(const char *str, int str_base);
 void rstr_capitalizer(char *str);
+void print_hex(char *str);
 
 //LEVEL 3
 char **ft_split(char *str);

@@ -164,6 +164,12 @@ TEST(ex02, rstr_capitalizer)
     rstr_capitalizer(str.data());
 }
 
+TEST(ex02, print_hex)
+{
+    std::string str = "10";
+    print_hex(str.data());
+}
+
 int main(int argc, char **argv)
 {
     g_argc = argc;

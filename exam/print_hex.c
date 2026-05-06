@@ -1,36 +1,72 @@
 #include <unistd.h>
-#include <stdio.h>
 
-void ft_print_digit(char* str, int iterator)
+void print_hex(char *str)
 {
-  int digit = 0, decimal = 0, number = 0;
-    while(iterator--)
-      number = *str - '0' * 10;
-  //digit = number % 10;
-  //decimal = number / 10;
-  printf("digit = %d\n", *str - '0');
-  
+    unsigned int number = 0;
+    unsigned int digit;
+    unsigned int divisor = 1;
+    char c;
+
+    // 1. Convert string to unsigned integer
+    while (*str)
+    {
+        number *= 10;
+        number += *str - '0';
+        str++;
+    }
+
+    // 2. Find the largest power of 16 that fits in n
+    while (number / divisor >= 16)
+        divisor *= 16;
+
+    // 3. Extract and print digits from left to right
+    while (divisor > 0)
+    {
+        digit = number / divisor;
+
+        // 4. Calculate ASCII value without a base string
+        if (digit < 10)
+            c = digit + '0';      // Map 0-9 to '0'-'9'
+        else
+            c = (digit - 10) + 'a'; // Map 10-15 to 'a'-'f'
+
+        write(1, &c, 1);
+
+        number %= divisor;
+        divisor /= 16;
+    }
+    write(1, "\n", 1);
 }
 
-void ft_print_hex(char* str)
+/*
+void print_hex(char *str)
 {
-  //int digits = 0, decimals = 0;
-  int i = 0;
-  while(*str)
-  {
-    //ft_print_digit(str);
-    str++;
-  }
+    unsigned int number = 0;
+    unsigned int divisor = 1;
+    char *base = "0123456789abcdef";
 
+    // 1. Convert string to number (our custom atoi)
+    while (*str)
+    {
+        number *= 10;
+        number += *str - '0';
+        str++;
+    }
+    // 2. Find the maximum power of 16 for our number n
+    while (number / divisor >= 16)
+        divisor *= 16;
+
+    // 3. Process left to right: divide, print, get remainder
+    while (divisor > 0)
+    {
+        // Calculate the correct character using pointer arithmetic *(pointer + offset)
+        char c = *(base + (number / divisor));
+
+        write(1, &c, 1);
+
+        number %= divisor;   // Drop the processed left-most digit
+        divisor /= 16;  // Decrease the divisor for the next digit
+    }
+    write(1, "\n", 1);
 }
-
-//int main(int argc, char** argv)
-//{
-//  char newline = '\n';
-//  if (argc < 2)
-//    write(1, &newline, 1);
-//  else
-//    while(*++argv)
-//      ft_print_hex(*argv);
-//  return 0;
-//}
+ */
