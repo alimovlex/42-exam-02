@@ -170,6 +170,14 @@ TEST(ex02, print_hex)
     print_hex(str.data());
 }
 
+TEST(ex02, pgcd)
+{
+    ASSERT_EQ(2, pgcd("42", "10"));
+    ASSERT_EQ(6, pgcd("42", "12"));
+    ASSERT_EQ(7, pgcd("14", "77"));
+    ASSERT_EQ(1, pgcd("17", "3"));
+}
+
 int main(int argc, char **argv)
 {
     g_argc = argc;
