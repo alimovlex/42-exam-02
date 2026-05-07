@@ -178,6 +178,12 @@ TEST(ex02, pgcd)
     ASSERT_EQ(1, pgcd("17", "3"));
 }
 
+TEST(ex02, hidenp)
+{
+    std::string s1 = "abc", s2 = "2altrb53c.sse";
+    hidenp(s1.data(), s2.data());
+}
+
 int main(int argc, char **argv)
 {
     g_argc = argc;

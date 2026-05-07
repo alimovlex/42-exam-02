@@ -39,11 +39,11 @@ void ft_union(char* s1, char* s2);
 void ft_last_word(char *str);
 
 //LEVEL 2
-void ft_print_hex(char* str);
 int ft_atoi_base(const char *str, int str_base);
 void rstr_capitalizer(char *str);
 void print_hex(char *str);
 int pgcd(const char *s1, const char *s2);
+void hidenp(char *s1, char *s2);
 
 //LEVEL 3
 char **ft_split(char *str);
