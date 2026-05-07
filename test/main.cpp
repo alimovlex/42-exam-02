@@ -184,6 +184,11 @@ TEST(ex02, hidenp)
     hidenp(s1.data(), s2.data());
 }
 
+TEST(ex02, lcm)
+{
+    std::cout << lcm(21, 42) << std::endl;
+}
+
 int main(int argc, char **argv)
 {
     g_argc = argc;

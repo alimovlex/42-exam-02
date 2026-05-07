@@ -44,6 +44,7 @@ void rstr_capitalizer(char *str);
 void print_hex(char *str);
 int pgcd(const char *s1, const char *s2);
 void hidenp(char *s1, char *s2);
+unsigned int lcm(unsigned int a, unsigned int b);
 
 //LEVEL 3
 char **ft_split(char *str);
