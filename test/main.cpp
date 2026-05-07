@@ -189,6 +189,11 @@ TEST(ex02, lcm)
     std::cout << lcm(21, 42) << std::endl;
 }
 
+TEST(ex02, paramsum)
+{
+    paramsum(--g_argc, g_argv);
+}
+
 int main(int argc, char **argv)
 {
     g_argc = argc;

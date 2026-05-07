@@ -22,8 +22,6 @@ int    ft_strcmp(char *s1, char *s2)
   return *s1 - *s2;
 }
 
-#include <stdio.h>
-
 // Returns 1 if the two strings are bitwise identical.
 // Returns 0 if there is any difference in even a single bit.
 int bit_strcmp(char *s1, char *s2)
@@ -46,5 +44,4 @@ int bit_strcmp(char *s1, char *s2)
 	// If both are '\0', return 1; otherwise return 0.
 	return (*s1 == *s2);
 }
-
  */
