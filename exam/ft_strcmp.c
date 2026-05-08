@@ -24,10 +24,10 @@ int    ft_strcmp(char *s1, char *s2)
 
 // Returns 1 if the two strings are bitwise identical.
 // Returns 0 if there is any difference in even a single bit.
-int bit_strcmp(char *s1, char *s2)
+int ft_strcmp(char *s1, char *s2)
 {
 	// Walk through both strings while they are non-null.
-	while (*s1 && *s2)
+	while (*s1 && (*s1 == *s2))
 	{
 		unsigned char b1 = (unsigned char)*s1;  // Get current byte of s1
 		unsigned char b2 = (unsigned char)*s2;  // Get current byte of s2
@@ -42,6 +42,6 @@ int bit_strcmp(char *s1, char *s2)
 	}
 	// After loop, check whether both strings ended at the same time.
 	// If both are '\0', return 1; otherwise return 0.
-	return (*s1 == *s2);
+	return (*s1 - *s2);
 }
  */

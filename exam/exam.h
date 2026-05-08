@@ -3,7 +3,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+#include <stddef.h>
 //LEVEL 0
 void ft_fizzbuzz();
 void ft_ulstr(char* str);
