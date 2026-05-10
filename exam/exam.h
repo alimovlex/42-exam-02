@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                         ::::::::           */
+/*   exam.h                                              :+:    :+:           */
+/*                                                      +:+                   */
+/*   By: alalimov <marvin@42.fr>                       +#+                    */
+/*                                                    +#+                     */
+/*   Created: 2026/05/10 18:14:48 by alalimov       #+#    #+#                */
+/*   Updated: 2026/05/10 18:20:20 by alalimov       ########   odam.nl        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #pragma once
 
 #ifdef __cplusplus
@@ -46,6 +58,7 @@ int pgcd(const char *s1, const char *s2);
 void hidenp(char *s1, char *s2);
 unsigned int lcm(unsigned int a, unsigned int b);
 void paramsum(int argc, char **argv);
+void epur_str(char *str);
 
 //LEVEL 3
 char **ft_split(char *str);
