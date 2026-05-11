@@ -25,3 +25,36 @@ int main(int argc, char** argv)
     ft_rotone(str);
     return 0;
 }
+
+/*
+int paramsum(char *str)
+{
+    if (*str >= '0' && *str <= '9')
+    {
+        int num = 0, sum = 0, final = 0;
+        char digit, decimal;
+        while (*str)
+        {
+            num *= 10;
+            num += *str - '0';
+            str++;
+        }
+        sum += num;
+        final = sum;
+        while (sum > 0)
+        {
+            if (sum / 10 == 0)
+                break;
+            digit = (sum % 10) + '0';
+            decimal = (sum / 10) + '0';
+            sum /= 10;
+        }
+        write(1, &decimal, 1);
+        write(1, &digit, 1);
+        write(1, "\n", 1);
+        return final;
+    }
+    else
+        return 0;
+}
+ */

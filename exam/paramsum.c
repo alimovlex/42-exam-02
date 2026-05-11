@@ -14,63 +14,61 @@
 
 void paramsum(int argc, char **argv)
 {
-    /* Ignore argv to prevent unused variable warnings */
     (void)argv;
-    /* Handle the case with no arguments separately */
-    if (argc == 0)
-        return;
 
-    /* Find the largest divisor (power of 10) for the number */
-    int divisor = 1;
+    int decimals = 1, num = argc;
     char digit;
-    while (argc / divisor >= 10)
-        divisor *= 10;
+    while (num / decimals >= 10)
+        decimals *= 10;
 
-    /* Extract and print each digit one by one */
-    while (divisor > 0)
+    // Extract and print each digit one by one
+    while (decimals > 0)
     {
-        /* Convert digit to ASCII and use its address as a pointer for write */
-        digit = (argc / divisor) + '0';
+        // Convert digit to ASCII and use its address as a pointer for write
+        digit = num / decimals + '0';
         write(1, &digit, 1);
-
-        /* Update n to the remainder and decrease divisor */
-        argc %= divisor;
-        divisor /= 10;
+        // Update n to the remainder and decrease divisor
+        argc %= decimals;
+        decimals /= 10;
     }
 
-    /* Print the final newline character */
+    // Print the final newline character
     write(1, "\n", 1);
 }
 
+
 /*
-int paramsum(char *str)
+
+//DOES NOT work with numbers over 100
+void pasum(int argc, char** argv)
 {
-    if (*str >= '0' && *str <= '9')
+    (void)argv;
+    char digit;
+    int num = argc;
+
+    //While decimals are more 10
+    while (num >= 10)
     {
-        int num = 0, sum = 0, final = 0;
-        char digit, decimal;
-        while (*str)
-        {
-            num *= 10;
-            num += *str - '0';
-            str++;
-        }
-        sum += num;
-        final = sum;
-        while (sum > 0)
-        {
-            if (sum / 10 == 0)
-                break;
-            digit = (sum % 10) + '0';
-            decimal = (sum / 10) + '0';
-            sum /= 10;
-        }
-        write(1, &decimal, 1);
+        digit = (num / 10) + '0';
         write(1, &digit, 1);
-        write(1, "\n", 1);
-        return final;
+        num %= 10;  //Going to digits
     }
-    else
-        return 0;
+
+    digit = num + '0';  // The last digit
+    write(1, &digit, 1);
+    write(1, "\n", 1);
+}
+
+//DOES NOT work with numbers with zeros, e.g. 10, 100, 1000
+void paramsum(int argc, char **argv)
+{
+    (void)argv;
+    while(argc > 0)
+    {
+        char digit = argc % 10 + '0';
+        write(1, &digit, 1);
+        argc /= 10;
+    }
+    write(1, "\n", 1);
 }
 */
