@@ -194,6 +194,18 @@ TEST(ex02, paramsum)
     paramsum(--g_argc, g_argv);
 }
 
+TEST(ex02, ft_rrange)
+{
+    int start = 1, end = 3, size = (end - start) + 1;
+    int* ptr = ft_rrange(start, end);
+    std::vector<int> vec;
+    //std::vector<int> vec(ptr, ptr + size);
+    while(size--)
+        vec.push_back(*ptr++);
+    for(auto &i: vec)
+        ASSERT_EQ(end--, i);
+}
+
 int main(int argc, char **argv)
 {
     g_argc = argc;

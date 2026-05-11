@@ -59,6 +59,7 @@ void hidenp(char *s1, char *s2);
 unsigned int lcm(unsigned int a, unsigned int b);
 void paramsum(int argc, char **argv);
 void epur_str(char *str);
+int *ft_rrange(int start, int end);
 
 //LEVEL 3
 char **ft_split(char *str);
