@@ -18,7 +18,7 @@ void tab_mult(char* str)
     while(i <= 8)
     {
         arr[i] = digit * j;
-        printf("%d %s %d %s %d\n", j, s1, digit, s2, arr[i]);
+        printf("%d%s%d%s%d\n", j, s1, digit, s2, arr[i]);
         i++;
         j++;
     }
