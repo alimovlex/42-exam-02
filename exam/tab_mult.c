@@ -3,7 +3,7 @@
 
 void tab_mult(char* str)
 {
-    int digit = 0, i = 1, arr[9];
+    int digit = 0, i = 0, arr[9], j = 1;
     char* s1 = "x";
     char* s2 = "=";
     //char num;
@@ -15,11 +15,12 @@ void tab_mult(char* str)
     }
     //printf("DIGIT SUBMITTED: %d\n", digit);
 
-    while(i <= 9)
+    while(i <= 8)
     {
-        arr[i] = digit * i;
-        printf("%d %s %d %s %d\n", i, s1, digit, s2, arr[i]);
+        arr[i] = digit * j;
+        printf("%d %s %d %s %d\n", j, s1, digit, s2, arr[i]);
         i++;
+        j++;
     }
 
 }
