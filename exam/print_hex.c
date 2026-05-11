@@ -19,6 +19,44 @@ void print_hex(char *str)
     unsigned int divisor = 1;
     char c;
 
+    // 1. Pointer traversal to convert string to unsigned integer
+    while (*str)
+    {
+        number = (number * 10) + (*str - '0');
+        str++;
+    }
+
+    // 2. Find the highest power of 16 (iterative alternative to recursion)
+    while (number / divisor >= 16)
+        divisor *= 16;
+
+    // 3. Extract and print digits from left to right
+    while (divisor > 0)
+    {
+        digit = number / divisor;
+
+        // 4. The dirty ASCII conversion tactic
+        if (digit < 10)
+            c = digit + '0';
+        else
+            c = digit + 'x' - '!'; // 'x'(120) - '!'(33) = 87. 10 + 87 = 97 ('a')
+
+        write(1, &c, 1);
+
+        number %= divisor;
+        divisor /= 16;
+    }
+    write(1, "\n", 1);
+}
+
+/*
+void print_hex(char *str)
+{
+    unsigned int number = 0;
+    unsigned int digit;
+    unsigned int divisor = 1;
+    char c;
+
     // 1. Convert string to unsigned integer
     while (*str)
     {
@@ -50,7 +88,7 @@ void print_hex(char *str)
     write(1, "\n", 1);
 }
 
-/*
+
 void print_hex(char *str)
 {
     unsigned int number = 0;
