@@ -105,8 +105,10 @@ TEST(ex02, ft_strrev)
 
 TEST(ex02, ft_strdup)
 {
-    std::string str = ft_strdup(*g_argv);
+    char* ptr = ft_strdup(*g_argv);
+    std::string str = ptr;
     ASSERT_STREQ(str.data(), *g_argv);
+    free(ptr);
 }
 
 TEST(ex02, ft_strcmp)
@@ -204,6 +206,7 @@ TEST(ex02, ft_rrange)
         vec.push_back(*ptr++);
     for(auto &i: vec)
         ASSERT_EQ(end--, i);
+    free(ptr - 3);
 }
 
 int main(int argc, char **argv)
