@@ -22,7 +22,7 @@ void rstr_capitalizer(char *str)
 
         // Turning letter uppercase because it's at the last position
         if ((*str >= 'a' && *str <= 'z') &&
-            (*(str + 1) == ' ' || *(str + 1) == '\t' || *(str + 1) == '\0'))
+            (*(str + 1) == ' ' || *(str + 1) == '\t' || !*(str + 1)))
             *str -= 32;
 
         write(1, str, 1);
