@@ -60,6 +60,7 @@ unsigned int lcm(unsigned int a, unsigned int b);
 void paramsum(int argc, char **argv);
 void epur_str(char *str);
 int *ft_rrange(int start, int end);
+void tab_mult(char *str);
 
 //LEVEL 3
 char **ft_split(char *str);
