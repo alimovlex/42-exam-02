@@ -12,32 +12,44 @@
 
 #include <unistd.h>
 
-void ft_wdmatch(char *s1, char *s2) {
+static int ft_strlen(char* str)
+{
+    char* end = str;
+
+    while(*end)
+        end++;
+    return end - str;
+}
+
+void ft_wdmatch(char *s1, char *s2)
+{
+    int len = ft_strlen(s1), size = 0;
+    char* start = s1;
+
+    while(*s2)
+    {
+        if(*s1 == *s2)
+        {
+            size++;
+            s1++;
+        }
+        s2++;
+    }
+
+    if (len == size)
+        while(*start)
+            write(1, start++, 1);
+
+    write(1, "\n", 1);
+}
+/*
+void ft_wdmatch(char *s1, char *s2)
+{
     char *ptr = s1;
     while (*s2 && *ptr)
         ptr += (*ptr == *s2), s2++;
     if (*ptr == '\0')
         write(1, s1, ptr - s1);
-    write(1, "\n", 1);
-}
-
-/*
-void ft_wdmatch(char *s1, char *s2)
-{
-    int len;
-
-    len = 0;
-    while(*s2)
-    {
-        if(*s1 == *s2)
-        {
-            len++;
-            s1++;
-        }
-        s2++;
-    }
-    if(*s1 == 0 && len > 0)
-        write(1, s1-len, len);
     write(1, "\n", 1);
 }
 
