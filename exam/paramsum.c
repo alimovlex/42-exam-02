@@ -27,8 +27,8 @@ void paramsum(int argc, char **argv)
         // Convert digit to ASCII and use its address as a pointer for write
         digit = num / decimals + '0';
         write(1, &digit, 1);
-        // Update n to the remainder and decrease divisor
-        argc %= decimals;
+        // Update num to the remainder and decrease divisor
+        num %= decimals;
         decimals /= 10;
     }
 
@@ -40,7 +40,7 @@ void paramsum(int argc, char **argv)
 /*
 
 //DOES NOT work with numbers over 100
-void pasum(int argc, char** argv)
+void paramsum(int argc, char** argv)
 {
     (void)argv;
     char digit;
@@ -59,7 +59,7 @@ void pasum(int argc, char** argv)
     write(1, "\n", 1);
 }
 
-//DOES NOT work with numbers with zeros, e.g. 10, 100, 1000
+//DOES NOT work with numbers over 10
 void paramsum(int argc, char **argv)
 {
     (void)argv;
