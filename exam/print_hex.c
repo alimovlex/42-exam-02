@@ -22,7 +22,8 @@ void print_hex(char *str)
     // 1. Pointer traversal to convert string to unsigned integer
     while (*str)
     {
-        number = (number * 10) + (*str - '0');
+        number *= 10;
+        number += *str - '0';
         str++;
     }
 
