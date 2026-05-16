@@ -2,37 +2,30 @@
 
 int     *ft_rrange(int start, int end)
 {
-    int     *arr;
-    int     size;
-    int     step;
-    int     i;
+    int     size = 0;
 
-    // 1. Calculate absolute size without ternary operators
+    // 1. Calculate absolute size
     if (start > end)
         size = start - end + 1;
     else
         size = end - start + 1;
 
     // 2. Allocate memory for the integer array
-    arr = (int *)malloc(sizeof(int) * size);
-    if (!arr)
+    int *array = (int *)malloc(sizeof(int) * size);
+    if (!array)
         return (NULL);
 
-    // 3. Determine the direction: do we increment or decrement end?
-    if (end < start)
-        step = 1;
+    // 3. Create a runner pointer to walk through the memory
+    int *ptr = array;
+
+    // 4. Fill the array depending on the direction directly
+    if (start > end)
+        while (size--)
+            *ptr++ = end++; // Fill and increment end
     else
-        step = -1;
+        while (size--)
+            *ptr++ = end--; // Fill and decrement end
 
-    // 4. Fill the array using pointer incrementation
-    i = size;
-    while (i > 0)
-    {
-        *arr++ = end;  // Assign value to current address, then move pointer
-        end += step;   // Adjust value for the next iteration
-        i--;
-    }
-
-    // 5. Return the original start of the array by offsetting the current pointer
-    return (arr - size);
+    // 5. Return the clean, unmodified start pointer
+    return (array);
 }

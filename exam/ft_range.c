@@ -3,6 +3,36 @@
 
 int *ft_range(int start, int end)
 {
+    int size;
+
+    // 1. Calculate the exact positive size of the array
+    if (start <= end)
+        size = end - start + 1;
+    else
+        size = start - end + 1;
+
+    // 2. Allocate memory using malloc
+    int *array = (int *)malloc(size * sizeof(int));
+    if (!array)
+        return (NULL);
+
+    int *ptr = array;
+
+    // 3. Fill the memory using two clean, separate loops
+    if (start <= end)
+        while (size--)
+            *ptr++ = start++; // Put start into ptr, then move both forward
+    else
+        while (size--)
+            *ptr++ = start--; // Put start into ptr, move ptr forward, decrease start
+
+    // 4. Return the untouched pointer to the beginning
+    return (array);
+}
+
+/*
+int *ft_range(int start, int end)
+{
     int size = 0;
 
     // 1. Calculate the exact positive size of the array
@@ -34,3 +64,4 @@ int *ft_range(int start, int end)
     // 5. Return the original pointer that is still pointing to the very beginning
     return (array);
 }
+*/
