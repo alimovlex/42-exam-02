@@ -61,6 +61,7 @@ void paramsum(int argc, char **argv);
 void epur_str(char *str);
 int *ft_rrange(int start, int end);
 void tab_mult(char *str);
+void ft_expand_str(char *str);
 
 //LEVEL 3
 char **ft_split(char *str);
