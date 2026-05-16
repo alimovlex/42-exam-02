@@ -53,6 +53,7 @@ void ft_last_word(char *str);
 //LEVEL 2
 int ft_atoi_base(const char *str, int str_base);
 void rstr_capitalizer(char *str);
+void str_capitalizer(char *str);
 void print_hex(char *str);
 int pgcd(const char *s1, const char *s2);
 void hidenp(char *s1, char *s2);
@@ -64,6 +65,8 @@ int *ft_range(int start, int end);
 void tab_mult(char *str);
 void ft_expand_str(char *str);
 void ft_add_prime_sum(char *str);
+typedef struct    s_list t_list;
+int ft_list_size(t_list *begin_list);
 
 //LEVEL 3
 char **ft_split(char *str);

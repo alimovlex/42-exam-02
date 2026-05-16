@@ -20,7 +20,7 @@ int *ft_range(int start, int end)
     int *ptr = array;
 
     // 4. Fill the memory until we've processed all elements
-    while (size > 0)
+    while (size--)
     {
         *ptr = start; // Put the number into the memory block ptr is pointing to
         ptr++;        // Move the pointer to the next memory block
@@ -29,8 +29,6 @@ int *ft_range(int start, int end)
             start++;
         else
             start--;
-
-        size--; // Decrease the remaining steps counter
     }
 
     // 5. Return the original pointer that is still pointing to the very beginning
