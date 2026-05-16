@@ -62,6 +62,7 @@ void epur_str(char *str);
 int *ft_rrange(int start, int end);
 void tab_mult(char *str);
 void ft_expand_str(char *str);
+void ft_add_prime_sum(char *str);
 
 //LEVEL 3
 char **ft_split(char *str);

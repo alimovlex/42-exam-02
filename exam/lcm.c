@@ -14,11 +14,12 @@
 
 unsigned int gcd(unsigned int a, unsigned int b)
 {
-    while (b != 0)
+    while (a != b)
     {
-        unsigned int tmp = b;
-        b = a % b;
-        a = tmp;
+        if (a > b)
+            a -= b;
+        else
+            b -= a;
     }
     return a;
 }
