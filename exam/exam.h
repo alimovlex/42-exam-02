@@ -60,6 +60,7 @@ unsigned int lcm(unsigned int a, unsigned int b);
 void paramsum(int argc, char **argv);
 void epur_str(char *str);
 int *ft_rrange(int start, int end);
+int *ft_range(int start, int end);
 void tab_mult(char *str);
 void ft_expand_str(char *str);
 void ft_add_prime_sum(char *str);

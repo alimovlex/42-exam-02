@@ -208,7 +208,21 @@ TEST(ex02, ft_rrange)
         ASSERT_EQ(end--, i);
     free(ptr - 3);
 }
-
+// TODO: Implement test-case
+/*
+TEST(ex02, ft_range)
+{
+    int start = 1, end = 3, size = (end - start) + 1;
+    int* ptr = ft_range(start, end);
+    std::vector<int> vec;
+    //std::vector<int> vec(ptr, ptr + size);
+    while(size--)
+        vec.push_back(*ptr++);
+    for(auto &i: vec)
+        ASSERT_EQ(end--, i);
+    free(ptr - 3);
+}
+*/
 int main(int argc, char **argv)
 {
     g_argc = argc;
