@@ -7,6 +7,43 @@ typedef struct      s_list
     void            *data;
 }                   t_list;
 
+void    ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
+{
+    t_list  *cur;
+    t_list  *prev;
+    t_list  *tmp;
+
+    if (!begin_list)
+        return;
+
+    cur = *begin_list;
+    prev = NULL;
+
+    while (cur)
+    {
+        if (cmp(cur->data, data_ref) == 0)
+        {
+            // Node must be removed
+            tmp = cur->next;          // save next node
+
+            if (prev == NULL)
+                *begin_list = tmp;     // removing head: move head
+            else
+                prev->next = tmp;      // link previous to next, skipping cur
+
+            free(cur);                 // free removed node
+            cur = tmp;                 // continue from next node
+        }
+        else
+        {
+            // Node stays in the list
+            prev = cur;                // move prev forward
+            cur = cur->next;           // move cur forward
+        }
+    }
+}
+
+/*
 void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 {
     // Protection: if the list doesn't exist or is empty, exit
@@ -48,3 +85,4 @@ void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
         }
     }
 }
+*/

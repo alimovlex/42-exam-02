@@ -23,7 +23,7 @@ int ft_list_size(t_list *begin_list)
 {
     int count = 0;
     // Loop through the train until we hit the end (NULL)
-    while (begin_list != NULL)
+    while (begin_list)
     {
         count++;                  // Count the current wagon
         begin_list = begin_list->next; // Jump to the next wagon using the coupling

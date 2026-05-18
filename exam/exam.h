@@ -71,6 +71,7 @@ int ft_list_size(t_list *begin_list);
 //LEVEL 3
 char **ft_split(char *str);
 void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)());
+void ft_list_foreach(t_list *begin_list, void (*f)(void *));
 #ifdef __cplusplus
 }
 #endif
