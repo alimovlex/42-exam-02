@@ -16,6 +16,7 @@
 extern "C" {
 #endif
 #include <stddef.h>
+typedef struct    s_list t_list; //Forward declaration of a linked list
 //LEVEL 0
 void ft_fizzbuzz();
 void ft_ulstr(char* str);
@@ -65,12 +66,11 @@ int *ft_range(int start, int end);
 void tab_mult(char *str);
 void ft_expand_str(char *str);
 void ft_add_prime_sum(char *str);
-typedef struct    s_list t_list;
 int ft_list_size(t_list *begin_list);
 
 //LEVEL 3
 char **ft_split(char *str);
-
+void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)());
 #ifdef __cplusplus
 }
 #endif
