@@ -16,7 +16,6 @@ int ft_atoi(const char* str)
 {
     int result = 0;
     int sign = 1;
-    int current_digit = 0;
 
     // 1. Skip all whitespace characters (strictly at the beginning)
     while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
@@ -34,10 +33,10 @@ int ft_atoi(const char* str)
     while (*str >= '0' && *str <= '9')
     {
         // Extract the numerical value of the current character (the "unit")
-        current_digit = *str - '0';
         // Shift the existing result to the left to make it "tens"
         // Add the new "unit" to our shifted result
-        result = (result * 10) + current_digit;
+        result *= 10;
+        result += *str - '0';
         str++;
     }
 
