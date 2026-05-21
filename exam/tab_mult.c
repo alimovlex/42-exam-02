@@ -11,8 +11,62 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
+#include <stdlib.h>
 
+void	tab_mult(char *str)
+{
+    int		number = 0, i = 1;
+    char	*s1;
+    char	*s2;
+    char	*s3;
+    char	*ptr;
+
+    // Simple atoi: convert string to integer
+    while (*str >= '0' && *str <= '9')
+    {
+        number *= 10;
+        number += *str - '0';
+        str++;
+    }
+    // Convert the target number to string ONCE outside the loop (optimization)
+    s2 = ft_itoa(number);
+    // Loop from 1 to 9 to display the table
+    while (i <= 9)
+    {
+        s1 = ft_itoa(i);             // String for current multiplier (1 to 9)
+        s3 = ft_itoa(i * number);    // String for the result
+
+        // Print multiplier (s1) using a pointer
+        ptr = s1;
+        while (*ptr)
+            write(1, ptr++, 1);
+
+        write(1, " x ", 3);
+
+        // Print target number (s2)
+        ptr = s2;
+        while (*ptr)
+            write(1, ptr++, 1);
+
+        write(1, " = ", 3);
+
+        // Print result (s3)
+        ptr = s3;
+        while (*ptr)
+            write(1, ptr++, 1);
+
+        write(1, "\n", 1);
+
+        // Free memory for strings created inside the loop
+        free(s1);
+        free(s3);
+        i++;
+    }
+
+    // Free the target number string created outside the loop
+    free(s2);
+}
+/*
 // Helper function to print an integer using only write
 static  void ft_itoa(int number)
 {
@@ -39,8 +93,7 @@ static  void ft_itoa(int number)
 
 void	tab_mult(char *str)
 {
-    int	number = 0;
-    int	j = 1;
+    int	number = 0, i = 1;
 
     // Simple atoi: convert string to integer
     while (*str >= '0' && *str <= '9')
@@ -51,18 +104,18 @@ void	tab_mult(char *str)
     }
 
     // Loop from 1 to 9 to display the table
-    while (j <= 9)
+    while (i <= 9)
     {
-        ft_itoa(j);             // Print current multiplier
+        ft_itoa(i);             // Print current multiplier
         write(1, " x ", 3);
         ft_itoa(number);        // Print the target number
         write(1, " = ", 3);
-        ft_itoa(j * number);    // Print the result
+        ft_itoa(i * number);    // Print the result
         write(1, "\n", 1);
         j++;
     }
 }
-/*
+
 void ft_itoa(int number)
 {
     char c;
