@@ -74,6 +74,7 @@ void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)());
 void ft_list_foreach(t_list *begin_list, void (*f)(void *));
 t_list  *sort_list(t_list* lst, int (*cmp)(int, int));
 void sort_int_tab(int *tab, unsigned int size);
+void ft_rev_wstr(char *str);
 #ifdef __cplusplus
 }
 #endif
