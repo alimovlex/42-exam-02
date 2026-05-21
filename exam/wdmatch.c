@@ -12,19 +12,13 @@
 
 #include <unistd.h>
 
-static int ft_strlen(char* str)
-{
-    char* end = str;
-
-    while(*end)
-        end++;
-    return end - str;
-}
-
 void ft_wdmatch(char *s1, char *s2)
 {
-    int len = ft_strlen(s1), size = 0;
+    char* end = s1;
     char* start = s1;
+    while(*end)
+        end++;
+    int len = end - s1, size = 0;
 
     while(*s2)
     {

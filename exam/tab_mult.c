@@ -14,7 +14,7 @@
 #include <stdio.h>
 
 // Helper function to print an integer using only write
-void	ft_itoa(int number)
+static  void ft_itoa(int number)
 {
     int	decimals;
     char c;
