@@ -17,6 +17,7 @@ extern "C" {
 #endif
 #include <stddef.h>
 typedef struct    s_list t_list; //Forward declaration of a linked list
+typedef struct  s_point t_point;
 //LEVEL 0
 void ft_fizzbuzz();
 void ft_ulstr(char* str);
@@ -78,6 +79,7 @@ void ft_rev_wstr(char *str);
 char *ft_itoa(int nbr);
 void ft_rostring(char *str);
 void fprime(char *str);
+void flood_fill(char **tab, t_point size, t_point begin);
 #ifdef __cplusplus
 }
 #endif
