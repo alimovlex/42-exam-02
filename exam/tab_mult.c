@@ -13,6 +13,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+char    *ft_itoa(int nbr);
+
 void	tab_mult(char *str)
 {
     int		number = 0, i = 1;
