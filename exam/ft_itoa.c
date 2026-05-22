@@ -44,49 +44,56 @@ char	*ft_itoa(int nbr)
 }
 
 /*
-char	*ft_itoa(int nbr)
+char *ft_itoa(int nbr)
 {
-	long	n = nbr, temp = nbr;
-	int		len = 0;
+    long n = nbr;
+    long temp = n;
+    int len = 0;
 
-	// 1. Calculate the required string length
-	if (n <= 0)
-		len = 1; // Account for negative sign or zero
+    // 1. Calculate base length
+    if (n <= 0)
+        len = 1; // Account for '-' sign or '0'
 
-	while (temp > 0)
-	{
-		len++;
-		temp /= 10;
-	}
+    // Make temp positive to safely count digits
+    if (temp < 0)
+        temp = -temp;
 
-	// 2. Allocate memory
-	char	*str = (char *)malloc(sizeof(char) * (len + 1));
+    // Count digits
+    while (temp > 0)
+    {
+        len++;
+        temp /= 10;
+    }
 
-	// 3. Move pointer to the end of the allocated memory
-	char	*ptr = str + len;
-	*ptr = '\0'; // Null-terminate the string
+    // 2. Allocate memory and PROTECT IT
+    char *str = (char *)malloc(sizeof(char) * (len + 1));
 
-	// 4. Handle zero and negative numbers
-	if (n == 0)
-	{
-		*str = '0'; // Put '0' at the very beginning
-		return (str);
-	}
+    // 3. Move pointer to the end of the allocated memory
+    char *ptr = str + len;
+    *ptr = '\0'; // Null-terminate the string
 
-	if (n < 0)
-	{
-		*str = '-'; // Put '-' at the beginning of the string
-		n = -n;     // Convert to positive
-	}
+    // 4. Handle zero explicitly
+    if (n == 0)
+    {
+        *str = '0';
+        return (str);
+    }
 
-	// 5. Move backwards and extract digits
-	while (n > 0)
-	{
-		ptr--; // Step back
-		*ptr = (n % 10) + '0'; // Convert digit to ASCII and store it
-		n /= 10; // Remove the last digit from the number
-	}
+    // 5. Handle negative numbers
+    if (n < 0)
+    {
+        *str = '-'; // Put '-' at the beginning
+        n = -n;     // Make n positive for extraction
+    }
 
-	return (str); // Return the pointer to the start of the string
+    // 6. Move backwards and extract digits using pointer arithmetic
+    while (n > 0)
+    {
+        ptr--; // Step back
+        *ptr = (n % 10) + '0';
+        n /= 10;
+    }
+
+    return (str); // str still points to the beginning of allocated memory
 }
  */
