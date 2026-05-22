@@ -12,6 +12,21 @@
 
 #include <unistd.h>
 
+void ft_ulstr(char *str)
+{
+    while (*str)
+    {
+        if (*str >= 'A' && *str <= 'Z')
+            *str ^= 32;  // Lowercase
+        else if (*str >= 'a' && *str <= 'z')
+            *str ^= 32;  // Uppercase
+        write(1, str, 1);
+        str++;
+    }
+    write(1, "\n", 1);
+}
+
+/*
 void ft_ulstr(char* str)
 {
     while(*str)
@@ -25,3 +40,4 @@ void ft_ulstr(char* str)
     }
     write(1, "\n", 1);
 }
+*/

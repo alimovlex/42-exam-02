@@ -12,6 +12,31 @@
 
 #include <unistd.h>
 
+void ft_rot_13(char *str)
+{
+    while (*str)
+    {
+        if (*str >= 'a' && *str <= 'z')
+        {
+            if (*str <= 'm')
+                *str += 13;
+            else
+                *str -= 13;
+        }
+        else if (*str >= 'A' && *str <= 'Z')
+        {
+            if (*str <= 'M')
+                *str += 13;
+            else
+                *str -= 13;
+        }
+        write(1, str, 1);
+        str++;
+    }
+    write(1, "\n", 1);
+}
+
+/*
 void ft_rot_13(char* str)
 {
     while (*str)
@@ -25,3 +50,4 @@ void ft_rot_13(char* str)
     }
     write(1, "\n", 1);
 }
+*/
