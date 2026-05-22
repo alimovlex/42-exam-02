@@ -76,6 +76,7 @@ t_list  *sort_list(t_list* lst, int (*cmp)(int, int));
 void sort_int_tab(int *tab, unsigned int size);
 void ft_rev_wstr(char *str);
 char *ft_itoa(int nbr);
+void ft_rostring(char *str);
 #ifdef __cplusplus
 }
 #endif
