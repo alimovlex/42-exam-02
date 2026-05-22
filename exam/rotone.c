@@ -12,6 +12,33 @@
 
 #include <unistd.h>
 
+void ft_rotone(char *str)
+{
+    char *start = str;
+
+    while (*str)
+    {
+        //That line is a bitwise trick to instantly convert
+        // any lowercase letter to uppercase. 223 = 0xDF
+        char caps = *str & 223;
+
+        // Check if it's a letter (A-Z)
+        if ((unsigned)(caps - 'A') < 26)
+        {
+            // If it's Z/z (caps == 90), subtract 25 to get A/a. Otherwise, add 1.
+            if (caps == 90)
+                *str -= 25;
+            else
+                *str += 1;
+        }
+        str++;
+    }
+
+    write(1, start, str - start);
+    write(1, "\n", 1);
+}
+
+/*
 void ft_rotone(char* str)
 {
     while(*str)
@@ -25,3 +52,4 @@ void ft_rotone(char* str)
     }
     write(1, "\n", 1);
 }
+*/
