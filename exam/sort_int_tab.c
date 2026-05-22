@@ -1,30 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                         ::::::::           */
+/*   sort_int_tab.c                                      :+:    :+:           */
+/*                                                      +:+                   */
+/*   By: alalimov <marvin@42.fr>                       +#+                    */
+/*                                                    +#+                     */
+/*   Created: 2026/05/22 09:58:22 by alalimov       #+#    #+#                */
+/*   Updated: 2026/05/22 09:58:24 by alalimov       ########   odam.nl        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 
-void sort_int_tab(int *tab, unsigned int size)
-{
-    int *ptr = tab;
+void sort_int_tab(int *tab, unsigned int size) {
+  int *ptr = tab;
 
-    // Safety check for empty or single-element arrays
-    if (size <= 1 || !tab)
-        return;
+  // Safety check for empty or single-element arrays
+  if (size <= 1 || !tab)
+    return;
 
-    while (ptr < (tab + size - 1))
+  while (ptr < (tab + size - 1))
+  {
+    // If the current element is greater than the next one, swap them
+    if (*ptr > *(ptr + 1))
     {
-        // If the current element is greater than the next one, swap them
-        if (*ptr > *(ptr + 1))
-        {
-            // In-place XOR swap (no temp variable needed)
-            *ptr ^= *(ptr + 1);
-            *(ptr + 1) ^= *ptr;
-            *ptr ^= *(ptr + 1);
+      // In-place XOR swap (no temp variable needed)
+      *ptr ^= *(ptr + 1);
+      *(ptr + 1) ^= *ptr;
+      *ptr ^= *(ptr + 1);
 
-            // Reset the pointer to the beginning to re-check the array
-            ptr = tab;
-        }
-        else
-            // Move to the next memory address
-            ptr++;
+      // Reset the pointer to the beginning to re-check the array
+      ptr = tab;
     }
+    else
+      // Move to the next memory address
+      ptr++;
+  }
 }
 
 /*

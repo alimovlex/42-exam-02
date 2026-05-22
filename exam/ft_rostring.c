@@ -1,66 +1,78 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                         ::::::::           */
+/*   ft_rostring.c                                       :+:    :+:           */
+/*                                                      +:+                   */
+/*   By: alalimov <marvin@42.fr>                       +#+                    */
+/*                                                    +#+                     */
+/*   Created: 2026/05/22 09:52:42 by alalimov       #+#    #+#                */
+/*   Updated: 2026/05/22 09:52:44 by alalimov       ########   odam.nl        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 
 void ft_rostring(char *str)
 {
-    char *first_start;
-    char *first_end;
-    int word_printed = 0;
+  char *first_start;
+  char *first_end;
+  int word_printed = 0;
 
-    // Skip leading whitespaces
-    while (*str == ' ' || *str == '\t')
-        str++;
+  // Skip leading whitespaces
+  while (*str == ' ' || *str == '\t')
+    str++;
 
-    // Mark the start of the first word
-    first_start = str;
+  // Mark the start of the first word
+  first_start = str;
 
-    // Move pointer to the end of the first word
-    while (*str && *str != ' ' && *str != '\t')
-        str++;
+  // Move pointer to the end of the first word
+  while (*str && *str != ' ' && *str != '\t')
+    str++;
 
-    // Mark the end of the first word
-    first_end = str;
+  // Mark the end of the first word
+  first_end = str;
 
-    // Skip whitespaces exactly after the first word
-    while (*str == ' ' || *str == '\t')
-        str++;
+  // Skip whitespaces exactly after the first word
+  while (*str == ' ' || *str == '\t')
+    str++;
 
-    // Process the rest of the string
-    while (*str)
+  // Process the rest of the string
+  while (*str)
+  {
+    if (*str != ' ' && *str != '\t')
     {
-        if (*str != ' ' && *str != '\t')
-        {
-            // Print characters of the remaining words
-            write(1, str, 1);
-            word_printed = 1;
-            str++;
-        }
-        else
-        {
-            // Skip all consecutive whitespaces
-            while (*str == ' ' || *str == '\t')
-                str++;
-
-            // If there is another word ahead, print a single space separator
-            if (*str)
-                write(1, " ", 1);
-        }
+      // Print characters of the remaining words
+      write(1, str, 1);
+      word_printed = 1;
+      str++;
     }
-
-    // Print the first word at the end if it exists
-    if (first_start < first_end)
+    else
     {
-        // Add a space before it, ONLY if we printed other words before
-        if (word_printed)
-            write(1, " ", 1);
+      // Skip all consecutive whitespaces
+      while (*str == ' ' || *str == '\t')
+        str++;
 
-        // Print the first word using the pointers we saved
-        while (first_start < first_end)
-        {
-            write(1, first_start, 1);
-            first_start++;
-        }
-        write(1, "\n", 1);
+      // If there is another word ahead, print a single space separator
+      if (*str)
+        write(1, " ", 1);
     }
+  }
+
+  // Print the first word at the end if it exists
+  if (first_start < first_end)
+  {
+    // Add a space before it, ONLY if we printed other words before
+    if (word_printed)
+      write(1, " ", 1);
+
+    // Print the first word using the pointers we saved
+    while (first_start < first_end)
+    {
+      write(1, first_start, 1);
+      first_start++;
+    }
+    write(1, "\n", 1);
+  }
 }
 
 /*
