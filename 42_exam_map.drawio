@@ -1,0 +1,78 @@
+<mxfile host="Electron" modified="2026-05-22T08:00:00.000Z" agent="Mozilla/5.0" version="20.0.0" type="device">
+  <diagram id="exam_groupings" name="42 Exam Groups">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Group 1: Math Problems -->
+        <mxCell id="math_group" value="1. Math Problems &amp; Number Theory&#10;(while loops, primes, modulo)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="200" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="math_1" value="add_prime_sum&#10;fprime&#10;is_power_of_2&#10;lcm, pgcd&#10;tab_mult, fizzbuzz" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="math_group">
+          <mxGeometry x="10" y="40" width="180" height="150" as="geometry" />
+        </mxCell>
+
+        <!-- Group 2: Strings -->
+        <mxCell id="str_group" value="2. String Manipulation&#10;(pointers, *s++, no [] )" style="swimlane;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="280" y="40" width="240" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="str_1" value="ft_strcpy, ft_strdup&#10;rev_print, ft_strrev&#10;first_word, last_word&#10;snake_to_camel, camel_to_snake&#10;hidenp, inter, union, wdmatch&#10;rot_13, rotone&#10;alpha_mirror, rstr_capitalizer&#10;str_capitalizer, epur_str&#10;expand_str, ft_split" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="str_group">
+          <mxGeometry x="10" y="40" width="220" height="250" as="geometry" />
+        </mxCell>
+
+        <!-- Group 3: atoi & itoa -->
+        <mxCell id="conv_group" value="3. Number Conversions&#10;(*s - '0' and % 10)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="560" y="40" width="200" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="conv_1" value="ft_atoi, ft_atoi_base&#10;do_op, ft_itoa, print_hex" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="conv_group">
+          <mxGeometry x="10" y="40" width="180" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Group 4: Bitwise -->
+        <mxCell id="bit_group" value="4. Bit Operations&#10;(&gt;&gt;, &lt;&lt;, &amp;, | )" style="swimlane;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="800" y="40" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="bit_1" value="print_bits, reverse_bits&#10;swap_bits" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="bit_group">
+          <mxGeometry x="10" y="40" width="180" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Group 5: Linked Lists -->
+        <mxCell id="list_group" value="5. Linked Lists&#10;(Node traversal: head = head-&gt;next)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="40" y="280" width="200" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="list_1" value="ft_list_size, ft_list_foreach&#10;ft_list_remove_if, sort_list" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="list_group">
+          <mxGeometry x="10" y="40" width="180" height="100" as="geometry" />
+        </mxCell>
+        
+        <!-- Group 6: Array & Parsing -->
+        <mxCell id="array_group" value="6. Parsing &amp; Iteration&#10;(**argv loops)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="560" y="230" width="200" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="array_1" value="paramsum, rostring&#10;sort_int_tab, max&#10;ft_range, ft_rrange" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="array_group">
+          <mxGeometry x="10" y="40" width="180" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Group 7: Other / Recursion -->
+        <mxCell id="other_group" value="7. Matrices &amp; Graphics&#10;(flood_fill)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="800" y="200" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="other_1" value="flood_fill (iterative fallback)&#10;ft_swap" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="other_group">
+          <mxGeometry x="10" y="40" width="180" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="edge1" edge="1" parent="1" source="conv_group" target="str_group">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge2" edge="1" parent="1" source="array_group" target="conv_group">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge3" edge="1" parent="1" source="list_group" target="str_group">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

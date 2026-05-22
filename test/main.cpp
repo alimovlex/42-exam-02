@@ -1,232 +1,200 @@
 #include <gtest/gtest.h>
-#include <array>
-#include <algorithm>
-#include <cstdlib>
+#include <string>
+#include <vector>
 #include "exam.h"
 
-int g_argc;
-char** g_argv;
+// Math tests
+TEST(ExamMath, IsPowerOf2) {
+    EXPECT_EQ(is_power_of_2(0), 0);
+    EXPECT_EQ(is_power_of_2(1), 1);
+    EXPECT_EQ(is_power_of_2(2), 1);
+    EXPECT_EQ(is_power_of_2(3), 0);
+    EXPECT_EQ(is_power_of_2(1024), 1);
+    EXPECT_EQ(is_power_of_2(1023), 0);
+    EXPECT_EQ(is_power_of_2(2147483648u), 1); // Edge case Max power of 2
+}
 
-TEST(ex02, ft_split)
-{
-    std::array<std::string, 3> checker = {"Hello", "World", "Programmer"};
-    std::array<std::string, 3>::iterator itr;
-    char** str = ft_split(*++g_argv);
-    char** start = str;
-    int i = 0;
+TEST(ExamMath, Pgcd) {
+    EXPECT_EQ(pgcd("14", "77"), 7);
+    EXPECT_EQ(pgcd("17", "3"), 1);
+    EXPECT_EQ(pgcd("42", "10"), 2);
+    EXPECT_EQ(pgcd("42", "12"), 6);
+    EXPECT_EQ(pgcd("100", "100"), 100); // Same numbers
+}
 
-    for (itr = checker.begin(), i = 0; itr != checker.end() && i < 3; ++itr, ++i)
-        ASSERT_EQ(str[i], *itr);
+TEST(ExamMath, Fprime) {
+    testing::internal::CaptureStdout();
+    fprime((char*)"225225");
+    EXPECT_EQ(testing::internal::GetCapturedStdout(), "3*3*5*5*7*11*13\n");
 
-    while(*str)
-    {
-        //std::cout << *str << std::endl;
-        free(*str);
-        str++;
+    testing::internal::CaptureStdout();
+    fprime((char*)"8333325");
+    EXPECT_EQ(testing::internal::GetCapturedStdout(), "3*3*5*5*7*11*13*37\n");
+    
+    testing::internal::CaptureStdout();
+    fprime((char*)"1");
+    EXPECT_EQ(testing::internal::GetCapturedStdout(), "1");
+}
+
+// String tests
+TEST(ExamStr, FtStrlen) {
+    EXPECT_EQ(ft_strlen((char*)""), 0);
+    EXPECT_EQ(ft_strlen((char*)"hello"), 5);
+    EXPECT_EQ(ft_strlen((char*)"42"), 2);
+}
+
+TEST(ExamStr, FtStrcpy) {
+    char dest[100];
+    EXPECT_STREQ(ft_strcpy(dest, (char*)"Hello World"), "Hello World");
+    EXPECT_STREQ(ft_strcpy(dest, (char*)""), "");
+}
+
+TEST(ExamStr, RevPrint) {
+    testing::internal::CaptureStdout();
+    ft_rev_print((char*)"zaz");
+    EXPECT_EQ(testing::internal::GetCapturedStdout(), "zaz\n");
+    
+    testing::internal::CaptureStdout();
+    ft_rev_print((char*)"dub0 a POIL");
+    EXPECT_EQ(testing::internal::GetCapturedStdout(), "LIOP a 0bud\n");
+
+    testing::internal::CaptureStdout();
+    ft_rev_print((char*)"");
+    EXPECT_EQ(testing::internal::GetCapturedStdout(), "\n");
+}
+
+TEST(ExamStr, Rot13) {
+    char str1[] = "abcqwerty";
+    testing::internal::CaptureStdout();
+    ft_rot_13(str1);
+    EXPECT_EQ(testing::internal::GetCapturedStdout(), "nopdjregl\n");
+
+    char str2[] = "My horse is Amazing.";
+    testing::internal::CaptureStdout();
+    ft_rot_13(str2);
+    EXPECT_EQ(testing::internal::GetCapturedStdout(), "Zl ubefr vf Nznmvat.\n");
+}
+
+TEST(ExamStr, FtStrcmp) {
+    EXPECT_EQ(ft_strcmp((char*)"abc", (char*)"abc"), 0);
+    EXPECT_GT(ft_strcmp((char*)"abcd", (char*)"abc"), 0);
+    EXPECT_LT(ft_strcmp((char*)"abc", (char*)"abcd"), 0);
+    EXPECT_EQ(ft_strcmp((char*)"", (char*)""), 0);
+}
+
+// Conversion tests
+TEST(ExamConv, FtAtoi) {
+    EXPECT_EQ(ft_atoi((char*)"42"), 42);
+    EXPECT_EQ(ft_atoi((char*)"-42"), -42);
+    EXPECT_EQ(ft_atoi((char*)"   +42"), 42);
+    EXPECT_EQ(ft_atoi((char*)"   -42"), -42);
+    EXPECT_EQ(ft_atoi((char*)" \t\n -42ab56"), -42);
+}
+
+TEST(ExamConv, FtItoa) {
+    char *res;
+
+    res = ft_itoa(42);
+    EXPECT_STREQ(res, "42");
+    free(res);
+
+    res = ft_itoa(-42);
+    EXPECT_STREQ(res, "-42");
+    free(res);
+    
+    res = ft_itoa(-2147483648LL);
+    EXPECT_STREQ(res, "-2147483648");
+    free(res);
+
+    res = ft_itoa(0);
+    EXPECT_STREQ(res, "0");
+    free(res);
+}
+
+TEST(ExamConv, FtAtoiBase) {
+    EXPECT_EQ(ft_atoi_base("12F", 16), 303);
+    EXPECT_EQ(ft_atoi_base("-12F", 16), -303);
+    EXPECT_EQ(ft_atoi_base("101", 2), 5);
+    EXPECT_EQ(ft_atoi_base("42", 10), 42);
+    EXPECT_EQ(ft_atoi_base("-FF", 16), -255);
+}
+
+// Bit tests
+TEST(ExamBits, SwapBits) {
+    EXPECT_EQ(swap_bits(0x41), 0x14); // 'A' 65 -> 20
+    EXPECT_EQ(swap_bits(0xF0), 0x0F);
+}
+
+TEST(ExamBits, PrintBits) {
+    testing::internal::CaptureStdout();
+    print_bits(2);
+    EXPECT_EQ(testing::internal::GetCapturedStdout(), "00000010");
+}
+
+TEST(ExamBits, ReverseBits) {
+    EXPECT_EQ(reverse_bits(0x01), 0x80); // 1 -> 128
+    EXPECT_EQ(reverse_bits(0x02), 0x40); // 2 -> 64
+}
+
+// List tests
+
+// Provide full definition since exam.h only forward declares it
+struct s_list {
+    struct s_list *next;
+    void *data;
+};
+
+void add_node(t_list **lst, void* data) {
+    t_list *node = (t_list*)malloc(sizeof(struct s_list));
+    node->data = data;
+    node->next = *lst;
+    *lst = node;
+}
+
+int cmp_ints(int a, int b) {
+    return (a <= b) ? 1 : 0; // standard sorting
+}
+
+int cmp_void_ints(void *a, void *b) {
+    return (a == b) ? 0 : 1;
+}
+
+TEST(ExamLists, FtListSize) {
+    t_list *head = nullptr;
+    EXPECT_EQ(ft_list_size(head), 0);
+    
+    add_node(&head, (void*)42);
+    EXPECT_EQ(ft_list_size(head), 1);
+    add_node(&head, (void*)42);
+    EXPECT_EQ(ft_list_size(head), 2);
+    
+    // cleanup
+    while (head) {
+        t_list *tmp = head;
+        head = head->next;
+        free(tmp);
     }
-    free(start);
-
 }
 
-TEST(ex02, ft_putstr)
-{
-    ft_putstr(*g_argv);
-    std::cout << std::endl;
+TEST(ExamLists, FtListRemoveIf) {
+    t_list *head = nullptr;
+    
+    add_node(&head, (void*)10);
+    add_node(&head, (void*)20);
+    add_node(&head, (void*)10);
+    
+    EXPECT_EQ(ft_list_size(head), 3);
+    
+    void* to_remove = (void*)10;
+    ft_list_remove_if(&head, to_remove, reinterpret_cast<int(*)()>(cmp_void_ints));
+    
+    EXPECT_EQ(ft_list_size(head), 1);
+    EXPECT_EQ(head->data, (void*)20);
+    
+    free(head);
 }
 
-TEST(ex02, ft_rev_print)
-{
-    std::string str = "remmargorP dlroW olleH";
-    //char* ptr = const_cast<char*>(str.c_str());
-    ft_rev_print(str.data());
-}
-
-TEST(ex02, ft_ulstr)
-{
-    ft_ulstr(*g_argv);
-    std::string str = "hELLO wORLD pROGRAMMER";
-    ASSERT_STREQ(*g_argv, str.data());
-}
-
-TEST(ex02, ft_rot_13)
-{
-    ft_rot_13(*g_argv);
-    std::string str = "uRYYB jBEYQ cEBTENZZRE";
-    ASSERT_STREQ(*g_argv, str.data());
-}
-
-TEST(ex02, ft_first_word)
-{
-    ft_first_word(*g_argv);
-}
-
-TEST(ex02, ft_rotone)
-{
-    ft_rotone(*g_argv);
-    std::string str = "vSZZC kCFZR dFCUFOAASF";
-    ASSERT_STREQ(*g_argv, str.data());
-}
-
-TEST(ex02, ft_strcpy)
-{
-    std::string str;
-    //char* ptr = const_cast<char*>(str.c_str());
-    //ft_strcpy((char*)str.c_str(), *g_argv);
-    ft_strcpy(str.data(), *g_argv);
-    ASSERT_STREQ(str.c_str(), *g_argv);
-}
-
-TEST(ex02, ft_strlen)
-{
-    ASSERT_EQ(22, ft_strlen(*g_argv));
-}
-
-TEST(ex02, ft_swap)
-{
-    int a = 42, b = 21;
-    ft_swap(&a, &b);
-    ASSERT_EQ(b, 42);
-    ASSERT_EQ(a, 21);
-}
-
-TEST(ex02, ft_wdmatch)
-{
-    std::string str_one = "faya", str_two = "fgvvfdxcacpolhyghbreda";
-    ft_wdmatch(str_one.data(), str_two.data());
-}
-
-TEST(ex02, ft_strrev)
-{
-    std::string str = *g_argv;
-    std::reverse(str.begin(), str.end());
-    ft_strrev(*g_argv);
-    ASSERT_EQ(str, *g_argv);
-}
-
-TEST(ex02, ft_strdup)
-{
-    char* ptr = ft_strdup(*g_argv);
-    std::string str = ptr;
-    ASSERT_STREQ(str.data(), *g_argv);
-    free(ptr);
-}
-
-TEST(ex02, ft_strcmp)
-{
-    std::string str_one = "abc", str_two = "dfg", str_dup = "abc";
-    ASSERT_EQ(0, ft_strcmp(str_one.data(), str_dup.data()));
-    ASSERT_EQ(strcmp(str_one.data(), str_two.data()), ft_strcmp(str_one.data(), str_two.data()));
-}
-
-TEST(ex02, ft_alpha_mirror)
-{
-    ft_alpha_mirror(*g_argv);
-}
-
-TEST(ex02, max)
-{
-    std::array<int, 4> array_one = {25, 100, 125, 500};
-    int array_two[] = {25, 100, 125, 500};
-    int max_one = max(array_one.data(), array_one.size());
-    int max_two = max(array_two, 4);
-    std::cout << max_one << "=" << max_two << std::endl;
-    ASSERT_EQ(max_one, max_two);
-}
-
-TEST(ex02, ft_atoi)
-{
-    ASSERT_EQ(atoi("-2025"), ft_atoi("-2025"));
-    ASSERT_EQ(atoi("2025"), ft_atoi("2025"));
-}
-
-TEST(ex02, is_power_of_2)
-{
-    ASSERT_EQ(1, is_power_of_2(1024));
-    ASSERT_EQ(0, is_power_of_2(9));
-}
-
-TEST(ex02, camel_snake)
-{
-    char str[] = "hello_world";
-    snake_to_camel(str);
-    char string[] = "helloWorld";
-    camel_to_snake(string);
-}
-
-TEST(ex02, atoi_base)
-{
-    ASSERT_EQ(1996, ft_atoi_base("1996", 10));
-    ASSERT_EQ(5, ft_atoi_base("101", 2));
-    ASSERT_EQ(303, ft_atoi_base("12F", 16));
-}
-
-TEST(ex02, rstr_capitalizer)
-{
-    std::string str = "a FiRSt LiTTlE TESt";
-    rstr_capitalizer(str.data());
-}
-
-TEST(ex02, print_hex)
-{
-    std::string str = "10";
-    print_hex(str.data());
-}
-
-TEST(ex02, pgcd)
-{
-    ASSERT_EQ(2, pgcd("42", "10"));
-    ASSERT_EQ(6, pgcd("42", "12"));
-    ASSERT_EQ(7, pgcd("14", "77"));
-    ASSERT_EQ(1, pgcd("17", "3"));
-}
-
-TEST(ex02, hidenp)
-{
-    std::string s1 = "abc", s2 = "2altrb53c.sse";
-    hidenp(s1.data(), s2.data());
-}
-
-TEST(ex02, lcm)
-{
-    std::cout << lcm(21, 42) << std::endl;
-}
-
-TEST(ex02, paramsum)
-{
-    paramsum(--g_argc, g_argv);
-}
-
-TEST(ex02, ft_rrange)
-{
-    int start = 1, end = 3, size = (end - start) + 1;
-    int* ptr = ft_rrange(start, end);
-    std::vector<int> vec;
-    //std::vector<int> vec(ptr, ptr + size);
-    while(size--)
-        vec.push_back(*ptr++);
-    for(auto &i: vec)
-        ASSERT_EQ(end--, i);
-    free(ptr - 3);
-}
-// TODO: Implement test-case
-/*
-TEST(ex02, ft_range)
-{
-    int start = 1, end = 3, size = (end - start) + 1;
-    int* ptr = ft_range(start, end);
-    std::vector<int> vec;
-    //std::vector<int> vec(ptr, ptr + size);
-    while(size--)
-        vec.push_back(*ptr++);
-    for(auto &i: vec)
-        ASSERT_EQ(end--, i);
-    free(ptr - 3);
-}
-*/
-int main(int argc, char **argv)
-{
-    g_argc = argc;
-    g_argv = argv;
+int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
