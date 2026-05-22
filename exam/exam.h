@@ -77,6 +77,7 @@ void sort_int_tab(int *tab, unsigned int size);
 void ft_rev_wstr(char *str);
 char *ft_itoa(int nbr);
 void ft_rostring(char *str);
+void fprime(char *str);
 #ifdef __cplusplus
 }
 #endif
