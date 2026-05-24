@@ -27,8 +27,8 @@ void ft_fizzbuzz()
         fizz = fizz_start;
         buzz = buzz_start;
         fizzbuzz = fizzbuzz_start;
-        dec = counter / 10;
-        dig = counter % 10;
+        dec = counter / 10 + '0';
+        dig = counter % 10 + '0';
         if (counter % 3 == 0 && counter % 5 == 0)
             while(*fizzbuzz)
                 write(1, fizzbuzz++, 1);
