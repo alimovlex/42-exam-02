@@ -14,11 +14,8 @@
 
 void ft_fizzbuzz()
 {
-    int counter = 1;
-    int dec, dig;
-    char *fizz = "fizz\n";
-    char *buzz = "buzz\n";
-    char* fizzbuzz = "fizzbuzz\n";
+    int counter = 1, decimal = 0, digit = 0;
+    char *fizz = "fizz\n", *buzz = "buzz\n", *fizzbuzz = "fizzbuzz\n";
     char* fizz_start = fizz;
     char* buzz_start = buzz;
     char* fizzbuzz_start = fizzbuzz;
@@ -27,8 +24,8 @@ void ft_fizzbuzz()
         fizz = fizz_start;
         buzz = buzz_start;
         fizzbuzz = fizzbuzz_start;
-        dec = counter / 10 + '0';
-        dig = counter % 10 + '0';
+        decimal = counter / 10 + '0';
+        digit = counter % 10 + '0';
         if (counter % 3 == 0 && counter % 5 == 0)
             while(*fizzbuzz)
                 write(1, fizzbuzz++, 1);
@@ -41,8 +38,8 @@ void ft_fizzbuzz()
         else
         {
             if (counter >= 10)
-                write(1, &dec, 1);
-            write(1, &dig, 1);
+                write(1, &decimal, 1);
+            write(1, &digit, 1);
             write(1, "\n", 1);
         }
         counter++;
