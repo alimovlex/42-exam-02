@@ -14,26 +14,21 @@
 
 void ft_wdmatch(char *s1, char *s2)
 {
-    char* end = s1;
-    char* start = s1;
+    char *end = s1, *ptr = s1;
+    int len = 0, size = 0;
     while(*end)
         end++;
-    int len = end - s1, size = 0;
-
+    len = end - s1;
     while(*s2)
     {
-        if(*s1 == *s2)
-        {
-            size++;
+        if (*s2 == *s1)
             s1++;
-        }
         s2++;
     }
-
+    size = s1 - ptr;
     if (len == size)
-        while(*start)
-            write(1, start++, 1);
-
+        while(*ptr)
+            write(1, ptr++, 1);
     write(1, "\n", 1);
 }
 /*
