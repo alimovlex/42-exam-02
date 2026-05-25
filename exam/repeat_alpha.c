@@ -12,6 +12,23 @@
 
 #include <unistd.h>
 
+void ft_repeat_alpha(char *str)
+{
+    int counter = 0;
+    while(*str)
+    {
+        if ((*str | 32) >= 'a' && (*str | 32) <= 'z')
+            counter = (*str | 32) - 'a' + 1;
+        else
+            write(1, str, 1);
+        while (counter-- > 0)
+            write(1, str, 1);
+        str++;
+    }
+    write(1, "\n", 1);
+}
+
+/*
 void ft_repeat_alpha(char* str)
 {
     int counter = 0;
@@ -29,3 +46,4 @@ void ft_repeat_alpha(char* str)
     }
     write(1, "\n", 1);
 }
+*/
