@@ -12,6 +12,23 @@
 
 #include <unistd.h>
 
+void ft_alpha_mirror(char *str)
+{
+    while(*str)
+    {
+        if ((*str | 32) >= 'a' && (*str | 32) <= 'z')
+        {
+            if (*str >= 'a')
+                *str = 'z' - (*str - 'a');
+            else
+                *str = 'Z' - (*str - 'A');
+        }
+        write(1, str++, 1);
+    }
+    write(1, "\n", 1);
+}
+
+/*
 void ft_alpha_mirror(char* str)
 {
     while(*str)
@@ -25,3 +42,4 @@ void ft_alpha_mirror(char* str)
     }
     write(1, "\n", 1);
 }
+*/
