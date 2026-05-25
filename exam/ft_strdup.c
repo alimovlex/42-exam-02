@@ -13,21 +13,17 @@
 #include <stdlib.h>
 #include "exam.h"
 
-char *ft_strdup(char* src)
+char *ft_strdup(char *src)
 {
-    char* start = src;
-    while(*start)
-        start++;
-    int len = start - src;
-
-    char* dup = (char*)malloc(len + 1);
-    if (!dup)
-        return NULL;
-
-    char* begin = dup;
+    char *end = src;
+    int len = 0;
+    while(*end)
+        end++;
+    len = end - src;
+    char *dup = (char *)malloc(++len);
+    char *ptr = dup;
     while(*src)
-        *dup++ = *src++;
-    *dup = '\0';
-
-    return begin;
+        *ptr++ = *src++;
+    *ptr = '\0';
+    return dup;
 }
