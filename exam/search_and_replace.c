@@ -12,6 +12,36 @@
 
 #include <unistd.h>
 
+int ft_strlen(char *str);
+
+void	ft_replace(char *s1, char *s2, char *s3)
+{
+    while (*s1)
+    {
+        if (*s1 == *s2)
+            *s1 = *s3;
+        write(1, s1++, 1);
+    }
+    write(1, "\n", 1);
+}
+
+void ft_search_and_replace(int argc, char** argv)
+{
+    if (argc == 4)
+    {
+        char* s1 = *++argv;
+        char* s2 = *++argv;
+        char* s3 = *++argv;
+        if (ft_strlen(s2) == 1 && ft_strlen(s3) == 1)
+            ft_replace(s1, s2, s3);
+        else
+            write(1, "\n", 1);
+    }
+    else
+        write(1, "\n", 1);
+}
+
+/*
 void ft_search_and_replace(int argc, char** argv)
 {
     char *str;
@@ -52,3 +82,4 @@ void ft_search_and_replace(int argc, char** argv)
     // Always print a newline at the end
     write(1, "\n", 1);
 }
+*/

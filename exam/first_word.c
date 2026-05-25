@@ -18,9 +18,6 @@ void ft_first_word(char *str)
         str++;
 
     while (*str != '\0' && *str != ' ' && *str != '\t')
-    {
-        write(1, str, 1);
-        str++;
-    }
+        write(1, str++, 1);
     write(1, "\n", 1);
 }
