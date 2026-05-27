@@ -20,6 +20,31 @@
 
 size_t ft_strcspn(const char *s, const char *reject)
 {
+    const char *start = s;
+    const char *reader;
+
+    while (*start & 255)
+    {
+        reader = reject;
+
+        while (*reader & 255)
+        {
+            // ASCII compare via xor
+            if (!((*start ^ *reader) & 255))
+                return (size_t)(start - s);
+
+            reader++;
+        }
+
+        start++;
+    }
+
+    return (size_t)(start - s);
+}
+
+/*
+size_t ft_strcspn(const char *s, const char *reject)
+{
     const char *start = s, *reader = reject;
 
     while (*start)
@@ -38,7 +63,6 @@ size_t ft_strcspn(const char *s, const char *reject)
     return (size_t)(start - s);
 }
 
-/*
 size_t ft_strcspn(const char *s, const char *reject)
 {
     // 1. Drop a pin where we started so we can measure distance later.
