@@ -12,6 +12,136 @@
 
 #include <unistd.h>
 
+void ft_union(char *s1, char *s2)
+{
+    char printed[256] = {0};
+    while (*s1)
+    {
+        unsigned char c = (unsigned char)*s1;
+        if (!printed[c])
+        {
+            write(1, s1, 1);
+            printed[c] = 1;
+        }
+        s1++;
+    }
+
+    while (*s2)
+    {
+        unsigned char c = (unsigned char)*s2;
+        if (!printed[c])
+        {
+            write(1, s2, 1);
+            printed[c] = 1;
+        }
+        s2++;
+    }
+    write(1, "\n", 1);
+}
+
+/*
+void ft_union(char *s1, char *s2)
+{
+    // Allocating 256 bits of memory on the stack
+    unsigned int memory[8] = {0};
+    unsigned int *seen = memory;
+    unsigned char c;
+
+    // 1. Process the first string
+    while (*s1)
+    {
+        c = (unsigned char)*s1;
+
+        // (c >> 5) moves the pointer to the correct 32-bit block (replaces c / 32)
+        // (c & 31) gets the exact bit position inside that block (replaces c % 32)
+        if (!(*(seen + (c >> 5)) & (1U << (c & 31))))
+        {
+            write(1, s1, 1);
+            *(seen + (c >> 5)) |= (1U << (c & 31));
+        }
+        s1++;
+    }
+
+    // 2. Process the second string
+    while (*s2)
+    {
+        c = (unsigned char)*s2;
+
+        // Same pointer arithmetic logic
+        if (!(*(seen + (c >> 5)) & (1U << (c & 31))))
+        {
+            write(1, s2, 1);
+            *(seen + (c >> 5)) |= (1U << (c & 31));
+        }
+        s2++;
+    }
+    write(1, "\n", 1);
+}
+
+void ft_union(char *s1, char *s2)
+{
+    unsigned char seen[32] = {0};
+    unsigned char c;
+    while (*s1)
+    {
+        c = (unsigned char)*s1;
+        if (!(seen[c >> 3] & (1 << (c & 7))))
+        {
+            write(1, s1, 1);
+            seen[c >> 3] |= (1 << (c & 7));
+        }
+        s1++;
+    }
+    while (*s2)
+    {
+        c = (unsigned char)*s2;
+        if (!(seen[c >> 3] & (1 << (c & 7))))
+        {
+            write(1, s2, 1);
+            seen[c >> 3] |= (1 << (c & 7));
+        }
+        s2++;
+    }
+    write(1, "\n", 1);
+}
+
+void ft_union(char *s1, char *s2)
+{
+    // Array of 8 32-bit integers (256 bits total for all ASCII characters)
+    unsigned int seen[8] = {0};
+    unsigned char c;
+
+    // 1. Process the first string
+    while (*s1)
+    {
+        c = (unsigned char)*s1;
+
+        // Check if the specific bit is 0 (character hasn't been seen yet)
+        if (!(seen[c / 32] & (1U << (c % 32))))
+        {
+            write(1, s1, 1);
+            // Set the specific bit to 1 (mark as printed)
+            seen[c / 32] |= (1U << (c % 32));
+        }
+        s1++;
+    }
+
+    // 2. Process the second string
+    while (*s2)
+    {
+        c = (unsigned char)*s2;
+
+        // Same logic for the second string
+        if (!(seen[c / 32] & (1U << (c % 32))))
+        {
+            write(1, s2, 1);
+            seen[c / 32] |= (1U << (c % 32));
+        }
+        s2++;
+    }
+    write(1, "\n", 1);
+}
+
 void	ft_union(char *s1, char *s2)
 {
     // Array for all 256 ASCII characters, initialized to 0
@@ -43,7 +173,6 @@ void	ft_union(char *s1, char *s2)
     write(1, "\n", 1);
 }
 
-/*
 void	ft_union(char *s1, char *s2)
 {
     char	*curr;
