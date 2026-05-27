@@ -30,7 +30,7 @@ int ft_atoi(const char* str)
     }
 
     // 3. Process digits one by one
-    while (*str >= '0' && *str <= '9')
+    while((*str & 240) == 48)
     {
         // Extract the numerical value of the current character (the "unit")
         // Shift the existing result to the left to make it "tens"
@@ -44,6 +44,37 @@ int ft_atoi(const char* str)
 }
 
 /*
+int ft_atoi(const char* str)
+{
+    int result = 0;
+    int sign = 1;
+
+    // 1. Skip all whitespace characters (strictly at the beginning)
+    while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
+        str++;
+
+    // 2. Handle the sign (exactly once and only one sign)
+    if (*str == '-' || *str == '+')
+    {
+        if (*str == '-')
+            sign = -1;
+        str++;
+    }
+
+    // 3. Process digits one by one
+    while (*str >= '0' && *str <= '9')
+    {
+        // Extract the numerical value of the current character (the "unit")
+        // Shift the existing result to the left to make it "tens"
+        // Add the new "unit" to our shifted result
+        result *= 10;
+        result += *str - '0';
+        str++;
+    }
+
+    return result * sign;
+}
+
 int ft_atoi(const char *str)
 {
     int sign = 1;
@@ -98,4 +129,25 @@ int ft_atoi(const char *str)
 
     return (number * sign);
 }
+
+int	ft_atoi(const char *str)
+{
+  int digit = 0, sign = 1;
+  // 1. Skip all whitespace characters (strictly at the beginning)
+  while (*str == ' ' || *str == '\t' || *str == '+')
+    str++;
+
+  // 2. Handle the sign (exactly once and only one sign)
+  if (*str == '-')
+    sign = -1, str++;
+
+  while(*str >= '0' && *str <= '9')
+  {
+    digit *= 10;
+    digit += *str - '0';
+    str++;
+  }
+  return digit * sign;
+}
+
 */
