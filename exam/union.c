@@ -12,6 +12,37 @@
 
 #include <unistd.h>
 
+void ft_seen(char *str, unsigned int seen[])
+{
+    unsigned char c;
+
+    while(*str)
+    {
+        c = (unsigned char)*str;
+
+        // Check if the specific bit is 0 (character hasn't been seen yet)
+        if (!(seen[c / 32] & (1U << (c % 32))))
+        {
+            write(1, str, 1);
+            // Set the specific bit to 1 (mark as printed)
+            seen[c / 32] |= (1U << (c % 32));
+        }
+        str++;
+    }
+}
+
+void ft_union(char *s1, char *s2)
+{
+    // Array of 8 32-bit integers (256 bits total for all ASCII characters)
+    unsigned int seen[8] = {0};
+    unsigned int* ptr = seen;
+
+    ft_seen(s1, ptr);
+    ft_seen(s2, ptr);
+
+    write(1, "\n", 1);
+}
+/*
 void ft_union(char *s1, char *s2)
 {
     char printed[256] = {0};
@@ -39,7 +70,6 @@ void ft_union(char *s1, char *s2)
     write(1, "\n", 1);
 }
 
-/*
 void ft_union(char *s1, char *s2)
 {
     // Allocating 256 bits of memory on the stack
