@@ -15,18 +15,24 @@
 void ft_seen(char *str, unsigned int seen[])
 {
     unsigned char c;
+    unsigned int bit_mask, offset, index;
+    unsigned int *bucket;
 
-    while(*str)
+    while (*str)
     {
         c = (unsigned char)*str;
 
-        // Check if the specific bit is 0 (character hasn't been seen yet)
-        if (!(seen[c / 32] & (1U << (c % 32))))
+        index = c / 32;
+        offset = c % 32;
+        bit_mask = 1U << offset;
+
+        bucket = seen + index;
+        if (!(*bucket & bit_mask))
         {
             write(1, str, 1);
-            // Set the specific bit to 1 (mark as printed)
-            seen[c / 32] |= (1U << (c % 32));
+            *bucket |= bit_mask;
         }
+
         str++;
     }
 }
