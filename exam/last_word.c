@@ -38,6 +38,41 @@ void ft_last_word(char *str)
 }
 
 /*
+
+void ft_last_word(char *str)
+{
+    char *end = str;
+    // Define the bit mask for space (bit 32) and tab (bit 9)
+    unsigned long long mask = (1ULL << 32) | (1ULL << 9);
+
+    if (!str)
+        return;
+
+    // Go to the end of the string
+    while (*end)
+        end++;
+    end--;
+
+    // Skip spaces and tabs from the end using the bit mask directly
+    while (end >= str && (unsigned char)*end < 64 && ((mask >> *end) & 1))
+        end--;
+
+    // If there are no symbols, then we have no words
+    if (end < str)
+        return;
+
+    char *start = end;
+
+    // Go to the start of the word using the bit mask directly
+    while (start > str && !((unsigned char)*(start - 1) < 64 &&
+    ((mask >> *(start - 1)) & 1)))
+        start--;
+
+    // Printing the word
+    while (start <= end)
+        write(1, start++, 1);
+}
+
 void	ft_last_word(char *str)
 {
     char	*end = str;

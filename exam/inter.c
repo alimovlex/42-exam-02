@@ -12,6 +12,101 @@
 
 #include <unistd.h>
 
+void ft_inter_seen(char *str, unsigned int *primary, unsigned int *secondary, int mode)
+{
+    unsigned int bit_mask, offset, index;
+    unsigned int *bucket_p, *bucket_s;
+
+    while (*str)
+    {
+        unsigned char c = (unsigned char)*str;
+        offset = c % 32;
+        index = c / 32;
+        bit_mask = 1U << offset;
+        bucket_p = primary + index; // Pointer arithmetic to the primary bucket
+
+        if (mode == 0)
+        {
+            // Mode 0: Just record the character into the primary bitset (seen_in_s2)
+            *bucket_p |= bit_mask;
+        }
+        else if (mode == 1)
+        {
+            bucket_s = secondary + index; // Pointer arithmetic to the secondary bucket
+
+            // Mode 1: If it IS in secondary (seen_in_s2) AND NOT in primary (printed)
+            if ((*bucket_s & bit_mask) && !(*bucket_p & bit_mask))
+            {
+                write(1, str, 1);
+                *bucket_p |= bit_mask; // Mark as printed
+            }
+        }
+        str++;
+    }
+}
+
+void ft_inter(char *s1, char *s2)
+{
+    unsigned int seen_in_s2[8] = {0};
+    unsigned int printed[8] = {0};
+
+    // 1. Pass s2 to silently populate the seen_in_s2 array (mode 0)
+    ft_inter_seen(s2, seen_in_s2, NULL, 0);
+    // 2. Pass s1 to check against seen_in_s2 and print results (mode 1)
+    ft_inter_seen(s1, printed, seen_in_s2, 1);
+    write(1, "\n", 1);
+}
+
+/*
+void ft_inter(char *s1, char *s2)
+{
+    unsigned int seen_in_s2[8] = {0};
+    unsigned int printed[8] = {0};
+
+    // 'index' is gone. Just tracking the mask, offset, and the destination pointer.
+    unsigned int bit_mask, offset;
+    unsigned int *bucket;
+
+    // Phase 1: Populate seen_in_s2 using pointer arithmetic
+    while (*s2)
+    {
+        unsigned char c = (unsigned char)*s2;
+
+        offset = c % 32;
+        bit_mask = 1U << offset;
+
+        // Base address + element offset = direct pointer to the bucket
+        bucket = seen_in_s2 + (c / 32);
+        *bucket |= bit_mask;
+        s2++;
+    }
+
+    // Phase 2: Parse s1 using pointer arithmetic
+    while (*s1)
+    {
+        unsigned char c = (unsigned char)*s1;
+
+        offset = c % 32;
+        bit_mask = 1U << offset;
+
+        // Check s2 bucket via pointer arithmetic
+        bucket = seen_in_s2 + (c / 32);
+        unsigned int is_in_s2 = *bucket & bit_mask;
+
+        // Move bucket pointer to the printed array
+        bucket = printed + (c / 32);
+        unsigned int is_printed = *bucket & bit_mask;
+
+        if (is_in_s2 && !is_printed)
+        {
+            write(1, s1, 1);
+            *bucket |= bit_mask; // Direct mutation of the printed bucket
+        }
+        s1++;
+    }
+    write(1, "\n", 1);
+}
+
 void ft_inter(char *s1, char *s2)
 {
     char seen_in_s2[256] = {0};
@@ -37,7 +132,7 @@ void ft_inter(char *s1, char *s2)
     }
     write(1, "\n", 1);
 }
-/*
+
 void ft_inter(char *s1, char *s2)
 {
     // 8 ints * 32 bits = 256 bits. One unique bit for each ASCII character!

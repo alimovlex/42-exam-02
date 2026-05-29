@@ -12,7 +12,7 @@
 
 #include <unistd.h>
 
-void ft_seen(char *str, unsigned int seen[])
+void ft_union_seen(char *str, unsigned int seen[])
 {
     unsigned char c;
     unsigned int bit_mask, offset, index;
@@ -32,7 +32,6 @@ void ft_seen(char *str, unsigned int seen[])
             write(1, str, 1);
             *bucket |= bit_mask;
         }
-
         str++;
     }
 }
@@ -43,8 +42,8 @@ void ft_union(char *s1, char *s2)
     unsigned int seen[8] = {0};
     unsigned int* ptr = seen;
 
-    ft_seen(s1, ptr);
-    ft_seen(s2, ptr);
+    ft_union_seen(s1, ptr);
+    ft_union_seen(s2, ptr);
 
     write(1, "\n", 1);
 }

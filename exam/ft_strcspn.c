@@ -20,6 +20,83 @@
 
 size_t ft_strcspn(const char *s, const char *reject)
 {
+    unsigned int map[8] = {0};
+    const unsigned char *str = (const unsigned char *)s;
+    const unsigned char *rej = (const unsigned char *)reject;
+
+    unsigned int *bucket;
+    unsigned int offset;
+    unsigned int bit_mask;
+
+    // 1. Populate the bitmask with 'reject' characters using pointers
+    while (*rej)
+    {
+        bucket = map + (*rej / 32);   // Pointer arithmetic: points directly to the target 32-bit block
+        offset = *rej % 32;
+        bit_mask = 1U << offset;
+
+        *bucket |= bit_mask;          // Dereference and modify the memory directly
+        rej++;
+    }
+
+    // 2. Scan 's' against the bitmask using pointers
+    while (*str)
+    {
+        bucket = map + (*str / 32);
+        offset = *str % 32;
+        bit_mask = 1U << offset;
+
+        // Dereference the pointer to check the bit
+        if (*bucket & bit_mask)
+            return (size_t)((const char *)str - s);
+
+        str++;
+    }
+
+    return (size_t)((const char *)str - s);
+}
+
+/*
+size_t ft_strcspn(const char *s, const char *reject)
+{
+    unsigned int map[8] = {0};
+    const unsigned char *str = (const unsigned char *)s;
+    const unsigned char *rej = (const unsigned char *)reject;
+
+    unsigned int index;
+    unsigned int offset;
+    unsigned int bit_mask;
+
+    // 1. Populate the bitmask with the 'reject' characters
+    while (*rej)
+    {
+        index = *rej / 32;          // Find which of the 8 integers this char belongs to
+        offset = *rej % 32;         // Find the exact bit position (0-31) inside that integer
+        bit_mask = 1U << offset;    // Create a mask with a 1 at that specific position
+
+        map[index] |= bit_mask;     // Flip that bit to 1 in our lookup table
+        rej++;
+    }
+
+    // 2. Scan 's' against the lookup table
+    while (*str)
+    {
+        index = *str / 32;
+        offset = *str % 32;
+        bit_mask = 1U << offset;
+
+        // If the bit is 1, we found a match
+        if (map[index] & bit_mask)
+            return (size_t)((const char *)str - s);
+
+        str++;
+    }
+
+    return (size_t)((const char *)str - s);
+}
+
+size_t ft_strcspn(const char *s, const char *reject)
+{
     const char *start = s;
     const char *reader;
 
@@ -42,7 +119,6 @@ size_t ft_strcspn(const char *s, const char *reject)
     return (size_t)(start - s);
 }
 
-/*
 size_t ft_strcspn(const char *s, const char *reject)
 {
     const char *start = s, *reader = reject;
