@@ -42,6 +42,28 @@ void ft_union(char *s1, char *s2)
 
     write(1, "\n", 1);
 }
+
+/*
+void ft_seen(char *str, unsigned int seen[])
+{
+    unsigned char c;
+
+    while(*str)
+    {
+        c = (unsigned char)*str;
+
+        // Check if the specific bit is 0 (character hasn't been seen yet)
+        if (!(seen[c / 32] & (1U << (c % 32))))
+        {
+            write(1, str, 1);
+            // Set the specific bit to 1 (mark as printed)
+            seen[c / 32] |= (1U << (c % 32));
+        }
+        str++;
+    }
+}
+*/
+
 /*
 void ft_union(char *s1, char *s2)
 {
