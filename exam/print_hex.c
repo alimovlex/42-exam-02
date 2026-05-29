@@ -19,6 +19,49 @@ void print_hex(char *str)
     unsigned int divisor = 1;
     char c;
 
+    // 1. Parsing Base 10 using the bitwise & 0x0F trick
+    while (*str)
+    {
+        number *= 10;
+        number += (*str & 15);
+        str++;
+    }
+
+    while (number / divisor >= 16)
+        divisor *= 16;
+
+    while (divisor > 0)
+    {
+        digit = number / divisor;
+
+        // --- THE PURE BITWISE ARRAY REPLACEMENT ---
+        // 1. Create a boolean flag (0 if digit < 10, 1 if digit >= 10)
+        unsigned int flag = (digit + 6) >> 4;
+
+        // 2. Use Two's Complement negation to turn the flag into a full bitmask
+        // If flag == 0, mask = 0x00000000
+        // If flag == 1, mask = 0xFFFFFFFF
+        unsigned int mask = ~flag + 1;
+
+        // 3. Apply the mask! If >= 10, it adds 39. If < 10, it adds 0.
+        c = digit + '0' + (mask & 39);
+
+        write(1, &c, 1);
+
+        number %= divisor;
+        divisor /= 16;
+    }
+    write(1, "\n", 1);
+}
+
+/*
+void print_hex(char *str)
+{
+    unsigned int number = 0;
+    unsigned int digit;
+    unsigned int divisor = 1;
+    char c;
+
     // 1. Pointer traversal to convert string to unsigned integer
     while (*str)
     {
@@ -50,7 +93,7 @@ void print_hex(char *str)
     write(1, "\n", 1);
 }
 
-/*
+
 void print_hex(char *str)
 {
     unsigned int number = 0;

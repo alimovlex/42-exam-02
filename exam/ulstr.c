@@ -16,7 +16,7 @@ void ft_ulstr(char *str)
 {
     while (*str)
     {
-        if ((*str >= 'A' && *str <= 'Z') || (*str >= 'a' && *str <= 'z'))
+        if ((*str | 32) >= 'a' && (*str | 32) <= 'z')
             *str ^= 32;  // Uppercase
         write(1, str++, 1);
     }
@@ -24,6 +24,16 @@ void ft_ulstr(char *str)
 }
 
 /*
+void ft_ulstr(char *str)
+{
+    while (*str)
+    {
+        if ((*str >= 'A' && *str <= 'Z') || (*str >= 'a' && *str <= 'z'))
+            *str ^= 32;  // Uppercase
+        write(1, str++, 1);
+    }
+    write(1, "\n", 1);
+}
 
 void ft_ulstr(char *str)
 {
