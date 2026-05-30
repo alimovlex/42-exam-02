@@ -12,11 +12,55 @@
 
 #include <unistd.h>
 
+int ft_atoi(const char* str);
+char	*ft_itoa(int nbr);
+
 void ft_add_prime_sum(char *str)
 {
     int digit = 0, decimals = 1;
     char num;
-    while(*str >= '0' && *str <= '9')
+    // Simple atoi: convert string to integer
+    digit = ft_atoi(str);
+
+    // 2. Calculate the sum of prime numbers directly inside
+    int max_num = digit;
+    int sum = 0;
+    int current = 2; // Primes start from 2
+
+    while (current <= max_num)
+    {
+        int is_prime = 1;
+        int divisor = 2;
+
+        // Inline prime check without any helper functions
+        while (divisor * divisor <= current)
+        {
+            if (current % divisor == 0)
+                is_prime = 0; // Found a divisor, not prime
+            divisor++;
+        }
+
+        if (is_prime == 1)
+            sum += current; // Add to total sum if prime
+        current++;
+    }
+
+    // Put the calculated sum into digit so your printing logic can use it
+    digit = sum;
+    char* ptr = ft_itoa(digit);
+    while(*ptr)
+        write(1, ptr++, 1);
+
+    write(1, "\n", 1);
+}
+/*
+
+void ft_add_prime_sum(char *str)
+{
+    int digit = 0, decimals = 1;
+    char num;
+    // Simple atoi: convert string to integer
+    while((*str & 240) == 48) //(*str >= '0' && *str <= '9')
     {
         digit *= 10;
         digit += *str - '0';
@@ -65,3 +109,4 @@ void ft_add_prime_sum(char *str)
 
     write(1, "\n", 1);
 }
+*/

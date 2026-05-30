@@ -12,6 +12,8 @@
 
 #include <unistd.h>
 
+int ft_atoi(const char* str);
+
 void print_hex(char *str)
 {
     unsigned int number = 0;
@@ -20,12 +22,7 @@ void print_hex(char *str)
     char c;
 
     // 1. Parsing Base 10 using the bitwise & 0x0F trick
-    while (*str)
-    {
-        number *= 10;
-        number += (*str & 15);
-        str++;
-    }
+    number = ft_atoi(str);
 
     while (number / divisor >= 16)
         divisor *= 16;

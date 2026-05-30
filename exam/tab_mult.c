@@ -13,6 +13,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+int ft_atoi(const char* str);
 char    *ft_itoa(int nbr);
 
 void	tab_mult(char *str)
@@ -24,12 +25,7 @@ void	tab_mult(char *str)
     char	*ptr;
 
     // Simple atoi: convert string to integer
-    while((*str & 240) == 48)  //(*str >= '0' && *str <= '9')
-    {
-        number *= 10;
-        number += *str - '0';
-        str++;
-    }
+    number = ft_atoi(str);
     // Convert the target number to string ONCE outside the loop (optimization)
     s2 = ft_itoa(number);
     // Loop from 1 to 9 to display the table
