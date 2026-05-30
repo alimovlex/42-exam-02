@@ -17,8 +17,7 @@ char	*ft_itoa(int nbr);
 
 void ft_add_prime_sum(char *str)
 {
-    int digit = 0, decimals = 1;
-    char num;
+    int digit = 0;
     // Simple atoi: convert string to integer
     digit = ft_atoi(str);
 
