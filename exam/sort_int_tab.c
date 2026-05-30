@@ -12,6 +12,26 @@
 
 #include <unistd.h>
 
+void ft_swap(int *a, int *b);
+
+void sort_int_tab(int *tab, unsigned int size)
+{
+    int *ptr = tab;
+
+    // 2. Safety check is embedded cleanly in the loop condition
+    while (size > 1 && ptr < tab + size - 1)
+    {
+        if (*ptr > *(ptr + 1))
+        {
+            ft_swap(ptr, ptr + 1);
+            ptr = tab; // Reset to the start of the array after a swap
+        }
+        else
+            ptr++; // Step forward if elements are in the right order
+    }
+}
+
+/*
 void sort_int_tab(int *tab, unsigned int size) {
   int *ptr = tab;
 
@@ -38,7 +58,6 @@ void sort_int_tab(int *tab, unsigned int size) {
   }
 }
 
-/*
 void sort_int_tab(int *tab, unsigned int size)
 {
     int temp;
