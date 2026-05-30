@@ -13,6 +13,44 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+char    **ft_split(char *str)
+{
+    // Allocate space for 1000 string pointers directly
+    char **res = malloc(sizeof(char *) * 1000);
+    char **word_ptr = res;
+    char *letter_ptr;
+
+    if (!res)
+        return (NULL);
+
+    while (*str)
+    {
+        // Skip whitespace characters directly inline
+        while (*str && (*str == ' ' || *str == '\t' || *str == '\n'))
+            str++;
+        if (!*str)
+            break;
+
+        // Allocate 1000 bytes for the current word
+        *word_ptr = malloc(1000);
+        if (!*word_ptr)
+            return (NULL);
+
+        letter_ptr = *word_ptr;
+        // Collect characters until we hit a whitespace
+        while (*str && *str != ' ' && *str != '\t' && *str != '\n')
+        {
+            *letter_ptr = *str;
+            letter_ptr++;
+            str++;
+        }
+        *letter_ptr = '\0'; // Null-terminate the current word
+        word_ptr++;         // Move to the next slot in the array
+    }
+    *word_ptr = NULL; // Null-terminate the array of strings
+    return (res);
+}
+/*
 int ft_word_count(char *str)
 {
     int cnt = 0;
@@ -68,7 +106,6 @@ char **ft_split(char *str)
     return split_str;
 }
 
-/*
  int is_space(char c)
 {
 	return (c == ' ' || c == '\t' || c == '\n');
