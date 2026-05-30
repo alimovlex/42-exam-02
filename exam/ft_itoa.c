@@ -45,7 +45,8 @@ char	*ft_itoa(int nbr)
     // Extract and write each digit from left to right
     while (decimals > 0)
     {
-        *ptr = (n / decimals % 10) + '0'; // Get digit, convert to ASCII, write to pointer
+        //*ptr = (n / decimals % 10) + '0'
+        *ptr = (n / decimals % 10) | 48; // Get digit, convert to ASCII, write to pointer
         ptr++; // Move pointer to the next free byte
         decimals /= 10; // Decrease the divisor
     }

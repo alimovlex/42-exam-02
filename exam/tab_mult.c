@@ -24,7 +24,7 @@ void	tab_mult(char *str)
     char	*ptr;
 
     // Simple atoi: convert string to integer
-    while (*str >= '0' && *str <= '9')
+    while((*str & 240) == 48)  //(*str >= '0' && *str <= '9')
     {
         number *= 10;
         number += *str - '0';
@@ -114,7 +114,7 @@ void	tab_mult(char *str)
         write(1, " = ", 3);
         ft_itoa(i * number);    // Print the result
         write(1, "\n", 1);
-        j++;
+        i++;
     }
 }
 
