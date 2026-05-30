@@ -11,7 +11,52 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
 
+char **ft_split(char *str);
+
+void ft_rev_wstr(char *str)
+{
+    char **tab = ft_split(str);
+    char **ptr = tab;
+    char *tmp;
+
+    if (tab && *tab)
+    {
+        // 1. Move the pointer to the NULL terminator of the array
+        while (*ptr)
+            ptr++;
+
+        // Step back to point to the actual last word
+        ptr--;
+
+        // 2. Loop backwards through the array of string pointers
+        while (ptr >= tab)
+        {
+            tmp = *ptr;
+
+            // Print the current word
+            while (*tmp)
+                write(1, tmp++, 1);
+
+            // Print a space if we haven't reached the very first word yet
+            if (ptr > tab)
+                write(1, " ", 1);
+
+            // Free the string memory immediately after printing it
+            free(*ptr);
+            ptr--;
+        }
+    }
+
+    // 3. Free the main container array
+    if (tab)
+        free(tab);
+
+    write(1, "\n", 1);
+}
+
+/*
 void ft_rev_wstr(char *str)
 {
   char *end = str;
@@ -52,3 +97,4 @@ void ft_rev_wstr(char *str)
   }
   write(1, "\n", 1);
 }
+*/
