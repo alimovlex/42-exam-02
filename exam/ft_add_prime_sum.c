@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
 
 int ft_atoi(const char* str);
 char	*ft_itoa(int nbr);
@@ -47,9 +48,10 @@ void ft_add_prime_sum(char *str)
     // Put the calculated sum into digit so your printing logic can use it
     digit = sum;
     char* ptr = ft_itoa(digit);
+    char *start = ptr;
     while(*ptr)
         write(1, ptr++, 1);
-
+    free(start);
     write(1, "\n", 1);
 }
 /*

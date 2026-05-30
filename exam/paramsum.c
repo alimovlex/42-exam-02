@@ -11,13 +11,31 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
 
+char	*ft_itoa(int nbr);
+
+void paramsum(int argc, char **argv)
+{
+    (void)argv;
+
+    char *str = ft_itoa(argc);
+    char* ptr = str;
+    while(*ptr)
+        write(1, ptr++, 1);
+    free(str);
+    // Print the final newline character
+    write(1, "\n", 1);
+}
+
+/*
 void paramsum(int argc, char **argv)
 {
     (void)argv;
 
     int decimals = 1, num = argc;
     char digit;
+
     while (num / decimals >= 10)
         decimals *= 10;
 
@@ -35,7 +53,7 @@ void paramsum(int argc, char **argv)
     // Print the final newline character
     write(1, "\n", 1);
 }
-
+*/
 
 /*
 
