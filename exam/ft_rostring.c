@@ -11,7 +11,80 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
 
+char **ft_split(char *str);
+
+void ft_rostring(char *str)
+{
+    char  **tab;
+    char  **ptr;
+    char  *tmp;
+    char  *p;
+    char  **free_ptr; // New pointer strictly for freeing memory
+    // 1. THE HACK: Hide the commas from your ft_word_count logic.
+    // We iterate through the original string and replace commas with an invisible byte.
+    p = str;
+    while (*p)
+    {
+        if (*p == ',')
+            *p = 1; // Replace with ASCII 1 (SOH)
+        p++;
+    }
+
+    // 2. Now your ft_split will parse all words correctly, including the one with the comma.
+    tab = ft_split(str);
+
+    // Check if the array exists and has at least one word
+    if (tab && *tab)
+    {
+        ptr = tab + 1; // Jump straight to the SECOND word
+
+        while (*ptr) // Loop until the end of the array (NULL)
+        {
+            tmp = *ptr;
+            while (*tmp)
+            {
+                // 3. Bring the comma back when printing
+                if (*tmp == 1)
+                    write(1, ",", 1);
+                else
+                    write(1, tmp, 1);
+                tmp++;
+            }
+            write(1, " ", 1); // Print a space after each word
+            ptr++;
+        }
+
+        // Finally, print the FIRST word at the very end
+        tmp = *tab;
+        while (*tmp)
+        {
+            if (*tmp == 1)
+                write(1, ",", 1);
+            else
+                write(1, tmp, 1);
+            tmp++;
+        }
+    }
+
+    // 4. FREE THE MEMORY
+    if (tab)
+    {
+        free_ptr = tab; // Point to the start of the array
+        while (*free_ptr)
+        {
+            free(*free_ptr); // Free each individual word
+            free_ptr++;      // Move to the next pointer
+        }
+        free(tab); // Finally, free the main array itself
+    }
+
+    write(1, "\n", 1);
+
+}
+
+/*
 void ft_rostring(char *str)
 {
   char *first_start;
@@ -75,7 +148,6 @@ void ft_rostring(char *str)
   }
 }
 
-/*
 void    ft_rostring(char *str)
 {
     char *first_start;
