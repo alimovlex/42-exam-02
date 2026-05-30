@@ -18,6 +18,13 @@ typedef struct    s_list
     void          *data;
 }                 t_list;
 
+void	ft_list_foreach(t_list *lst, void (*f)(void *))
+{
+    while (lst)
+        f(lst->data), lst = lst->next;
+}
+
+/*
 void ft_list_foreach(t_list *begin_list, void (*f)(void *))
 {
     // Loop through each node of the list until the end
@@ -29,3 +36,4 @@ void ft_list_foreach(t_list *begin_list, void (*f)(void *))
         begin_list = begin_list->next;
     }
 }
+*/
