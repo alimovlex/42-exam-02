@@ -13,32 +13,61 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-char **ft_split(char *str)
+char    **ft_split(char *str)
 {
-    char **res = malloc(8000), **w = res, *l;
+    char **words;
+    char **next_word;
+    char  *word;
 
-    if (!res)
+    words = (char **)malloc(sizeof(char *) * 1024);
+    if (!words)
         return (NULL);
+    next_word = words;
+    while (*str)
+    {
+        if (*str == ' ' || *str == '\t' || *str == '\n')
+            str++;
+        else
+        {
+            word = (char *)malloc(1024);
+            if (!word)
+                return (NULL);
+            *next_word++ = word;
+            while (*str && !(*str == ' ' || *str == '\t' || *str == '\n'))
+                *word++ = *str++;
+            *word = '\0';
+        }
+    }
+    *next_word = NULL;
+    return (words);
+}
+/*
+char    **ft_split(char *str)
+{
+    char **words_array = (char **)malloc(8000);
+    char **next_slot = words_array;
+    char  *current_word;
 
+    if (!words_array)
+        return (NULL);
     while (*str)
     {
         while (*str == ' ' || *str == '\t' || *str == '\n')
             str++;
-
         if (!*str)
             break;
-
-        l = *w++ = malloc(1000);
-
+        current_word = (char *)malloc(1000);
+        if (!current_word)
+            return (NULL);
+        *next_slot++ = current_word;
         while (*str && *str != ' ' && *str != '\t' && *str != '\n')
-            *l++ = *str++;
-
-        *l = '\0';
+            *current_word++ = *str++;
+        *current_word = '\0';
     }
-    *w = NULL;
-    return (res);
+    *next_slot = NULL;
+    return (words_array);
 }
-/*
+
 char    **ft_split(char *str)
 {
     // Allocate space for 1000 string pointers directly
