@@ -15,6 +15,32 @@
 
 char **ft_split(char *str);
 
+void ft_rostring(char *s)
+{
+    char **tab = ft_split(s), **p, *t;
+
+    if (tab && *tab)
+    {
+        p = tab + 1;
+        while (*p)
+        {
+            t = *p;
+            while (*t)
+                write(1, t++, 1);
+            write(1, " ", 1);
+            free(*p++); // Prints and frees the word simultaneously
+        }
+        t = *tab;
+        while (*t)
+            write(1, t++, 1);
+        free(*tab); // Frees the first word
+    }
+    if (tab)
+        free(tab); // Frees the main container array
+    write(1, "\n", 1);
+}
+
+/*
 void ft_rostring(char *str)
 {
     char  **tab;
@@ -84,7 +110,6 @@ void ft_rostring(char *str)
 
 }
 
-/*
 void ft_rostring(char *str)
 {
   char *first_start;

@@ -13,6 +13,32 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+char **ft_split(char *str)
+{
+    char **res = malloc(8000), **w = res, *l;
+
+    if (!res)
+        return (NULL);
+
+    while (*str)
+    {
+        while (*str == ' ' || *str == '\t' || *str == '\n')
+            str++;
+
+        if (!*str)
+            break;
+
+        l = *w++ = malloc(1000);
+
+        while (*str && *str != ' ' && *str != '\t' && *str != '\n')
+            *l++ = *str++;
+
+        *l = '\0';
+    }
+    *w = NULL;
+    return (res);
+}
+/*
 char    **ft_split(char *str)
 {
     // Allocate space for 1000 string pointers directly
@@ -50,7 +76,7 @@ char    **ft_split(char *str)
     *word_ptr = NULL; // Null-terminate the array of strings
     return (res);
 }
-/*
+
 int ft_word_count(char *str)
 {
     int cnt = 0;
