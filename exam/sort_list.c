@@ -13,6 +13,7 @@
 #include <unistd.h>
 
 typedef struct s_list t_list;
+void ft_swap(int *a, int *b);
 
 struct s_list
 {
@@ -20,6 +21,28 @@ struct s_list
   t_list *next;
 };
 
+t_list *sort_list(t_list *lst, int (*cmp)(int, int))
+{
+    t_list *head = lst;
+
+    // The loop inherently protects against NULL or single-node lists
+    while (lst && lst->next)
+    {
+        // 2. Execute the callback pointer. If 0 (wrong order), swap and restart.
+        if (cmp(lst->data, lst->next->data) == 0)
+        {
+            ft_swap(&lst->data, &lst->next->data);
+            lst = head; // Restart from the beginning
+        }
+        else
+        {
+            lst = lst->next; // Move forward if the order is correct
+        }
+    }
+    return (head);
+}
+
+/*
 t_list *sort_list(t_list *lst, int (*cmp)(int, int)) {
   // Protection: if the list is empty or has only one node, no sorting needed
   if (lst == NULL || lst->next == NULL)
@@ -46,7 +69,7 @@ t_list *sort_list(t_list *lst, int (*cmp)(int, int)) {
   // Return the sorted list starting from the original head
   return (start);
 }
-/*
+
 t_list  *sort_list(t_list* lst, int (*cmp)(int, int))
 {
     int     tmp;
