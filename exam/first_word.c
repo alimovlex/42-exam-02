@@ -14,6 +14,22 @@
 
 void ft_first_word(char *str)
 {
+    while(*str == ' ' || *str == '\t')
+        str++;
+
+    while(*str)
+    {
+        if (*str == ' ' || *str == '\t')
+            break;
+        write(1, str++, 1);
+    }
+
+    write(1, "\n", 1);
+}
+
+/*
+void ft_first_word(char *str)
+{
     while (*str == ' ' || *str == '\t')
         str++;
 
@@ -21,3 +37,4 @@ void ft_first_word(char *str)
         write(1, str++, 1);
     write(1, "\n", 1);
 }
+*/
