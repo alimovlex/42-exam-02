@@ -15,6 +15,37 @@
 void ft_last_word(char *str)
 {
     char *end = str;
+    //Shifting to the end of a string
+    while(*end)
+        end++;
+    //Going 1 step back because of a null string terminator '\0'
+    end--;
+    //Skipping all tabs and spaces and reverting the pointer backwards.
+    while (*end == ' ' || *end == '\t')
+        end--;
+    //Advancing pointer back up to the spaces or tabs.
+    while(*end)
+    {
+        if (*end == ' ' || *end == '\t')
+            break;
+        end--;
+    }
+    //Moving 1 step further due to the space or tab address
+    end++;
+    //Printing the word and heading to the string null terminator '\0'
+    while(*end)
+    {
+        if (*end == ' ' || *end == '\t')
+            break;
+        write(1, end++, 1);
+    }
+    write(1, "\n", 1);
+}
+
+/*
+void ft_last_word(char *str)
+{
+    char *end = str;
 
     if (!str)
         return;
@@ -36,8 +67,6 @@ void ft_last_word(char *str)
     while (start <= end)
         write(1, start++, 1);
 }
-
-/*
 
 void ft_last_word(char *str)
 {
