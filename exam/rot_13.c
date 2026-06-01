@@ -14,6 +14,20 @@
 
 void ft_rot_13(char *str)
 {
+    while(*str)
+    {
+        if ((*str | 32) >= 'a' && (*str | 32) <= 'm')
+            *str += 13;
+        else if ((*str | 32) >= 'n' && (*str | 32) <= 'z')
+            *str -= 13;
+        write(1, str++, 1);
+    }
+    write(1, "\n", 1);
+}
+
+/*
+void ft_rot_13(char *str)
+{
     while (*str)
     {
         if (*str >= 'a' && *str <= 'z')
@@ -36,7 +50,6 @@ void ft_rot_13(char *str)
     write(1, "\n", 1);
 }
 
-/*
 void ft_rot_13(char* str)
 {
     while (*str)

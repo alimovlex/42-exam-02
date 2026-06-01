@@ -14,12 +14,15 @@
 
 void ft_rotone(char *str)
 {
-    while (*str)
+    while(*str)
     {
-        if ((*str | 32) >= 'a' && (*str | 32) < 'z')
-            *str += 1;
-        else if (*str == 'Z' || *str == 'z')
-            *str -= 25;
+        if ((*str | 32) >= 'a' && (*str | 32) <= 'z')
+        {
+            if ((*str | 32) == 'z')
+                *str -= 25;
+            else
+                *str += 1;
+        }
         write(1, str++, 1);
     }
     write(1, "\n", 1);
