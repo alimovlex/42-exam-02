@@ -13,21 +13,55 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int ft_strlen(char *str);
+
 void ft_do_op(int argc, char **argv)
 {
-    /* Check if we have exactly 3 arguments (argc == 4 including program name) */
+    if (argc != 4)
+        printf("\n");
+    else
+    {
+        char *s1 = *++argv;
+        char *s2 = *++argv;
+        char *s3 = *++argv;
+        if (ft_strlen(s2) == 1)
+        {
+            int a = atoi(s1), b = atoi(s3);
+            if (*s2 == '+')
+                printf("%d\n", a + b);
+            else if (*s2 == '-')
+                printf("%d\n", a - b);
+            else if (*s2 == '*')
+                printf("%d\n", a * b);
+            else if (*s2 == '/')
+                printf("%d\n", a / b);
+            else if (*s2 == '%')
+                printf("%d\n", a % b);
+            else
+                printf("\n");
+
+        }
+        else
+            printf("\n");
+    }
+}
+
+/*
+void ft_do_op(int argc, char **argv)
+{
+    //Check if we have exactly 3 arguments (argc == 4 including program name)
     if (argc == 4)
     {
-        /* Get integers by dereferencing the shifted pointer to the argument strings */
+        //Get integers by dereferencing the shifted pointer to the argument strings
         int n1 = atoi(*(argv + 1));
         int n2 = atoi(*(argv + 3));
 
-        /* Get the operator char:
-           *(argv + 2) points to the start of the operator string.
-           ** (double dereference) gets the first character of that string. */
+        //Get the operator char:
+        //(argv + 2) points to the start of the operator string.
+        //(double dereference) gets the first character of that string.
         char op = **(argv + 2);
 
-        /* Logic execution using pointer-retrieved values */
+        // Logic execution using pointer-retrieved values
         if (op == '+')
             printf("%d", n1 + n2);
         else if (op == '-')
@@ -39,6 +73,7 @@ void ft_do_op(int argc, char **argv)
         else if (op == '%')
             printf("%d", n1 % n2);
     }
-    /* Always a newline */
+    // Always a newline
     printf("\n");
 }
+*/
