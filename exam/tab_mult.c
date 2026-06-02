@@ -65,6 +65,46 @@ void	tab_mult(char *str)
     free(s2);
 }
 /*
+My buggy itoa function that works for numbers before 100.
+void ft_itoa(int number)
+{
+	int decimal = 0, digit = 0;
+	decimal = number / 10 + '0';
+	digit = number % 10 + '0';
+	if (number >= 10)
+		write(1, &decimal, 1);
+	write(1, &digit, 1);
+}
+
+void ft_tab_mult(char *str)
+{
+	int digit = 0, i = 1;
+	char c = '1';
+
+	while(*str)
+	{
+		digit *= 10;
+		digit += *str - '0';
+		str++;
+	}
+
+	while (i <= 9)
+	{
+		if (c >= '1' && c <= '9')
+		{
+			write(1, &c, 1);
+			write(1, " x ", 3);
+			ft_itoa(digit);
+			write(1, " = ", 3);
+			ft_itoa(digit * i);
+			write(1, "\n", 1);
+			c++;
+			i++;
+		}
+	}
+
+}
+
 // Helper function to print an integer using only write
 static  void ft_itoa(int number)
 {
