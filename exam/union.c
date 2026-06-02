@@ -12,7 +12,7 @@
 
 #include <unistd.h>
 
-void ft_union_seen(char *str, unsigned int seen[])
+void ft_union_seen(char *str, unsigned int *seen)
 {
     unsigned char c;
     unsigned int bit_mask, offset, index;
