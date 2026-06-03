@@ -15,6 +15,30 @@
 
 int *ft_range(int start, int end)
 {
+    int size = 0, step = 0;
+
+    // Calculate the size of the array
+    if (start > end)
+        size = start - end + 1, step = -1;
+    else if (end > start)
+        size = end - start + 1, step = 1;
+
+    int *arr = (int *)malloc(size * sizeof(int));
+    int *ptr = arr;
+
+    // A single loop that runs exactly 'size' times
+    while (size--)
+    {
+        *ptr++ = start;
+        start += step; // Move to the next number
+    }
+
+    return (arr);
+}
+
+/*
+int *ft_range(int start, int end)
+{
     int size;
 
     // 1. Calculate the exact positive size of the array
@@ -42,7 +66,6 @@ int *ft_range(int start, int end)
     return (array);
 }
 
-/*
 int *ft_range(int start, int end)
 {
     int size = 0;
