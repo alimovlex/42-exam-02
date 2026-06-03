@@ -65,6 +65,87 @@ void	tab_mult(char *str)
     free(s2);
 }
 /*
+
+// Your pocket pow function for integers
+int ft_power(int decimal, int power)
+{
+    int result = 1;
+
+    while (power > 0)
+    {
+        result *= decimal;
+        power--;
+    }
+    return (result);
+}
+
+void ft_itoa(int number)
+{
+    int tmp = number, cnt = 0, divisor = 0;
+    char current_digit;
+
+    if (number == 0)
+    {
+        write(1, "0", 1);
+        return;
+    }
+    else if (number < 0)
+    {
+	    write(1, "-", 1);
+	    number *= -1;
+    }
+
+    // --- STEP 1: Find out the number of digits (cnt) ---
+    while (tmp > 0)
+    {
+        cnt++;
+        tmp /= 10;
+    }
+
+    // --- STEP 2: Pure math via exponentiation ---
+    // We need the power of (cnt - 1). For a three-digit number (cnt=3), we do 10^2 = 100
+    divisor = ft_power(10, --cnt);
+
+    // --- STEP 3: Your scheme for breaking down the number on the fly ---
+    while (divisor > 0)
+    {
+	    //REVERSE ATOI PART
+        current_digit = number / divisor;
+	    current_digit += '0'; // Extract the pure digit
+        write(1, &current_digit, 1);
+
+        number %= divisor;            // Bite it off from the number
+        divisor /= 10;                // Reduce the divisor
+    }
+}
+//-------------------------------------ANOTHER_ITOA_FUNCTION----------------------------------
+void ft_itoa(int number)
+{
+    int temp = number, cnt = 0, decimals = 1;
+    char c;
+
+    // Base case: check if the number is zero
+    if (!number)
+    {
+        write(1, "0", 1);
+    	return;
+    }
+    //count the total digits
+    while (temp > 0)
+        temp /= 10, cnt++;
+
+    while (cnt-- > 1)
+        decimals *= 10;
+
+    // 3. Extract each digit from left to right and print it
+    while (decimals > 0)
+    {
+        c = number / decimals % 10 + '0';
+        write(1, &c, 1);
+        decimals /= 10;
+    }
+}
+//-------------------------------------ANOTHER_ITOA_FUNCTION----------------------------------
 My buggy itoa function that works for numbers before 100.
 void ft_itoa(int number)
 {
@@ -104,7 +185,7 @@ void ft_tab_mult(char *str)
 	}
 
 }
-
+//-------------------------------------ANOTHER_ITOA_FUNCTION----------------------------------
 // Helper function to print an integer using only write
 static  void ft_itoa(int number)
 {
@@ -153,7 +234,7 @@ void	tab_mult(char *str)
         i++;
     }
 }
-
+//-------------------------------------ANOTHER_ITOA_FUNCTION----------------------------------
 void ft_itoa(int number)
 {
     char c;

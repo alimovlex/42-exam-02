@@ -12,6 +12,8 @@
 
 #include <unistd.h>
 
+void ft_first_word(char *str);
+
 void ft_last_word(char *str)
 {
     char *end = str;
@@ -32,7 +34,9 @@ void ft_last_word(char *str)
     }
     //Moving 1 step further due to the space or tab address
     end++;
+    ft_first_word(str);
     //Printing the word and heading to the string null terminator '\0'
+    /*
     while(*end)
     {
         if (*end == ' ' || *end == '\t')
@@ -40,6 +44,7 @@ void ft_last_word(char *str)
         write(1, end++, 1);
     }
     write(1, "\n", 1);
+     */
 }
 
 /*
