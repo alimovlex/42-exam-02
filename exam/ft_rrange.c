@@ -16,9 +16,30 @@ int     *ft_rrange(int start, int end)
 {
     int size = 0;
     if (start > end)
-        size = start - end;
+        size = start - end + 1;
+    else
+        size = end - start + 1;
+    int *arr = (int *)malloc(size * sizeof(int));
+    int *ptr = arr;
+
+    while (size--)
+    {
+        if (start < end)
+            *ptr++ = end--;
+        else
+            *ptr++ = end++;
+    }
+
+    return arr;
+}
+/* BUGGY VERSION FOR start = end !!!
+int     *ft_rrange(int start, int end)
+{
+    int size = 0;
+    if (start > end)
+        size = start - end + 1;
     else if (end > start)
-        size = end - start;
+        size = end - start + 1;
     else
         return 0;
     int *arr = (int *)malloc(size * sizeof(int));
@@ -32,7 +53,6 @@ int     *ft_rrange(int start, int end)
     return arr;
 }
 
-/*
 int     *ft_rrange(int start, int end)
 {
     int     size = 0;

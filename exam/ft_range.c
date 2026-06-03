@@ -19,10 +19,15 @@ int *ft_range(int start, int end)
 
     // Calculate the size of the array
     if (start > end)
-        size = start - end + 1, step = -1;
+    {
+        size = start - end + 1;
+        step = -1;
+    }
     else if (end > start)
-        size = end - start + 1, step = 1;
-
+    {
+        size = end - start + 1;
+        step = 1;
+    }
     int *arr = (int *)malloc(size * sizeof(int));
     int *ptr = arr;
 
