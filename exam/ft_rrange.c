@@ -14,6 +14,27 @@
 
 int     *ft_rrange(int start, int end)
 {
+    int size = 0;
+    if (start > end)
+        size = start - end;
+    else if (end > start)
+        size = end - start;
+    else
+        return 0;
+    int *arr = (int *)malloc(size * sizeof(int));
+    int *ptr = arr;
+
+    while(start >= end)
+        *ptr++ = start--;
+    while(end >= start)
+        *ptr++ = end--;
+
+    return arr;
+}
+
+/*
+int     *ft_rrange(int start, int end)
+{
     int     size = 0;
 
     // 1. Calculate absolute size
@@ -41,3 +62,4 @@ int     *ft_rrange(int start, int end)
     // 5. Return the clean, unmodified start pointer
     return (array);
 }
+*/
