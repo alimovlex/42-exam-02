@@ -132,14 +132,18 @@ void	ft_last_word(char *str)
     while (*end && *end != ' ' && *end != '\t')
         write(1, end++, 1);
 }
-
-
+//------------------------------HELPER FUNCTIONS-----------------------
 int is_whitespace(unsigned char c)
 {
     unsigned long long mask = (1ULL << 9) | (1ULL << 32);
 
     // Ensure c is within the 64-bit range before shifting to avoid UB
     return (c < 64 && ((mask >> c) & 1));
+}
+
+int is_space(char c) {
+    // Returns 1 if c is space or tab, 0 otherwise
+    return (!(c ^ 32) || !(c ^ 9));
 }
  */
 
