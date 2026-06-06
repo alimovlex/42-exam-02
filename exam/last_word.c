@@ -12,8 +12,6 @@
 
 #include <unistd.h>
 
-void ft_first_word(char *str);
-
 void ft_last_word(char *str)
 {
     char *end = str;
@@ -23,10 +21,10 @@ void ft_last_word(char *str)
     //Going 1 step back because of a null string terminator '\0'
     end--;
     //Skipping all tabs and spaces and reverting the pointer backwards.
-    while (*end == ' ' || *end == '\t')
+    while (end >= str && (*end == ' ' || *end == '\t'))
         end--;
     //Advancing pointer back up to the spaces or tabs.
-    while(*end)
+    while(end >= str)
     {
         if (*end == ' ' || *end == '\t')
             break;
@@ -34,9 +32,8 @@ void ft_last_word(char *str)
     }
     //Moving 1 step further due to the space or tab address
     end++;
-    ft_first_word(str);
     //Printing the word and heading to the string null terminator '\0'
-    /*
+
     while(*end)
     {
         if (*end == ' ' || *end == '\t')
@@ -44,7 +41,7 @@ void ft_last_word(char *str)
         write(1, end++, 1);
     }
     write(1, "\n", 1);
-     */
+
 }
 
 /*
@@ -135,4 +132,14 @@ void	ft_last_word(char *str)
     while (*end && *end != ' ' && *end != '\t')
         write(1, end++, 1);
 }
+
+
+int is_whitespace(unsigned char c)
+{
+    unsigned long long mask = (1ULL << 9) | (1ULL << 32);
+
+    // Ensure c is within the 64-bit range before shifting to avoid UB
+    return (c < 64 && ((mask >> c) & 1));
+}
  */
+
