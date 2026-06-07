@@ -12,6 +12,44 @@
 
 #include <unistd.h>
 
+int ft_is_space_bitwise(char c);
+
+void ft_last_word(char *str)
+{
+    char *ptr = str;
+    // 1. Guard against empty strings immediately to prevent pointer UB
+    if (!ptr || !*ptr)
+        return;
+    // 2. Shift to the null terminator
+    while (*ptr)
+        ptr++;
+    // 3. Step back to the actual last character
+    ptr--;
+    // 4. Skip trailing tabs and spaces safely
+    while (ptr >= str && ft_is_space_bitwise(*ptr))
+        ptr--;
+    // If the string was purely spaces, we walked off the front. Return safely.
+    if (ptr < str)
+        return;
+    // 5. Walk backward to find the start of the last word
+    while (ptr >= str)
+    {
+        if (ft_is_space_bitwise(*ptr))
+            break;
+        ptr--;
+    }
+    // 6. Move 1 step forward to sit on the first letter of the word
+    ptr++;
+    // 7. Print the word until we hit a space, tab, or '\0'
+    while (*ptr)
+    {
+        if (ft_is_space_bitwise(*ptr))
+            break;
+        write(1, ptr++, 1);
+    }
+}
+
+/*
 void ft_last_word(char *str)
 {
     char *end = str;
@@ -44,7 +82,6 @@ void ft_last_word(char *str)
 
 }
 
-/*
 void ft_last_word(char *str)
 {
     char *end = str;
@@ -132,18 +169,5 @@ void	ft_last_word(char *str)
     while (*end && *end != ' ' && *end != '\t')
         write(1, end++, 1);
 }
-//------------------------------HELPER FUNCTIONS-----------------------
-int is_whitespace(unsigned char c)
-{
-    unsigned long long mask = (1ULL << 9) | (1ULL << 32);
-
-    // Ensure c is within the 64-bit range before shifting to avoid UB
-    return (c < 64 && ((mask >> c) & 1));
-}
-
-int is_space(char c) {
-    // Returns 1 if c is space or tab, 0 otherwise
-    return (!(c ^ 32) || !(c ^ 9));
-}
- */
+*/
 

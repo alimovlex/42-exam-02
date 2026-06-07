@@ -12,6 +12,27 @@
 
 #include <unistd.h>
 
+int ft_is_space_bitwise(char c);
+
+void ft_first_word(char *str)
+{
+    // 1. Guard against empty strings immediately to prevent pointer UB
+    if (!str || !*str)
+        return;
+    while(ft_is_space_bitwise(*str))
+        str++;
+
+    while(*str)
+    {
+        if (ft_is_space_bitwise(*str))
+            break;
+        write(1, str++, 1);
+    }
+
+    write(1, "\n", 1);
+}
+
+/*
 void ft_first_word(char *str)
 {
     while(*str == ' ' || *str == '\t')
@@ -27,7 +48,6 @@ void ft_first_word(char *str)
     write(1, "\n", 1);
 }
 
-/*
 void ft_first_word(char *str)
 {
     while (*str == ' ' || *str == '\t')

@@ -86,6 +86,9 @@ void ft_rostring(char *str);
 // Other / Matrices
 void ft_swap(int *a, int *b);
 void flood_fill(char **tab, t_point size, t_point begin);
+
+//HELPER FUNCTIONS
+int ft_is_space_bitwise(char c);
 #ifdef __cplusplus
 }
 #endif
