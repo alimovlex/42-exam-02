@@ -12,13 +12,15 @@
 
 #include <unistd.h>
 
+int ft_is_space_bitwise(char c);
+
 int ft_atoi(const char* str)
 {
     int result = 0;
     int sign = 1;
 
     // 1. Skip all whitespace characters (strictly at the beginning)
-    while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
+    while (ft_is_space_bitwise(*str))
         str++;
 
     // 2. Handle the sign (exactly once and only one sign)
@@ -30,13 +32,14 @@ int ft_atoi(const char* str)
     }
 
     // 3. Process digits one by one
-    while((*str & 240) == 48) //while (*str >= '0' && *str <= '9')
+    while (*str >= '0' && *str <= '9') //while((*str & 240) == 48)
     {
         // Extract the numerical value of the current character (the "unit")
         // Shift the existing result to the left to make it "tens"
         // Add the new "unit" to our shifted result
         result *= 10;
-        result += *str & 15; //result += *str - '0';
+        //result += *str & 15;
+        result += *str - '0';
         str++;
     }
 

@@ -4,7 +4,8 @@ int ft_is_space_bitwise(char c)
 {
     // Create a 64-bit unsigned int.
     // Shift 1 by 9 for tab, and 1 by 32 for space, then bitwise OR them.
-    unsigned long long mask = (1ULL << '\t') | (1ULL << ' ');
+    unsigned long long mask = (1ULL << '\t') | (1ULL << ' ') |
+                              (1ULL << '\r') | (1ULL << '\n');
 
     // Protect against negative chars or chars > 63 to prevent
     // undefined behavior when shifting bits.
