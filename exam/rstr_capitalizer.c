@@ -12,6 +12,27 @@
 
 #include <unistd.h>
 
+int ft_is_space_bitwise(char c);
+
+void rstr_capitalizer(char *str)
+{
+    while (*str)
+    {
+        // Turning letters from uppercase into a lowercase
+        if (*str >= 'A' && *str <= 'Z')
+            *str += 32;
+
+        // Turning letter uppercase because it's at the last position
+        if ((*str >= 'a' && *str <= 'z') &&
+            (ft_is_space_bitwise(*(str + 1)) || !*(str + 1)))
+            *str -= 32;
+
+        write(1, str++, 1);
+    }
+    write(1, "\n", 1);
+}
+
+/*
 void rstr_capitalizer(char *str)
 {
     while (*str)
@@ -30,3 +51,4 @@ void rstr_capitalizer(char *str)
     }
     write(1, "\n", 1);
 }
+*/
