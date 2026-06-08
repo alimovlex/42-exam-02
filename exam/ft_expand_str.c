@@ -12,6 +12,39 @@
 
 #include <unistd.h>
 
+int ft_is_space_bitwise(char c);
+
+void ft_expand_str(char *str)
+{
+    int flag = 0;
+
+    // 1. Skip all spaces and tabs at the very beginning
+    while (ft_is_space_bitwise(*str))
+        str++;
+
+    // 2. Loop through the rest of the string
+    while (*str)
+    {
+        // If we hit a space or a tab
+        if (ft_is_space_bitwise(*str))
+            flag = 1; // Remember that we are in a space block between words
+        else // If we hit a regular character
+        {
+            // If the flag is up, it means a new word is starting
+            if (flag == 1)
+            {
+                write(1, "   ", 3); // Print exactly 3 spaces
+                flag = 0;           // Reset the flag since we are now inside a word
+            }
+            // Print the current character
+            write(1, str, 1);
+        }
+        str++; // Move to the next character
+    }
+    write(1, "\n", 1);
+}
+
+/*
 void ft_expand_str(char *str)
 {
     int flag = 0;
@@ -43,3 +76,4 @@ void ft_expand_str(char *str)
     }
     write(1, "\n", 1);
 }
+*/
