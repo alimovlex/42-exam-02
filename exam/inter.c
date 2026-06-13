@@ -12,6 +12,36 @@
 
 #include <unistd.h>
 
+//ft_strchr here!!!
+int ft_contains(char *s2, char s1)
+{
+    while (*s2 && *s2 != s1)
+        s2++;
+    return (*s2 == s1);
+}
+
+void ft_inter(char *s1, char *s2)
+{
+    char *start = s1, *ptr = s1;
+
+    while (*s1)
+    {
+        ptr = start;
+        // 1. Scan s1 from the start up to our current position.
+        while (s1 > ptr && *ptr != *s1)
+            ptr++;
+
+        // 2. If p == s1, it's unique so far.
+        // 3. If ft_contains returns 1, it exists in s2. Print it.
+        if (ptr == s1 && ft_contains(s2, *s1))
+            write(1, s1, 1);
+
+        s1++;
+    }
+    write(1, "\n", 1);
+}
+
+/*
 void ft_inter_seen(char *str, unsigned int *primary, unsigned int *secondary, int mode)
 {
     unsigned int bit_mask, offset, index;
@@ -57,7 +87,6 @@ void ft_inter(char *s1, char *s2)
     write(1, "\n", 1);
 }
 
-/*
 void ft_inter(char *s1, char *s2)
 {
     unsigned int seen_in_s2[8] = {0};
@@ -300,7 +329,6 @@ void ft_inter(char* s1, char* s2)
         s1_temp++;
     }
 }
-
 
 void ft_inter(char *s1, char *s2)
 {
