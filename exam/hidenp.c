@@ -12,15 +12,17 @@
 
 #include <unistd.h>
 
+//wdmatch is here!!!
 void hidenp(char *s1, char *s2)
 {
     while (*s2)
     {
+        //ft_strcmp is here!!!
         if (*s1 && *s1 == *s2)
             s1++;
         s2++;
     }
-    if (!*s1)
+    if (!*s1) //(!*s1 == '\0')
         write(1, "1", 1);
     else
         write(1, "0", 1);

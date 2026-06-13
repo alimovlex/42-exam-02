@@ -12,6 +12,25 @@
 
 #include <unistd.h>
 
+//hidenp is here
+void ft_wdmatch(char *s1, char *s2)
+{
+    char *ptr_s1 = s1;
+    while (*s2)
+    {
+        //ft_strcmp is here!!!
+        if (*s1 && *s1 == *s2)
+            s1++;
+        s2++;
+    }
+    if (!*s1) //(!*s1 == '\0')
+        while(*ptr_s1)
+            write(1, ptr_s1++, 1);
+
+    write(1, "\n", 1);
+}
+
+/*
 void ft_wdmatch(char *s1, char *s2)
 {
     char *end = s1, *ptr = s1;
@@ -31,7 +50,7 @@ void ft_wdmatch(char *s1, char *s2)
             write(1, ptr++, 1);
     write(1, "\n", 1);
 }
-/*
+
 void ft_wdmatch(char *s1, char *s2)
 {
     char *ptr = s1;
