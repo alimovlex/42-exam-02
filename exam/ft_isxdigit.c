@@ -18,5 +18,6 @@ int ft_isxdigit(char c)
         return (c & 15);
     else if ((c | 32) >= 'a' && (c | 32) <= 'f')
         return ((c & 15) + 9);
-    return (-1); // Invalid char
+    else
+        return (-1); // Invalid char
 }
