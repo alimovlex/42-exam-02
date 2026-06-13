@@ -14,6 +14,38 @@
 
 #include <unistd.h>
 
+int ft_isxdigit(char c);
+
+int ft_atoi_base(const char *str, int str_base)
+{
+    int result = 0, sign = 1, digit = 0;
+
+    if (str_base < 2 || str_base > 16)
+        return (0);
+
+    if (*str == '-')
+    {
+        sign = -1;
+        str++;
+    }
+
+    while (*str)
+    {
+        digit = ft_isxdigit(*str);
+
+        // Stop if character is invalid OR if digit doesn't match the base
+        if (digit == -1 || digit >= str_base)
+            break;
+
+        result *= str_base;
+        result += digit;
+        str++;
+    }
+
+    return (result * sign);
+}
+
+/*
 int ft_atoi_base(const char *str, int str_base)
 {
     int result = 0;
@@ -35,9 +67,9 @@ int ft_atoi_base(const char *str, int str_base)
     while (*str)
     {
         // Convert the character to its numeric value (digit)
-        //if (*str >= '0' && *str <= '9')
-        if ((*str & 240) == 48)
-            digit = *str & 15;
+        // if ((*str & 240) == 48)
+        if (*str >= '0' && *str <= '9')
+            digit = *str & 15; //digit = *str - '0';
         else if (((*str | 32) >= 'a') && ((*str | 32) <= 'f'))
             digit = (*str & 15) + 9;
         else
@@ -48,7 +80,8 @@ int ft_atoi_base(const char *str, int str_base)
             break;
 
         // Accumulate the result
-        result = (result * str_base) + digit;
+        result *= str_base; //like it is done in default ft_atoi result *= 10; 10 - base
+        result += digit;
 
         // Move the pointer to the next character
         str++;
@@ -58,7 +91,6 @@ int ft_atoi_base(const char *str, int str_base)
     return (result * sign);
 }
 
-/*
 int ft_atoi_base(const char *str, int str_base)
 {
     int result = 0;

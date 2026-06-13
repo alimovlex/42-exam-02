@@ -16,8 +16,7 @@ int ft_is_space(char c);
 
 int ft_atoi(const char* str)
 {
-    int result = 0;
-    int sign = 1;
+    int result = 0, sign = 1;
 
     // 1. Skip all whitespace characters (strictly at the beginning)
     while (ft_is_space(*str))
@@ -38,8 +37,8 @@ int ft_atoi(const char* str)
         // Shift the existing result to the left to make it "tens"
         // Add the new "unit" to our shifted result
         result *= 10;
-        //result += *str & 15;
-        result += *str - '0';
+        result += *str & 15;
+        //result += *str - '0';
         str++;
     }
 
