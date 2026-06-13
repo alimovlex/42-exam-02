@@ -13,7 +13,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-int ft_is_space_bitwise(char c);
+int ft_is_space(char c);
 
 char    **ft_split(char *str)
 {
@@ -25,7 +25,7 @@ char    **ft_split(char *str)
     while (*str)
     {
         // Skip whitespace characters directly inline
-        while (*str && ft_is_space_bitwise(*str))
+        while (*str && ft_is_space(*str))
             str++;
         if (!*str)
             break;
@@ -34,7 +34,7 @@ char    **ft_split(char *str)
         *word_ptr = malloc(1000);
         letter_ptr = *word_ptr;
         // Collect characters until we hit a whitespace
-        while (*str && !ft_is_space_bitwise(*str))
+        while (*str && !ft_is_space(*str))
             *letter_ptr++ = *str++;
         *letter_ptr = '\0'; // Null-terminate the current word
         word_ptr++;         // Move to the next slot in the array
@@ -54,13 +54,13 @@ char    **ft_split(char *str)
     next_word = words;
     while (*str)
     {
-        if (ft_is_space_bitwise(*str))
+        if (ft_is_space(*str))
             str++;
         else
         {
             word = (char *)malloc(1024);
             *next_word++ = word;
-            while (*str && !ft_is_space_bitwise(*str))
+            while (*str && !ft_is_space(*str))
                 *word++ = *str++;
             *word = '\0';
         }
@@ -77,13 +77,13 @@ char    **ft_split(char *str)
 
     while (*str)
     {
-        while (ft_is_space_bitwise(*str))
+        while (ft_is_space(*str))
             str++;
         if (!*str)
             break;
         current_word = (char *)malloc(1000);
         *next_slot++ = current_word;
-        while (*str && !ft_is_space_bitwise(*str))
+        while (*str && !ft_is_space(*str))
             *current_word++ = *str++;
         *current_word = '\0';
     }

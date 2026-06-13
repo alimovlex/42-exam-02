@@ -12,7 +12,7 @@
 
 #include <unistd.h>
 
-int ft_is_space_bitwise(char c);
+int ft_is_space(char c);
 
 int ft_atoi(const char* str)
 {
@@ -20,7 +20,7 @@ int ft_atoi(const char* str)
     int sign = 1;
 
     // 1. Skip all whitespace characters (strictly at the beginning)
-    while (ft_is_space_bitwise(*str))
+    while (ft_is_space(*str))
         str++;
 
     // 2. Handle the sign (exactly once and only one sign)

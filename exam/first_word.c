@@ -12,19 +12,19 @@
 
 #include <unistd.h>
 
-int ft_is_space_bitwise(char c);
+int ft_is_space(char c);
 
 void ft_first_word(char *str)
 {
     // 1. Guard against empty strings immediately to prevent pointer UB
     if (!str || !*str)
         return;
-    while(ft_is_space_bitwise(*str))
+    while(ft_is_space(*str))
         str++;
 
     while(*str)
     {
-        if (ft_is_space_bitwise(*str))
+        if (ft_is_space(*str))
             break;
         write(1, str++, 1);
     }

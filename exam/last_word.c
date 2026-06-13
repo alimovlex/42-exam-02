@@ -12,7 +12,7 @@
 
 #include <unistd.h>
 
-int ft_is_space_bitwise(char c);
+int ft_is_space(char c);
 
 void ft_last_word(char *str)
 {
@@ -26,7 +26,7 @@ void ft_last_word(char *str)
     // 3. Step back to the actual last character
     ptr--;
     // 4. Skip trailing tabs and spaces safely
-    while (ptr >= str && ft_is_space_bitwise(*ptr))
+    while (ptr >= str && ft_is_space(*ptr))
         ptr--;
     // If the string was purely spaces, we walked off the front. Return safely.
     if (ptr < str)
@@ -34,7 +34,7 @@ void ft_last_word(char *str)
     // 5. Walk backward to find the start of the last word
     while (ptr >= str)
     {
-        if (ft_is_space_bitwise(*ptr))
+        if (ft_is_space(*ptr))
             break;
         ptr--;
     }
@@ -43,7 +43,7 @@ void ft_last_word(char *str)
     // 7. Print the word until we hit a space, tab, or '\0'
     while (*ptr)
     {
-        if (ft_is_space_bitwise(*ptr))
+        if (ft_is_space(*ptr))
             break;
         write(1, ptr++, 1);
     }

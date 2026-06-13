@@ -1,6 +1,6 @@
 #include <unistd.h>
 
-int ft_is_space_bitwise(char c)
+int ft_is_space(char c)
 {
     //Hardcoded mask for standard C whitespace (ASCII 9-13, and 32)
     //unsigned long long mask = 0x100003E00ULL;
