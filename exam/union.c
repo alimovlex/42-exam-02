@@ -12,6 +12,48 @@
 
 #include <unistd.h>
 
+int ft_strchr(char *s2, char s1);
+
+void ft_union(char *s1, char *s2)
+{
+    char *start_s1 = s1;
+    char *start_s2 = s2;
+    char *ptr;
+
+    // 1. Blast through s1
+    while (*s1)
+    {
+        ptr = start_s1;
+        // Scan backwards to see if it's a duplicate in s1
+        while (ptr < s1 && *ptr != *s1)
+            ptr++;
+
+        // If p reached s1, it's the first time we've seen this character
+        if (ptr == s1)
+            write(1, s1, 1);
+
+        s1++;
+    }
+
+    // 2. Blast through s2
+    while (*s2)
+    {
+        ptr = start_s2;
+        // Scan backwards to see if it's a duplicate in s2
+        while (ptr < s2 && *ptr != *s2)
+            ptr++;
+
+        // If it's unique in s2 AND it does NOT exist anywhere in s1, print it
+        if (ptr == s2 && !ft_strchr(start_s2, *s2))
+            write(1, s2, 1);
+
+        s2++;
+    }
+
+    write(1, "\n", 1);
+}
+
+/*
 void ft_union_seen(char *str, unsigned int *seen)
 {
     unsigned char c;
@@ -48,7 +90,6 @@ void ft_union(char *s1, char *s2)
     write(1, "\n", 1);
 }
 
-/*
 void ft_seen(char *str, unsigned int seen[])
 {
     unsigned char c;
