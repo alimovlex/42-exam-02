@@ -13,7 +13,7 @@
 #include <unistd.h>
 
 //ft_strchr here!!!
-int ft_contains(char *s2, char s1)
+int ft_strchr(char *s2, char s1)
 {
     while (*s2 && *s2 != s1)
         s2++;
@@ -33,7 +33,7 @@ void ft_inter(char *s1, char *s2)
 
         // 2. If p == s1, it's unique so far.
         // 3. If ft_contains returns 1, it exists in s2. Print it.
-        if (ptr == s1 && ft_contains(s2, *s1))
+        if (ptr == s1 && ft_strchr(s2, *s1))
             write(1, s1, 1);
 
         s1++;
@@ -42,6 +42,36 @@ void ft_inter(char *s1, char *s2)
 }
 
 /*
+
+// One function to rule them both.
+// If 'end' is a pointer, it stops there. If 'end' is NULL, it stops at '\0'.
+int ft_scan(char *p, char *end, char c)
+{
+    while (p != end && *p)
+    {
+        if (*p == c)
+            return (1); // Found it!
+        p++;
+    }
+    return (0); // Didn't find it
+}
+
+void ft_inter(char *s1, char *s2)
+{
+    char *head = s1;
+
+    while (*s1)
+    {
+        // 1. !ft_scan(head, s1, *s1) -> FALSE if we've seen it in s1 before.
+        // 2. ft_scan(s2, NULL, *s1)  -> TRUE if it exists anywhere in s2.
+        if (!ft_scan(head, s1, *s1) && ft_scan(s2, NULL, *s1))
+            write(1, s1, 1);
+
+        s1++;
+    }
+    write(1, "\n", 1);
+}
+
 void ft_inter_seen(char *str, unsigned int *primary, unsigned int *secondary, int mode)
 {
     unsigned int bit_mask, offset, index;
