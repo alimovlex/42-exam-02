@@ -12,6 +12,40 @@
 
 #include <unistd.h>
 
+int ft_is_space_bitwise(char c);
+
+void str_capitalizer(char *str)
+{
+    // Protect against empty strings to prevent a segfault
+    if (!str)
+    {
+        write(1, "\n", 1);
+        return;
+    }
+
+    // 1. First character. If it's a lowercase letter, make it uppercase
+    if (*str >= 'a' && *str <= 'z')
+        *str -= 32;
+
+    write(1, str++, 1);
+
+    // 2. Loop through the rest
+    while (*str)
+    {
+        // If uppercase, convert to lowercase
+        if (*str >= 'A' && *str <= 'Z')
+            *str += 32;
+
+        // If lowercase and preceded by a space/tab, make it uppercase
+        if ((*str >= 'a' && *str <= 'z') && (ft_is_space_bitwise(*(str - 1))))
+            *str -= 32;
+
+        write(1, str++, 1);
+    }
+    write(1, "\n", 1);
+}
+
+/*
 void str_capitalizer(char *str)
 {
     // 1. Handle the first character explicitly so we can safely look back later
@@ -40,7 +74,6 @@ void str_capitalizer(char *str)
     write(1, "\n", 1);
 }
 
-/*
 void str_capitalizer(char *str)
 {
     // 1. Handle the very first character of the string safely

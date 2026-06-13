@@ -13,60 +13,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-char    **ft_split(char *str)
-{
-    char **words;
-    char **next_word;
-    char  *word;
-
-    words = (char **)malloc(sizeof(char *) * 1024);
-    if (!words)
-        return (NULL);
-    next_word = words;
-    while (*str)
-    {
-        if (*str == ' ' || *str == '\t' || *str == '\n')
-            str++;
-        else
-        {
-            word = (char *)malloc(1024);
-            if (!word)
-                return (NULL);
-            *next_word++ = word;
-            while (*str && !(*str == ' ' || *str == '\t' || *str == '\n'))
-                *word++ = *str++;
-            *word = '\0';
-        }
-    }
-    *next_word = NULL;
-    return (words);
-}
-/*
-char    **ft_split(char *str)
-{
-    char **words_array = (char **)malloc(8000);
-    char **next_slot = words_array;
-    char  *current_word;
-
-    if (!words_array)
-        return (NULL);
-    while (*str)
-    {
-        while (*str == ' ' || *str == '\t' || *str == '\n')
-            str++;
-        if (!*str)
-            break;
-        current_word = (char *)malloc(1000);
-        if (!current_word)
-            return (NULL);
-        *next_slot++ = current_word;
-        while (*str && *str != ' ' && *str != '\t' && *str != '\n')
-            *current_word++ = *str++;
-        *current_word = '\0';
-    }
-    *next_slot = NULL;
-    return (words_array);
-}
+int ft_is_space_bitwise(char c);
 
 char    **ft_split(char *str)
 {
@@ -75,35 +22,73 @@ char    **ft_split(char *str)
     char **word_ptr = res;
     char *letter_ptr;
 
-    if (!res)
-        return (NULL);
-
     while (*str)
     {
         // Skip whitespace characters directly inline
-        while (*str && (*str == ' ' || *str == '\t' || *str == '\n'))
+        while (*str && ft_is_space_bitwise(*str))
             str++;
         if (!*str)
             break;
 
         // Allocate 1000 bytes for the current word
         *word_ptr = malloc(1000);
-        if (!*word_ptr)
-            return (NULL);
-
         letter_ptr = *word_ptr;
         // Collect characters until we hit a whitespace
-        while (*str && *str != ' ' && *str != '\t' && *str != '\n')
-        {
-            *letter_ptr = *str;
-            letter_ptr++;
-            str++;
-        }
+        while (*str && !ft_is_space_bitwise(*str))
+            *letter_ptr++ = *str++;
         *letter_ptr = '\0'; // Null-terminate the current word
         word_ptr++;         // Move to the next slot in the array
     }
     *word_ptr = NULL; // Null-terminate the array of strings
     return (res);
+}
+
+/*
+char    **ft_split(char *str)
+{
+    char **words;
+    char **next_word;
+    char  *word;
+
+    words = (char **)malloc(sizeof(char *) * 1024);
+    next_word = words;
+    while (*str)
+    {
+        if (ft_is_space_bitwise(*str))
+            str++;
+        else
+        {
+            word = (char *)malloc(1024);
+            *next_word++ = word;
+            while (*str && !ft_is_space_bitwise(*str))
+                *word++ = *str++;
+            *word = '\0';
+        }
+    }
+    *next_word = NULL;
+    return (words);
+}
+
+char    **ft_split(char *str)
+{
+    char **words_array = (char **)malloc(8000);
+    char **next_slot = words_array;
+    char  *current_word;
+
+    while (*str)
+    {
+        while (ft_is_space_bitwise(*str))
+            str++;
+        if (!*str)
+            break;
+        current_word = (char *)malloc(1000);
+        *next_slot++ = current_word;
+        while (*str && !ft_is_space_bitwise(*str))
+            *current_word++ = *str++;
+        *current_word = '\0';
+    }
+    *next_slot = NULL;
+    return (words_array);
 }
 
 int ft_word_count(char *str)
@@ -160,40 +145,4 @@ char **ft_split(char *str)
     *start = NULL;
     return split_str;
 }
-
- int is_space(char c)
-{
-	return (c == ' ' || c == '\t' || c == '\n');
-}
-
-
-char	**ft_split(char *str)
-{
-	int i = 0;
-	int word = 0;
-	int letter;
-	char **res = malloc(sizeof(char *)*1000);
-
-	while (str[i])
-	{
-		while (str[i] && is_space(str[i]))
-			i++;
-		if (!str[i])
-			break;
-
-		res[word] = malloc(1000);
-		letter = 0;
-		while (str[i] && !is_space(str[i]))
-		{
-			res[word][letter] = str[i];
-			letter++;
-			i++;
-		}
-		res[word][letter] = '\0';
-		word++;
-	}
-	res[word] = NULL;
-	return res;
-}
-
- */
+*/

@@ -2,6 +2,9 @@
 
 int ft_is_space_bitwise(char c)
 {
+    //Hardcoded mask for standard C whitespace (ASCII 9-13, and 32)
+    //unsigned long long mask = 0x100003E00ULL;
+
     // Create a 64-bit unsigned int.
     // Shift 1 by 9 for tab, and 1 by 32 for space, then bitwise OR them.
     unsigned long long mask = (1ULL << '\t') | (1ULL << ' ') |
