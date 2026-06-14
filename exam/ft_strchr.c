@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                         ::::::::           */
-/*   hidenp.c                                            :+:    :+:           */
+/*   ft_strchr.c                                         :+:    :+:           */
 /*                                                      +:+                   */
-/*   By: alalimov <marvin@42.fr>                       +#+                    */
+/*   By: alalimov <alalimov@student.codam.nl>          +#+                    */
 /*                                                    +#+                     */
-/*   Created: 2026/05/10 18:17:50 by alalimov       #+#    #+#                */
-/*   Updated: 2026/05/10 18:17:52 by alalimov       ########   odam.nl        */
+/*   Created: 2026/06/13 06:59:22 by alalimov       #+#    #+#                */
+/*   Updated: 2026/06/13 06:59:24 by alalimov       ########   odam.nl        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-//wdmatch is here!!!
-void hidenp(char *s1, char *s2)
+int ft_strchr(char *s2, char s1)
 {
-    while (*s2)
-    {
-        //ft_strcmp is here!!!
-        if (*s1 && *s1 == *s2)
-            s1++;
+    while (*s2 && *s2 != s1)
         s2++;
-    }
-    if (!*s1) //(!*s1 == '\0')
-        write(1, "1", 1);
-    else
-        write(1, "0", 1);
-    write(1, "\n", 1);
+    return (*s2 == s1);
 }

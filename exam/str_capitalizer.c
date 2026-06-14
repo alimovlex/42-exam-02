@@ -12,7 +12,7 @@
 
 #include <unistd.h>
 
-int ft_is_space_bitwise(char c);
+int ft_is_space(char c);
 
 void str_capitalizer(char *str)
 {
@@ -37,7 +37,7 @@ void str_capitalizer(char *str)
             *str += 32;
 
         // If lowercase and preceded by a space/tab, make it uppercase
-        if ((*str >= 'a' && *str <= 'z') && (ft_is_space_bitwise(*(str - 1))))
+        if ((*str >= 'a' && *str <= 'z') && (ft_is_space(*(str - 1))))
             *str -= 32;
 
         write(1, str++, 1);

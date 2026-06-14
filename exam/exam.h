@@ -88,7 +88,9 @@ void ft_swap(int *a, int *b);
 void flood_fill(char **tab, t_point size, t_point begin);
 
 //HELPER FUNCTIONS
-int ft_is_space_bitwise(char c);
+int ft_is_space(char c);
+int ft_isxdigit(char c);
+int ft_strchr(char *s2, char s1);
 #ifdef __cplusplus
 }
 #endif

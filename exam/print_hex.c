@@ -49,10 +49,11 @@ void print_hex(char *str)
 }
 
 /*
-void print_hex(unsigned int number)
+void print_hex(char *str)
 {
+    unsigned int number = ft_atoi(str);
+
     // Table 1 holds "01234567"
-    // 0x3736353433323130 in Hex (ASCII values of 7, 6, 5, 4, 3, 2, 1, 0)
     uint64_t t1 = ((uint64_t)'0' << 0)  | ((uint64_t)'1' << 8)  |
                   ((uint64_t)'2' << 16) | ((uint64_t)'3' << 24) |
                   ((uint64_t)'4' << 32) | ((uint64_t)'5' << 40) |
@@ -66,20 +67,22 @@ void print_hex(unsigned int number)
 
     int shift = 28;
 
+    // Skip leading zeros.
+    // Stop if we find the first significant digit or if we reach shift == 0
+    // (to ensure '0' is printed if the input value is zero).
+    while (shift > 0 && ((number >> shift) & 0xF) == 0)
+        shift -= 4;
+
+    // Main printing loop
     while (shift >= 0)
     {
         unsigned int digit = (number >> shift) & 0xF;
 
         // BRANCHLESS TABLE SELECTION
-        // If digit >= 8, bit 3 is 1. (digit >> 3) & 1 gives us 1.
-        // -1 gives us 0xFFFFFFFFFFFFFFFF. If digit < 8, mask is 0x0.
         uint64_t mask = -((uint64_t)(digit >> 3) & 1);
-
-        // If mask is 0, we get t1. If mask is all 1s, we get t2.
         uint64_t active_table = (t1 & ~mask) | (t2 & mask);
 
-        // Extract the character!
-        // We use (digit & 7) to wrap digits 8-15 back to 0-7 for the shift math.
+        // Extract the character
         char c = (active_table >> ((digit & 7) * 8)) & 0xFF;
 
         write(1, &c, 1);
@@ -88,8 +91,9 @@ void print_hex(unsigned int number)
     write(1, "\n", 1);
 }
 
-void print_hex(unsigned int number)
+void print_hex(char *str)
 {
+    unsigned int number = ft_atoi(str);
     // Create our two 64-bit halves
     uint64_t t1 = ((uint64_t)'0' << 0)  | ((uint64_t)'1' << 8)  |
                   ((uint64_t)'2' << 16) | ((uint64_t)'3' << 24) |
@@ -108,6 +112,12 @@ void print_hex(unsigned int number)
 
     int shift = 28;
 
+    // Skip leading zeros.
+    // Stop if we find the first significant digit or if we reach shift == 0
+    // (to ensure '0' is printed if the input value is zero).
+    while (shift > 0 && ((number >> shift) & 0xF) == 0)
+        shift -= 4;
+
     while (shift >= 0)
     {
         unsigned int digit = (number >> shift) & 15; //0xF
@@ -121,7 +131,6 @@ void print_hex(unsigned int number)
     }
     write(1, "\n", 1);
 }
-
 
 void print_hex(char *str)
 {

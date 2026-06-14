@@ -12,22 +12,22 @@
 
 #include <unistd.h>
 
-int ft_is_space_bitwise(char c);
+int ft_is_space(char c);
 
 void epur_str(char *str)
 {
     /* 1. Skip initial spaces and tabs */
-    while (ft_is_space_bitwise(*str))
+    while (ft_is_space(*str))
         str++;
 
     while (*str)
     {
         /* 2. Print the current word */
-        while (*str && !ft_is_space_bitwise(*str))
+        while (*str && !ft_is_space(*str))
             write(1, str++, 1);
 
         /* 3. Skip the "garbage" (spaces/tabs) after the word */
-        while (ft_is_space_bitwise(*str))
+        while (ft_is_space(*str))
             str++;
 
         /* 4. Look ahead: if there's another word, print exactly one space */

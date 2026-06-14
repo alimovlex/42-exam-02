@@ -17,7 +17,21 @@
  * any of the specified characters and returns the length of the string up to that point.
  * If none of the characters are found then the length of the string is returned.
  */
+int ft_strchr(char *s2, char s1);
 
+size_t ft_strcspn(const char *s, const char *reject)
+{
+    const char *ptr = s;
+    const char *rej_ptr = reject;
+    while (*ptr)
+    {
+        if (ft_strchr((char*)rej_ptr, *(char *)ptr))
+            break;
+        ptr++;
+    }
+    return ptr - s;
+}
+/*
 size_t ft_strcspn(const char *s, const char *reject)
 {
     unsigned int map[8] = {0};
@@ -56,7 +70,6 @@ size_t ft_strcspn(const char *s, const char *reject)
     return (size_t)((const char *)str - s);
 }
 
-/*
 size_t ft_strcspn(const char *s, const char *reject)
 {
     unsigned int map[8] = {0};
