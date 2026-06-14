@@ -15,18 +15,20 @@
 int     *ft_rrange(int start, int end)
 {
     int size = 0;
-    if (start > end)
+    if (start >= end)
         size = start - end + 1;
-    else
+    else if (end >= start)
         size = end - start + 1;
+    else
+        return 0;
     int *arr = (int *)malloc(size * sizeof(int));
     int *ptr = arr;
 
     while (size--)
     {
-        if (start < end)
+        if (end >= start)
             *ptr++ = end--;
-        else
+        else if (start >= end)
             *ptr++ = end++;
     }
 

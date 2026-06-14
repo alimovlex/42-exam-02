@@ -27,18 +27,15 @@ int *ft_range(int start, int end)
 
     // 2. Allocate memory using malloc
     int *array = (int *)malloc(size * sizeof(int));
-    if (!array)
-        return (NULL);
-
     int *ptr = array;
-
     // 3. Fill the memory using two clean, separate loops
     while (size--)
+    {
         if (start <= end)
             *ptr++ = start++; // Put start into ptr, then move both forward
         else if (start >= end)
             *ptr++ = start--; // Put start into ptr, move ptr forward, decrease start
-
+    }
     // 4. Return the untouched pointer to the beginning
     return (array);
 }
