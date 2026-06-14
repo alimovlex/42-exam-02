@@ -12,6 +12,34 @@
 
 #include <stdlib.h>
 
+int strip_twos(int x);
+void ft_swap(int *a, int *b);
+
+int pgcd(const char *s1, const char *s2)
+{
+    int a = atoi(s1), b = atoi(s2);
+    // STEP 1 OPTIMIZED: Isolate the lowest set bit (LSB) in O(1).
+    // This extracts the common power of 2 mask (e.g., 1, 2, 4, 8) instantly!
+    int common_p2 = (a | b) & -(a | b);
+
+    // Step 2: Strip trailing zeros (even factors) from 'a'
+    a = strip_twos(a);
+
+    // Step 3: Main reduction loop (No do-while)
+    while (b > 0)
+    {
+        // Strip trailing zeros from 'b' using your helper
+        b = strip_twos(b);
+        // Pass by reference to our XOR swap helper
+        if (a > b)
+            ft_swap(&a, &b);
+        // Subtract smaller from larger
+        b -= a;
+    }
+    return a * common_p2;
+}
+
+/*
 int pgcd(const char *s1, const char *s2)
 {
     int a = atoi(s1), b = atoi(s2);
@@ -26,8 +54,6 @@ int pgcd(const char *s1, const char *s2)
     return a;
 }
 
-
-/*
 int pgcd(const char *s1, const char *s2)
 {
     int a = atoi(s1), b = atoi(s2);

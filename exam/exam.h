@@ -91,6 +91,7 @@ void flood_fill(char **tab, t_point size, t_point begin);
 int ft_is_space(char c);
 int ft_isxdigit(char c);
 int ft_strchr(char *s2, char s1);
+int ft_strip_twos(int x);
 #ifdef __cplusplus
 }
 #endif
