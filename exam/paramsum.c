@@ -53,9 +53,18 @@ void paramsum(int argc, char **argv)
     // Print the final newline character
     write(1, "\n", 1);
 }
-*/
 
-/*
+//DOES NOT work with numbers over 100
+void paramsum(int argc, char** argv)
+{
+    (void)argv;
+	char decimal = (argc / 10) | 48;
+	char digit = (argc % 10) | 48;
+	if (argc >= 10)
+		write(1, &decimal, 1);
+	write(1, &digit, 1);
+	write(1, "\n", 1);
+}
 
 //DOES NOT work with numbers over 100
 void paramsum(int argc, char** argv)

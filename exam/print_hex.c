@@ -17,6 +17,37 @@ int ft_atoi(const char* str);
 
 void print_hex(char *str)
 {
+    // String literal mapped via pointer arithmetic.
+    // started variable here is a switch to skip unnecessary zeros
+    char *hex = "0123456789abcdef";
+    int shift = 28, digit = 0, started = 0, n = ft_atoi(str); // Highest 4-bit chunk in a 32-bit int
+
+    // Edge case for 0
+    if (n == 0)
+    {
+        write(1, hex, 1);
+        return;
+    }
+
+    while (shift >= 0)
+    {
+        // Extract 4 bits at a time from left to right
+        digit = (n >> shift) & 15;
+
+        // Skip leading zeros
+        if (digit != 0 || started == 1)
+        {
+            started = 1;
+            // hex + digit bypasses the need for hex[digit] array brackets
+            write(1, hex + digit, 1);
+        }
+        shift -= 4;
+    }
+}
+
+/*
+void print_hex(char *str)
+{
     unsigned int number = 0;
     unsigned int digit;
     unsigned int divisor = 1;
@@ -48,7 +79,6 @@ void print_hex(char *str)
     write(1, "\n", 1);
 }
 
-/*
 void print_hex(char *str)
 {
     unsigned int number = ft_atoi(str);
