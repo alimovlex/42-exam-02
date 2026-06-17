@@ -21,10 +21,14 @@ void ft_expand_str(char *str)
 
     while(*str)
     {
+        // If the next character is a space, we just finished a word
         if (ft_is_space(*str))
         {
+            // Skip all consecutive spaces
             while(ft_is_space(*str))
                 str++;
+            // If we haven't reached the end of the string, it means
+            // another word is coming. Print exactly 3 spaces.
             if (*str)
                 write(1, "   ", 3);
         }
