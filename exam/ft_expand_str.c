@@ -16,6 +16,7 @@ int ft_is_space(char c);
 
 void ft_expand_str(char *str)
 {
+    // Skip all beginning spaces
     while(ft_is_space(*str))
         str++;
 
