@@ -16,6 +16,28 @@ int ft_is_space(char c);
 
 void ft_expand_str(char *str)
 {
+    while(ft_is_space(*str))
+        str++;
+
+    while(*str)
+    {
+        if (ft_is_space(*str))
+        {
+            while(ft_is_space(*str))
+                str++;
+            if (*str)
+                write(1, "   ", 3);
+        }
+        if (!*str)
+            break;
+        write(1, str++, 1);
+    }
+    write(1, "\n", 1);
+}
+
+/*
+void ft_expand_str(char *str)
+{
     int flag = 0;
 
     // 1. Skip all spaces and tabs at the very beginning
@@ -44,7 +66,6 @@ void ft_expand_str(char *str)
     write(1, "\n", 1);
 }
 
-/*
 void ft_expand_str(char *str)
 {
     int flag = 0;
