@@ -23,7 +23,7 @@ void fprime(char *str)
 
     if (num == 1)
     {
-        printf("1\n");
+        printf("1");
         return;
     }
 
