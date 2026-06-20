@@ -1,6 +1,6 @@
 #include <unistd.h>
 
-int is_prime(int a)
+int ft_is_prime(int a)
 {
     //Prime numbers starts from 2
     int i = 2;

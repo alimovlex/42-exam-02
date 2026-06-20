@@ -92,7 +92,7 @@ int ft_is_space(char c);
 int ft_isxdigit(char c);
 int ft_strchr(char *s2, char s1);
 int ft_strip_twos(int x);
-int is_prime(int a);
+int ft_is_prime(int a);
 #ifdef __cplusplus
 }
 #endif

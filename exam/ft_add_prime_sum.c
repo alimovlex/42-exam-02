@@ -14,7 +14,7 @@
 
 int ft_atoi(const char* str);
 char	*ft_itoa(int nbr);
-int is_prime(int a);
+int ft_is_prime(int a);
 
 int ft_numlen(int num)
 {
@@ -64,7 +64,7 @@ void ft_add_prime_sum(char *str)
 
     while(i <= digit)
     {
-        if (is_prime(i))
+        if (ft_is_prime(i))
             sum += i;
         i++;
     }
@@ -86,14 +86,14 @@ void ft_add_prime_sum(char *str)
 
     while (current <= max_num)
     {
-        int is_prime = 1;
+        int ft_is_prime = 1;
         int divisor = 2;
 
         // Inline prime check without any helper functions
         while (divisor * divisor <= current)
         {
             if (current % divisor == 0)
-                is_prime = 0; // Found a divisor, not prime
+                ft_is_prime = 0; // Found a divisor, not prime
             divisor++;
         }
 
@@ -131,14 +131,14 @@ void ft_add_prime_sum(char *str)
 
     while (current <= max_num)
     {
-        int is_prime = 1;
+        int ft_is_prime = 1;
         int divisor = 2;
 
         // Inline prime check without any helper functions
         while (divisor * divisor <= current)
         {
             if (current % divisor == 0)
-                is_prime = 0; // Found a divisor, not prime
+                ft_is_prime = 0; // Found a divisor, not prime
             divisor++;
         }
 
