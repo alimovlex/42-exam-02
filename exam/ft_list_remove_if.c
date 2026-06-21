@@ -19,11 +19,21 @@ typedef struct      s_list
     void            *data;
 }                   t_list;
 
+int cmp_void_ints(void *a, void *b)
+{
+    if (a == b)
+        return 0;
+    else
+        return 1;
+}
+
 void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 {
     t_list **curr = begin_list;
     t_list *tmp;
-
+    //OPTIONAL but intuitive!!!
+    //Can be any passed function that contains any operation
+    cmp = cmp_void_ints;
     // Protection against a completely null double-pointer
     if (!begin_list)
         return;

@@ -21,23 +21,29 @@ struct s_list
   t_list *next;
 };
 
+int compare(int a, int b)
+{
+    return (b >= a);
+}
+
 t_list *sort_list(t_list *lst, int (*cmp)(int, int))
 {
     t_list *head = lst;
-
+    //OPTIONAL but intuitive!!!
+    //Can be any passed function that contains any comparison algorithm
+    cmp = compare;
     // The loop inherently protects against NULL or single-node lists
-    while (lst && lst->next)
+    while (lst->next != NULL)
     {
         // 2. Execute the callback pointer. If 0 (wrong order), swap and restart.
+        //looks like strcmp!!!
         if (cmp(lst->data, lst->next->data) == 0)
         {
             ft_swap(&lst->data, &lst->next->data);
             lst = head; // Restart from the beginning
         }
         else
-        {
             lst = lst->next; // Move forward if the order is correct
-        }
     }
     return (head);
 }

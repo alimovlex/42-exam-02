@@ -18,17 +18,22 @@ typedef struct    s_list
     void          *data;
 }                 t_list;
 
-void	ft_list_foreach(t_list *lst, void (*f)(void *))
+char *ft_itoa(int nbr);
+
+void print_data(void *data)
 {
-    while (lst)
-        f(lst->data), lst = lst->next;
+    char *str = ft_itoa(*(int*)data);
+    while(*str)
+        write(1, str++, 1);
 }
 
-/*
 void ft_list_foreach(t_list *begin_list, void (*f)(void *))
 {
+    //OPTIONAL but intuitive!!!
+    //Can be any passed function that does any operation
+    f = print_data;
     // Loop through each node of the list until the end
-    while (begin_list)
+    while (begin_list != NULL)
     {
         // Apply the function 'f' to the data of the current node
         f(begin_list->data);
@@ -36,4 +41,3 @@ void ft_list_foreach(t_list *begin_list, void (*f)(void *))
         begin_list = begin_list->next;
     }
 }
-*/
