@@ -15,16 +15,7 @@
 int ft_atoi(const char* str);
 char	*ft_itoa(int nbr);
 int ft_is_prime(int a);
-
-int ft_numlen(int num)
-{
-    int i = 0;
-    while (num > 0) {
-        num /= 10;
-        i++;
-    }
-    return i;
-}
+int ft_numlen(long num);
 
 void ft_itoa_print(int number)
 {

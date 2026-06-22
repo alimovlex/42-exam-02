@@ -93,6 +93,7 @@ int ft_isxdigit(char c);
 int ft_strchr(char *s2, char s1);
 int ft_strip_twos(int x);
 int ft_is_prime(int a);
+int ft_numlen(long num);
 char *ft_first_word(char *str);
 char *ft_last_word(char *str);
 #ifdef __cplusplus

@@ -10,9 +10,51 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdlib.h>
 
+int ft_numlen(long num);
+
+char *ft_itoa(int nbr)
+{
+    long    n = nbr;
+    int     len;
+    int     total_len;
+    long    divisor = 1;
+    char    *str;
+    char    *ptr;
+
+    // 1. Calculate length and memory needed
+    len = ft_numlen(n);
+    total_len = len;
+
+    if (n < 0)
+        total_len++; // Add space for the minus sign
+    // 2. Allocate memory (+1 for the null-terminator)
+    str = (char *)malloc(sizeof(char) * (total_len + 1));
+    ptr = str; // Use a secondary pointer to write characters
+    // 3. Handle negative numbers
+    if (n < 0)
+    {
+        *ptr++ = '-';
+        n = -n; // Convert to absolute value
+    }
+    // 4. Build the divisor based on the length (e.g., length 3 -> divisor 100)
+    // We use a pre-decrement on a copy of len to correctly size the divisor
+    while (--len > 0)
+        divisor *= 10;
+    // 5. Break down and store each digit into the string
+    while (divisor > 0)
+    {
+        *ptr++ = (n / divisor) + '0';
+        n %= divisor;
+        divisor /= 10;
+    }
+    // 6. Null-terminate and return the start of the string
+    *ptr = '\0';
+    return (str);
+}
+
+/*
 char	*ft_itoa(int nbr)
 {
     long	n = nbr, decimals = 1;
@@ -46,7 +88,7 @@ char	*ft_itoa(int nbr)
     while (decimals > 0)
     {
         *ptr = (n / decimals % 10) + '0';
-        //*ptr = (n / decimals % 10) | 48; // Get digit, convert to ASCII, write to pointer
+        // *ptr = (n / decimals % 10) | 48; // Get digit, convert to ASCII, write to pointer
         ptr++; // Move pointer to the next free byte
         decimals /= 10; // Decrease the divisor
     }
@@ -56,7 +98,6 @@ char	*ft_itoa(int nbr)
     return (str); // Return the starting address
 }
 
-/*
 char *ft_itoa(int nbr)
 {
     long n = nbr;
