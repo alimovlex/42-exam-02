@@ -35,7 +35,7 @@ void ft_repeat_alpha(char* str);
 void ft_rev_print(char *str);
 void ft_rot_13(char* str);
 void ft_rotone(char* str);
-void ft_first_word(char* str);
+void first_word(char* str);
 char *ft_strcpy(char *s1, char *s2);
 void ft_search_and_replace(int argc, char** argv);
 void ft_wdmatch(char *s1, char *s2);
@@ -93,6 +93,7 @@ int ft_isxdigit(char c);
 int ft_strchr(char *s2, char s1);
 int ft_strip_twos(int x);
 int ft_is_prime(int a);
+char *ft_first_word(char *str);
 #ifdef __cplusplus
 }
 #endif

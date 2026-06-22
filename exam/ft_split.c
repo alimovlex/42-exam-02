@@ -14,7 +14,36 @@
 #include <stdlib.h>
 
 int ft_is_space(char c);
+int count_words(char *str);
+char *ft_first_word(char *str);
 
+char **ft_split(char *str)
+{
+    if (!str)
+        return (NULL);
+
+    char **words = (char **)malloc(sizeof(char *) * (count_words(str) + 1));;
+    char **word_ptr = words;
+
+    while (*str)
+    {
+        if (ft_is_space(*str))
+            str++;
+        else
+        {
+            // Call your adapted function to extract the word
+            *word_ptr++ = ft_first_word(str);
+
+            // Advance the main pointer past the word we just extracted
+            while (*str && !ft_is_space(*str))
+                str++;
+        }
+    }
+    *word_ptr = NULL;
+    return (words);
+}
+
+/*
 char    **ft_split(char *str)
 {
     // Allocate space for 1000 string pointers directly
@@ -43,7 +72,6 @@ char    **ft_split(char *str)
     return (res);
 }
 
-/*
 char    **ft_split(char *str)
 {
     char **words;

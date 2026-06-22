@@ -11,15 +11,13 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "exam.h"
+
+int ft_strlen(char *str);
 
 char *ft_strdup(char *src)
 {
     char *end = src;
-    int len = 0;
-    while(*end)
-        end++;
-    len = end - src;
+    int len = ft_strlen(end);
     char *dup = (char *)malloc(++len);
     char *ptr = dup;
     while(*src)

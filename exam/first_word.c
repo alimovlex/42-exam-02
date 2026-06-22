@@ -14,7 +14,7 @@
 
 int ft_is_space(char c);
 
-void ft_first_word(char *str)
+void first_word(char *str)
 {
     // 1. Guard against empty strings immediately to prevent pointer UB
     if (!str || !*str)
@@ -33,7 +33,7 @@ void ft_first_word(char *str)
 }
 
 /*
-void ft_first_word(char *str)
+void first_word(char *str)
 {
     while(*str == ' ' || *str == '\t')
         str++;
@@ -48,7 +48,7 @@ void ft_first_word(char *str)
     write(1, "\n", 1);
 }
 
-void ft_first_word(char *str)
+void first_word(char *str)
 {
     while (*str == ' ' || *str == '\t')
         str++;
