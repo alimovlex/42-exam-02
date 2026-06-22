@@ -48,7 +48,7 @@ size_t ft_strcspn(const char *s, const char *reject);
 void snake_to_camel(char* str);
 void camel_to_snake(char *str);
 void ft_union(char* s1, char* s2);
-void ft_last_word(char *str);
+void last_word(char *str);
 void rstr_capitalizer(char *str);
 void str_capitalizer(char *str);
 void hidenp(char *s1, char *s2);
@@ -94,6 +94,7 @@ int ft_strchr(char *s2, char s1);
 int ft_strip_twos(int x);
 int ft_is_prime(int a);
 char *ft_first_word(char *str);
+char *ft_last_word(char *str);
 #ifdef __cplusplus
 }
 #endif

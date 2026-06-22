@@ -14,7 +14,7 @@
 
 int ft_is_space(char c);
 
-void ft_last_word(char *str)
+void last_word(char *str)
 {
     char *ptr = str;
     // 1. Guard against empty strings immediately to prevent pointer UB

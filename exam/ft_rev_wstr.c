@@ -13,8 +13,61 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-char **ft_split(char *str);
+//char **ft_split(char *str);
+char *ft_last_word(char *str);
+int ft_is_space(char c);
 
+void ft_rev_wstr(char *str)
+{
+    char *word;
+    char *ptr;
+    char *print_ptr;
+    int first_word = 1;
+
+    // Loop until the string is completely empty
+    while (*str)
+    {
+        // Extract the last word
+        word = ft_last_word(str);
+        if (!word)
+            break;
+
+        // Print a space before the next word (except for the very first one we print)
+        if (!first_word)
+            write(1, " ", 1);
+        first_word = 0;
+
+        // Print the extracted word
+        print_ptr = word;
+        while (*print_ptr)
+            write(1, print_ptr++, 1);
+
+        // Free the memory allocated by ft_strdup
+        free(word);
+
+        // --- TRUNCATION PHASE ---
+        // We must shorten the original string so the next loop finds the previous word
+        ptr = str;
+        while (*ptr)
+            ptr++;
+        ptr--;
+
+        // Skip trailing spaces
+        while (ptr >= str && ft_is_space(*ptr))
+            ptr--;
+        // Skip the word we just printed
+        while (ptr >= str && !ft_is_space(*ptr))
+            ptr--;
+
+        // If we found a space before the word, turn it into a null-terminator
+        if (ptr >= str)
+            *ptr = '\0';
+        else
+            *str = '\0'; // We printed the last remaining word, clear the string to break the loop
+    }
+}
+
+/*
 void ft_rev_wstr(char *str)
 {
     char **tab = ft_split(str);
@@ -56,7 +109,6 @@ void ft_rev_wstr(char *str)
     write(1, "\n", 1);
 }
 
-/*
 void ft_rev_wstr(char *str)
 {
   char *end = str;
