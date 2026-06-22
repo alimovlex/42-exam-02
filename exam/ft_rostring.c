@@ -13,8 +13,65 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-char **ft_split(char *str);
+//char **ft_split(char *str);
+char *ft_first_word(char *str);
+int ft_is_space(char c);
 
+void ft_rostring(char *str)
+{
+    char *first_word;
+    char *print_ptr;
+    int word_printed = 0;
+
+    // 1. Extract the first word using your helper function
+    first_word = ft_first_word(str);
+    if (!first_word)
+        return;
+
+    // 2. Advance the main string pointer PAST the first word
+    // First, slide past the leading spaces to match where ft_first_word started
+    while (ft_is_space(*str))
+        str++;
+    // Second, slide past the first word itself
+    while (*str && !ft_is_space(*str))
+        str++;
+
+    // 3. Process and print all remaining words in the string
+    while (*str)
+    {
+        // Skip spaces between remaining words
+        while (ft_is_space(*str))
+            str++;
+
+        if (*str == '\0')
+            break;
+
+        // Print exactly one space separator before every word (except the first one printed)
+        if (word_printed)
+            write(1, " ", 1);
+        word_printed = 1;
+
+        // Print the current word
+        while (*str && !ft_is_space(*str))
+        {
+            write(1, str, 1);
+            str++;
+        }
+    }
+
+    // 4. Print your saved first word at the very end
+    if (word_printed)
+        write(1, " ", 1); // Add a space if other words were printed before this
+
+    print_ptr = first_word;
+    while (*print_ptr)
+        write(1, print_ptr++, 1);
+
+    // 5. Free the memory allocated by ft_strdup to prevent memory leaks
+    free(first_word);
+}
+
+/*
 void ft_rostring(char *s)
 {
     char **tab = ft_split(s), **p, *t;
@@ -40,7 +97,6 @@ void ft_rostring(char *s)
     write(1, "\n", 1);
 }
 
-/*
 void ft_rostring(char *str)
 {
     char  **tab;
