@@ -16,6 +16,90 @@ void ft_swap(int *a, int *b);
 
 void sort_int_tab(int *tab, unsigned int size)
 {
+    int bit;
+    int *start;
+    int *end;
+    int *chunk_start;
+    int *chunk_end;
+    int *next_chunk;
+    int *left;
+    int *right;
+    unsigned int p1;
+    unsigned int p2;
+    unsigned int target_l; // <--- Changed to unsigned int
+    unsigned int target_r; // <--- Changed to unsigned int
+
+    if (size <= 1)
+        return;
+
+    start = tab;
+    end = tab + size - 1;
+
+    bit = 31;
+    while (bit >= 0)
+    {
+        chunk_start = start;
+
+        while (chunk_start <= end)
+        {
+            chunk_end = chunk_start;
+
+            while (chunk_end < end)
+            {
+                p1 = 0;
+                p2 = 0;
+
+                if (bit < 31)
+                {
+                    p1 = (unsigned int)(*chunk_end) >> (bit + 1);
+                    p2 = (unsigned int)(*(chunk_end + 1)) >> (bit + 1);
+                }
+
+                if (p1 == p2)
+                    chunk_end++;
+                else
+                    break;
+            }
+
+            next_chunk = chunk_end + 1;
+            left = chunk_start;
+            right = chunk_end;
+
+            // Targets are now safely unsigned integers
+            target_l = 0;
+            target_r = 1;
+
+            if (bit == 31)
+            {
+                target_l = 1;
+                target_r = 0;
+            }
+
+            while (left <= right)
+            {
+                // Both sides of the == are strictly unsigned int
+                while (left <= right && ((((unsigned int)*left >> bit) & 1) == target_l))
+                    left++;
+
+                while (left <= right && ((((unsigned int)*right >> bit) & 1) == target_r))
+                    right--;
+
+                if (left < right)
+                {
+                    ft_swap(left, right);
+                    left++;
+                    right--;
+                }
+            }
+            chunk_start = next_chunk;
+        }
+        bit--;
+    }
+}
+
+/*
+void sort_int_tab(int *tab, unsigned int size)
+{
     int *ptr = tab;
 
     // 2. Safety check is embedded cleanly in the loop condition
@@ -31,7 +115,6 @@ void sort_int_tab(int *tab, unsigned int size)
     }
 }
 
-/*
 void sort_int_tab(int *tab, unsigned int size) {
   int *ptr = tab;
 
