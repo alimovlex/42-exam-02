@@ -6,7 +6,7 @@
 /*   By: alalimov <marvin@42.fr>                       +#+                    */
 /*                                                    +#+                     */
 /*   Created: 2026/05/22 09:58:50 by alalimov       #+#    #+#                */
-/*   Updated: 2026/05/22 09:58:53 by alalimov       ########   odam.nl        */
+/*   Updated: 2026/06/26 02:09:54 by alalimov       ########   odam.nl        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ t_list *sort_list(t_list *lst, int (*cmp)(int, int)) {
     // If the elements are NOT in the right order according to 'cmp'
     if (cmp(lst->data, lst->next->data) == 0) {
       // Bitwise XOR swap algorithm to exchange data without a temp variable
-      lst->data = lst->data ^ lst->next->data;
-      lst->next->data = lst->data ^ lst->next->data;
-      lst->data = lst->data ^ lst->next->data;
+      lst->data ^= lst->next->data;
+      lst->next->data ^= lst->data;
+      lst->data ^= lst->next->data;
 
       // Restart from the beginning of the list after the swap
       lst = start;
