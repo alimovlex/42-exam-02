@@ -5,21 +5,23 @@ project(exam)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
-file(GLOB SRCS "${PROJECT_SOURCE_DIR}/exam/*.c" "main.c")
-add_library(exam SHARED ${SRCS} exam/exam.h)
-include_directories(exam)
-add_executable(google-test main.c)
-target_link_libraries(google-test exam)
+
+file(GLOB SRCS "${PROJECT_SOURCE_DIR}/exam/*.c" )
+#add_library(exam SHARED ${SRCS} exam/exam.h)
+#include_directories(exam)
+#add_executable(google-test ${SRCS} main.c)
+#target_link_libraries(google-test exam)
 
 set(gtest_SRC_DIR test/googletest-1.17.0)
 add_subdirectory(${gtest_SRC_DIR})
 
 include_directories(exam)
 include_directories(${gtest_SRC_DIR}/googletest/include)
-add_executable(runExamTests test/main.cpp)
-target_link_libraries(runExamTests gtest gtest_main exam)
-target_link_libraries(runExamTests exam)
+add_executable(runExamTests ${SRCS} test/main.cpp)
+target_link_libraries(runExamTests gtest gtest_main)
+#target_link_libraries(runExamTests exam)
 
+#Cxxdroid-binary: runExamTests
 ##set(CMAKE_CXX_STANDARD 11)
 ##set(CMAKE_C_COMPILER g++)
 ##set(CMAKE_CXX_LINK_EXECUTABLE cxx)
